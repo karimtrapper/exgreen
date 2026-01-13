@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106232718', 'ym');
+
+        ym(106232718, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106232718" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <title>ExGreen — Получайте баты и оплачивайте счета в Таиланде без лишних сложностей</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: {
+                        'figma-lime': '#D9F99D',
+                        'ds-background': '#F3F6F4',
+                        'ds-surface': '#FFFFFF',
+                        'ds-border': '#E6E9E7',
+                        'ds-text-primary': '#111513',
+                        'ds-text-muted': '#6E7A73',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAF9; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        
+        /* Calculator */
+        .calc-card {
+            background: #FFFFFF; border-radius: 24px; padding: 32px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04); width: 100%;
+            max-width: 460px; border: 1px solid #E6E9E7;
+        }
+        .course-badge {
+            background: #F1F3F2; padding: 8px 24px; border-radius: 100px;
+            font-size: 14px; font-weight: 700; color: #111513;
+            display: inline-block; margin-bottom: 24px;
+        }
+        .input-label { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #111513; display: block; }
+        .field-box {
+            border: 1px solid #E6E9E7; border-radius: 16px; padding: 14px 18px;
+            display: flex; align-items: center; background: white;
+            transition: border-color 0.2s; margin-bottom: 20px;
+        }
+        .field-box:focus-within { border-color: #111513; }
+        .calc-input { flex: 1; border: none; outline: none; font-size: 22px; font-weight: 600; color: #111513; width: 100%; }
+        .currency-pill {
+            display: flex; align-items: center; gap: 10px; cursor: pointer;
+            padding: 6px 10px; border-radius: 12px; background: transparent;
+            transition: background 0.2s; user-select: none;
+        }
+        .currency-pill:hover { background: #F1F3F2; }
+        .flag-icon { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 1px solid #E6E9E7; }
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 8px); right: 0;
+            background: white; border: 1px solid #E6E9E7; border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 100; width: 180px; display: none;
+        }
+        .dropdown-menu.show { display: block; }
+        .dropdown-item { padding: 12px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .dropdown-item:hover { background: #F3F6F4; }
+        
+        /* Task System */
+        .task-container {
+            background-color: #D9F99D; border-radius: 40px; padding: 24px; margin-bottom: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; position: relative;
+        }
+        @media (min-width: 768px) { .task-container { padding: 48px; } }
+        .task-container.collapsed { padding-top: 24px; padding-bottom: 24px; }
+        .task-header { display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; user-select: none; margin-bottom: 32px; }
+        .task-container.collapsed .task-header { margin-bottom: 0; }
+        .task-title { font-size: 24px; font-weight: 800; color: #0C100E; letter-spacing: -0.02em; line-height: 1.2; }
+        @media (min-width: 768px) { .task-title { font-size: 32px; } }
+        .toggle-btn {
+            width: 40px; height: 40px; background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: black;
+            transition: transform 0.3s; flex-shrink: 0; margin-left: 16px;
+        }
+        .task-container.collapsed .toggle-btn { transform: rotate(180deg); }
+        .task-content { display: flex; flex-direction: column; gap: 40px; transition: all 0.3s ease; }
+        @media (min-width: 768px) {
+            .task-content { flex-direction: row; align-items: stretch; }
+            .task-content > div:first-child { flex: 1.2; }
+            .task-content > .task-image-wrapper { flex: 1; }
+        }
+        .task-container.collapsed .task-content { display: none; }
+        .feature-card {
+            background: white; border-radius: 32px; padding: 24px 32px; margin-bottom: 16px;
+            display: flex; align-items: flex-start; gap: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        .task-image-wrapper { background: rgba(0,0,0,0.05); border-radius: 32px; overflow: hidden; width: 100%; height: 480px; display: flex; align-self: start; }
+        .task-image-wrapper img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+        /* Tabs & Info Cards */
+        .ogvio-card { background: white; border-radius: 24px; padding: 32px; border: 1px solid #E6E9E7; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; height: 100%; }
+        .ogvio-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.04); }
+        .ogvio-icon-circle { width: 48px; height: 48px; border-radius: 50%; background: #D9F99D; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .ogvio-toggle-container { display: inline-flex; background: #E6E9E7; padding: 4px; border-radius: 100px; margin-bottom: 48px; }
+        .ogvio-toggle-btn { padding: 10px 24px; border-radius: 100px; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+        .ogvio-toggle-btn.active { background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+        /* Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-overlay.show { display: flex; }
+        .modal-content { background: white; border-radius: 32px; max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 40px; position: relative; }
+        .modal-close { position: absolute; top: 24px; right: 24px; cursor: pointer; color: #6E7A73; }
+        
+        /* Cases */
+        .case-card-sketch { background: white; border-radius: 24px; overflow: hidden; border: 1px solid #E6E9E7; transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; }
+        .case-card-sketch:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+        .case-image-top { height: 200px; width: 100%; background-size: cover; background-position: center; position: relative; }
+        .case-tag { 
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: white; 
+            padding: 6px 16px; 
+            border-radius: 100px; 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        /* Promo Section Animations */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: floating 3s ease-in-out infinite; }
+        .animate-message { animation: fadeInScale 0.5s ease-out forwards; }
+        .animate-delay-1 { animation-delay: 0.5s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 1.5s; opacity: 0; }
+    </style>
+</head>
+<body class="text-ds-text-primary">
+
+    <!-- ========== HEADER ========== -->
+    <header class="py-4 px-6 glass border-b border-ds-border sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-figma-lime rounded-xl flex items-center justify-center text-black border-2 border-black shadow-lg"><i data-lucide="refresh-cw"></i></div>
+                <span class="text-2xl font-extrabold tracking-tight">ExGreen</span>
+            </div>
+            <nav class="flex items-center space-x-4 lg:space-x-8 font-semibold text-ds-text-muted">
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#tasks" class="hover:text-black transition">Задачи</a>
+                    <a href="#security" class="hover:text-black transition">Безопасность</a>
+                    <a href="#how-it-works" class="hover:text-black transition">Механика</a>
+                    <a href="#cases" class="hover:text-black transition">Кейсы</a>
+                    <a href="#grusha" class="hover:text-black transition text-green-600">Для бизнеса</a>
+                </div>
+                
+                <!-- Rates Badges in Header -->
+                <div class="flex items-center gap-2 sm:gap-4 lg:ml-8 lg:border-l border-ds-border lg:pl-8">
+                    <div class="bg-[#F1F3F2] px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 group relative cursor-help" title="Средний курс при обмене 100 000 ₽">
+                        <img src="https://flagcdn.com/w20/th.png" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full">
+                        <div class="flex items-center gap-1">
+                            <span class="text-[11px] sm:text-[13px] font-black text-gray-800 whitespace-nowrap" id="header-rate-rub">1 ฿ ≈ — ₽</span>
+                        </div>
+                    </div>
+                    <div class="hidden min-[450px]:flex bg-[#F1F3F2] px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl items-center gap-2 sm:gap-3 group relative cursor-help" title="Средний курс при обмене 1 000 USDT">
+                        <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=025" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full">
+                        <div class="flex items-center gap-1">
+                            <span class="text-[11px] sm:text-[13px] font-black text-gray-800 whitespace-nowrap" id="header-rate-usdt">1 $ ≈ — ฿</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== HERO + CALCULATOR ========== -->
+    <section class="min-h-[calc(100vh-80px)] flex items-center pt-20 pb-24 px-6 relative overflow-hidden border-b border-ds-border">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10 w-full">
+            <div class="flex-1 text-center lg:text-left">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-8 tracking-tight">
+                    Надежный перевод<br>средств по&nbsp;всему Таиланду:<br>от&nbsp;инвойсов застройщиков<br>до&nbsp;личных нужд
+                </h1>
+                <p class="text-xl text-gray-700 mb-12 max-w-2xl leading-relaxed">
+                    Принимаем RUB и&nbsp;USDT для&nbsp;оплаты инвойсов застройщиков, аренды недвижимости и&nbsp;получения наличных. Предоставляем официальные банковские подтверждения.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <button onclick="contact('tg', 'hero')" class="bg-[#3B82F6] text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:brightness-110 transition flex items-center justify-center gap-3">
+                        <i data-lucide="send" class="w-6 h-6"></i> Обменять в&nbsp;Telegram
+                    </button>
+                    <button onclick="contact('wa', 'hero')" class="bg-[#4ADE80] text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:brightness-110 transition flex items-center justify-center gap-3">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i> в&nbsp;WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <div class="calc-card mx-auto flex flex-col items-center">
+                <div id="course-badge" class="course-badge">1 THB = 2.84 RUB</div>
+                <div class="w-full">
+                    <label class="input-label">Вы отдаете:</label>
+                    <div class="field-box relative">
+                        <input type="text" id="send-input" class="calc-input" value="1 000 000">
+                        <div id="from-pill" class="currency-pill">
+                            <img src="https://flagcdn.com/w40/ru.png" class="flag-icon" id="send-flag">
+                            <span class="font-bold text-gray-800" id="send-code">RUB</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400"></i>
+                        </div>
+                        <div id="from-dropdown" class="dropdown-menu">
+                            <div class="dropdown-item" data-code="RUB"><img src="https://flagcdn.com/w40/ru.png" class="flag-icon"><span class="font-bold ml-2">RUB</span></div>
+                            <div class="dropdown-item" data-code="USDT"><img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=025" class="flag-icon"><span class="font-bold ml-2">USDT</span></div>
+                        </div>
+                    </div>
+                    <label class="input-label">Вы получаете:</label>
+                    <div class="field-box relative">
+                        <input type="text" id="receive-input" class="calc-input">
+                        <div id="to-pill" class="currency-pill cursor-default hover:bg-transparent">
+                            <img src="https://flagcdn.com/w40/th.png" class="flag-icon" id="receive-flag">
+                            <span class="font-bold text-gray-800" id="receive-code">THB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-3 w-full mb-6">
+                    <button onclick="contact('tg', 'calc')" class="flex-1 bg-[#3B82F6] text-white py-4 rounded-full font-bold text-sm shadow-lg hover:brightness-110 transition">Telegram</button>
+                    <button onclick="contact('wa', 'calc')" class="flex-1 bg-[#4ADE80] text-white py-4 rounded-full font-bold text-sm shadow-lg hover:brightness-110 transition">WhatsApp</button>
+                </div>
+                <div class="flex items-start gap-4 bg-[#F8FAF9] p-4 rounded-2xl w-full">
+                    <span class="text-[#84CC16] font-extrabold text-xl mt-0.5">!</span>
+                    <p class="text-xs text-gray-500 leading-relaxed">Курс является ориентировочным. В&nbsp;зависимости от&nbsp;объемов и&nbsp;способов оплаты курс может корректироваться, точный курс предоставит менеджер после оформления заявки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TASKS SECTION ========== -->
+    <section id="tasks" class="py-24 px-6 bg-white border-b border-ds-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Решаем вашу задачу в&nbsp;Таиланде</h2>
+                <p class="text-xl md:text-2xl text-gray-500 leading-relaxed">Быстро, легально и&nbsp;без лишних движений</p>
+            </div>
+            <!-- Task 1 -->
+            <div class="task-container" id="task-1">
+                <div class="task-header" onclick="toggleTask(1)"><h2 class="task-title">1. Покупка недвижимости и&nbsp;оплата инвойсов</h2><div class="toggle-btn"><i data-lucide="minus" class="w-6 h-6" id="icon-1"></i></div></div>
+                <div class="task-content">
+                    <div class="space-y-4">
+                        <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Проводим платежи напрямую застройщикам в&nbsp;любой банк Таиланда. Обеспечиваем юридическую чистоту и&nbsp;предоставляем официальные чеки.</p>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Инвойсы застройщиков</h4><p class="text-gray-500 text-sm font-medium">Принимаем RUB и&nbsp;USDT для оплаты любых счетов от&nbsp;девелоперов.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Официальный чек</h4><p class="text-gray-500 text-sm font-medium">Гарантированное подтверждение платежа, которое принимает любой застройщик.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Сопровождение</h4><p class="text-gray-500 text-sm font-medium">Контролируем процесс до&nbsp;момента зачисления средств на&nbsp;баланс объекта.</p></div></div>
+                    </div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80&w=1000" alt="Property"></div>
+                </div>
+            </div>
+            <!-- Task 2 -->
+            <div class="task-container collapsed" id="task-2">
+                <div class="task-header" onclick="toggleTask(2)"><h2 class="task-title">2. Аренда жилья и&nbsp;бронирование отдыха</h2><div class="toggle-btn"><i data-lucide="plus" class="w-6 h-6" id="icon-2"></i></div></div>
+                <div class="task-content">
+                    <div class="space-y-4">
+                        <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Мгновенные переводы владельцам жилья, автопрокатам и&nbsp;туристическим агентствам. Бронируйте отдых без&nbsp;границ.</p>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Бронирование вилл и&nbsp;отелей</h4><p class="text-gray-500 text-sm font-medium">Оплачивайте аренду напрямую владельцу или через агентство недвижимости.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Пополнение за&nbsp;пару минут</h4><p class="text-gray-500 text-sm font-medium">Деньги поступают на&nbsp;счёт тайского банка мгновенно.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Оплата сервисов</h4><p class="text-gray-500 text-sm font-medium">Трансферы, аренда авто, экскурсии и&nbsp;другие туристические услуги.</p></div></div>
+                    </div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="rent.jpg" alt="Travel"></div>
+                </div>
+            </div>
+            <!-- Task 3 -->
+            <div class="task-container collapsed" id="task-3">
+                <div class="task-header" onclick="toggleTask(3)"><h2 class="task-title">3. Получение наличных</h2><div class="toggle-btn"><i data-lucide="plus" class="w-6 h-6" id="icon-3"></i></div></div>
+                <div class="task-content">
+                    <div class="space-y-4">
+                        <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Самый простой способ получить местную валюту для&nbsp;личных расходов. Различные варианты выдачи по&nbsp;всему Таиланде.</p>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">QR-снятие в банкомате</h4><p class="text-gray-500 text-sm font-medium">Снимайте наличные без карты за 5 минут в ближайшем банкомате.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Доставка курьером</h4><p class="text-gray-500 text-sm font-medium">Доставляем баты в любую точку Пхукета.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Выдача в офисе</h4><p class="text-gray-500 text-sm font-medium">Ждем вас в нашем офисе на Пхукете (район Choeng Thale).</p></div></div>
+                    </div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="cash.jpg" alt="Cash"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== QUIZ SECTION ========== -->
+    <section id="quiz" class="py-24 px-6 bg-[#F3F6F4] overflow-hidden border-b border-ds-border">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 text-gray-900 tracking-tight">Подберем решение под вашу задачу</h2>
+            <p class="text-gray-500 mb-12 text-lg italic">Пройдите тест за&nbsp;15 секунд, чтобы мы&nbsp;подобрали условия.</p>
+            <div class="bg-white rounded-[3rem] p-8 md:p-12 border border-ds-border shadow-2xl relative min-h-[600px] flex flex-col justify-center text-left overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-3 bg-gray-100 overflow-hidden"><div id="quiz-progress" class="h-full bg-figma-lime border-r-2 border-black transition-all duration-500 shadow-[0_0_10px_rgba(217,249,157,0.5)]" style="width: 25%"></div></div>
+                
+                <!-- Step 1 -->
+                <div id="step-1" class="quiz-step">
+                    <h3 class="text-2xl font-bold mb-8 text-center">Какую задачу в Таиланде решаем сегодня?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <button onclick="setQuizData('goal', 'buy', 'Оплата недвижимости'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="building-2" class="text-blue-500"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Оплатить недвижимость</span>
+                            <span class="text-sm text-gray-500">Крупные сделки, официальные подтверждения</span>
+                        </button>
+                        <button onclick="setQuizData('goal', 'cash', 'Наличные баты'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="banknote" class="text-orange-500"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Получить наличные баты на руки</span>
+                            <span class="text-sm text-gray-500">В офисе на Пхукете, через банкомат или курьера</span>
+                        </button>
+                        <button onclick="setQuizData('goal', 'rent', 'Аренда жилья'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="key" class="text-green-500"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Арендовать жилье или авто</span>
+                            <span class="text-sm text-gray-500">Мгновенный перевод владельцу</span>
+                        </button>
+                        <button onclick="setQuizData('goal', 'card', 'Тайская карта'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="credit-card" class="text-purple-500"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Пополнить тайскую карту</span>
+                            <span class="text-sm text-gray-500">Личные нужды или расчеты в Таиланде</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div id="step-2" class="quiz-step hidden">
+                    <div class="flex items-center gap-4 mb-8">
+                        <button onclick="nextStep(1)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-200 transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                        <h3 class="text-2xl font-bold text-center flex-1 pr-10">Как вам удобнее передать средства для обмена?</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button onclick="setQuizData('source', 'sbp', 'Перевод RUB (СБП)'); nextStep(3)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="smartphone" class="text-green-500"></i></div>
+                            <span class="font-bold text-gray-900 block">Перевести рубли через СБП</span>
+                            <span class="text-[10px] font-extrabold text-green-600 uppercase mt-2">Самый быстрый</span>
+                        </button>
+                        <button onclick="setQuizData('source', 'crypto', 'Криптовалюта (USDT)'); nextStep(3)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="coins" class="text-blue-400"></i></div>
+                            <span class="font-bold text-gray-900 block">Криптовалюта (USDT)</span>
+                            <span class="text-[10px] font-extrabold text-blue-600 uppercase mt-2">Лучший курс</span>
+                        </button>
+                        <button onclick="setQuizData('source', 'office', 'Наличные рубли'); nextStep(3)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="map-pin" class="text-red-500"></i></div>
+                            <span class="font-bold text-gray-900 block">Наличные рубли</span>
+                            <span class="text-[10px] font-extrabold text-red-600 uppercase mt-2">50+ городов РФ</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div id="step-3" class="quiz-step hidden">
+                    <div class="flex items-center gap-4 mb-8">
+                        <button onclick="nextStep(2)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-200 transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                        <h3 class="text-2xl font-bold text-center flex-1 pr-10">Как получить деньги?</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <button onclick="setQuizData('delivery', 'qr', 'Снятие по QR в банкомате'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="qr-code" class="text-blue-600"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Снятие по QR в банкомате</span>
+                            <span class="text-sm text-gray-500">Без карты за 5 минут в любом банкомате</span>
+                        </button>
+                        <button onclick="setQuizData('delivery', 'courier', 'Доставка курьером до двери'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="truck" class="text-orange-600"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Доставка курьером до двери</span>
+                            <span class="text-sm text-gray-500">Привезем баты прямо к вашей вилле</span>
+                        </button>
+                        <button onclick="setQuizData('delivery', 'send', 'Прямой перевод получателю'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="send" class="text-green-600"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Прямой перевод получателю</span>
+                            <span class="text-sm text-gray-500">На счет застройщика или владельца жилья</span>
+                        </button>
+                        <button onclick="setQuizData('delivery', 'office', 'Забор в офисе (Пхукет)'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="map" class="text-purple-600"></i></div>
+                            <span class="font-bold text-gray-900 block text-lg">Забрать баты в офисе</span>
+                            <span class="text-sm text-gray-500">Личное получение в районе Лагуны</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div id="step-4" class="quiz-step hidden">
+                    <div class="flex items-center gap-4 mb-2">
+                        <button onclick="nextStep(3)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-200 transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                        <h3 class="text-2xl font-bold text-center flex-1 pr-10">Укажите объем для персональной скидки</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm italic mb-8 text-center">Финальный курс и скидка зависят от суммы обмена</p>
+                    <div class="grid grid-cols-1 gap-3 max-w-md mx-auto">
+                        <button onclick="selectAmount(this, '1', 'До 175 000 бат'); showSummary()" class="p-5 bg-[#F8FAF9] border-2 border-gray-100 hover:border-black hover:bg-white rounded-2xl text-left flex justify-between items-center group transition">
+                            <div><span class="font-bold text-gray-900 block text-lg">До 175 000 бат</span><span class="text-xs text-gray-400 font-bold uppercase">~ до 500 000 руб.</span></div>
+                            <span class="text-xs font-bold bg-gray-50 text-gray-300 px-3 py-1 rounded-full uppercase">Стандарт</span>
+                        </button>
+                        <button onclick="selectAmount(this, '2', '175 000 — 350 000 бат'); showSummary()" class="p-5 bg-[#F8FAF9] border-2 border-gray-100 hover:border-black hover:bg-white rounded-2xl text-left flex justify-between items-center group transition">
+                            <div><span class="font-bold text-gray-900 block text-lg">175 000 — 350 000 бат</span><span class="text-xs text-gray-400 font-bold uppercase">~ до 1 000 000 руб.</span></div>
+                            <span class="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase">Улучшенный курс</span>
+                        </button>
+                        <button onclick="selectAmount(this, '3', 'Свыше 350 000 бат'); showSummary()" class="p-5 bg-[#F8FAF9] border-2 border-gray-100 hover:border-black hover:bg-white rounded-2xl text-left flex justify-between items-center group transition">
+                            <div><span class="font-bold text-gray-900 block text-lg">Свыше 350 000 бат</span><span class="text-xs text-gray-400 font-bold uppercase">~ от 1 000 000 руб.</span></div>
+                            <span class="text-xs font-bold bg-green-50 text-green-600 px-3 py-1 rounded-full uppercase">Max скидка</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Summary (Final Order Screen) -->
+                <div id="step-summary" class="quiz-step hidden text-center">
+                    <h3 class="text-3xl font-extrabold mb-6">Ваша заявка готова!</h3>
+                    <div class="bg-gray-50 rounded-3xl p-8 mb-8 text-left space-y-5 max-w-md mx-auto border border-ds-border">
+                        <div class="flex items-center gap-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"><i data-lucide="target" class="w-4 h-4"></i></div><div><p class="text-[10px] text-gray-400 uppercase font-bold">Задача</p><p id="sum-goal" class="font-bold text-sm"></p></div></div>
+                        <div class="flex items-center gap-4"><div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i data-lucide="credit-card" class="w-4 h-4"></i></div><div><p class="text-[10px] text-gray-400 uppercase font-bold">Оплата</p><p id="sum-source" class="font-bold text-sm"></p></div></div>
+                        <div class="flex items-center gap-4"><div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><i data-lucide="truck" class="w-4 h-4"></i></div><div><p class="text-[10px] text-gray-400 uppercase font-bold">Получение</p><p id="sum-delivery" class="font-bold text-sm"></p></div></div>
+                        <div class="flex items-center gap-4"><div class="w-8 h-8 rounded-full bg-figma-lime flex items-center justify-center text-black"><i data-lucide="banknote" class="w-4 h-4"></i></div><div><p class="text-[10px] text-gray-400 uppercase font-bold">Объем</p><p id="sum-amount" class="font-bold text-sm"></p></div></div>
+                    </div>
+                    <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                        <button onclick="contact('tg', 'quiz')" class="flex-1 bg-[#3B82F6] text-white px-6 py-4 rounded-2xl font-bold shadow-lg transition transform hover:scale-105">Отправить в Telegram</button>
+                        <button onclick="contact('wa', 'quiz')" class="flex-1 bg-[#4ADE80] text-white px-6 py-4 rounded-2xl font-bold shadow-lg transition transform hover:scale-105">в WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MECHANICS SECTION (HOW IT WORKS) ========== -->
+    <section id="how-it-works" class="py-24 px-6 bg-[#F8FAF9] border-t border-ds-border text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-12 tracking-tight">Способы получения валюты</h2>
+            <div class="ogvio-toggle-container">
+                <div id="toggle-send" class="ogvio-toggle-btn active" onclick="switchMethod('send')">Как отправить (RUB/USDT)</div>
+                <div id="toggle-receive" class="ogvio-toggle-btn" onclick="switchMethod('receive')">Как получить (THB)</div>
+            </div>
+            
+            <div id="grid-send" class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div class="ogvio-card">
+                    <div class="ogvio-icon-circle"><i data-lucide="smartphone"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Пополнение по СБП</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Оплата прямо в приложении вашего банка. Безопасно и без долгого ожидания.</p>
+                </div>
+                <div class="ogvio-card">
+                    <div class="ogvio-icon-circle"><i data-lucide="coins"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Криптовалюта USDT</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Мгновенные зачисления в любой сети. Идеально для тех, кто ценит технологии.</p>
+                </div>
+                <div class="ogvio-card">
+                    <div class="ogvio-icon-circle"><i data-lucide="banknote"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Наличные в РФ</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Прием наличных через курьера или наши офисы. Доступно в 50+ городах России.</p>
+                </div>
+            </div>
+
+            <div id="grid-receive" class="hidden grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-5xl mx-auto">
+                <div class="ogvio-card">
+                    <div class="ogvio-icon-circle"><i data-lucide="qr-code"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">QR-снятие без карты</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Получайте наличные в любом банкомате Таиланда за 5 минут. Карта не потребуется.</p>
+                </div>
+                <div class="ogvio-card">
+                    <div class="ogvio-icon-circle"><i data-lucide="building"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Инвойсы застройщиков</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Прямой платеж с необходимыми вам данными. Сопровождение для получения формы FET.</p>
+                </div>
+                <div class="ogvio-card">
+                    <div class="ogvio-icon-circle"><i data-lucide="truck"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Доставка курьером</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Привезем наличные баты прямо к дверям ваших апартаментов или отеля на Пхукете.</p>
+                </div>
+                <div class="ogvio-card">
+                    <div class="ogvio-icon-circle"><i data-lucide="home"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Оплата аренды</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Мгновенный перевод на счет владельца жилья (Owner). Ваше бронирование подтверждено.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY US (SECURITY) SECTION ========== -->
+    <section id="security" class="py-24 px-6 bg-white border-t border-ds-border">
+        <div class="max-w-7xl mx-auto bg-figma-lime rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch">
+            <div class="lg:w-[45%] relative min-h-[400px] lg:min-h-auto">
+                <img src="why.jpg" alt="ExGreen Security" class="absolute inset-0 w-full h-full object-cover rounded-tr-[120px]">
+            </div>
+            <div class="lg:w-[55%] p-8 md:p-16 flex flex-col justify-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Почему выбирают ExGreen</h2>
+                <p class="text-lg text-gray-800 mb-12 leading-relaxed font-medium">Мы создали честный и быстрый сервис, чтобы вы могли решать любые финансовые задачи в Таиланде без стресса и лишних комиссий.</p>
+                <div class="space-y-6">
+                    <div class="bg-white rounded-[2.5rem] p-6 md:p-8 flex items-start gap-6 group hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 shrink-0 bg-figma-lime rounded-full flex items-center justify-center text-black border border-black/5"><i data-lucide="check"></i></div>
+                        <div><h4 class="text-xl font-extrabold text-gray-900 mb-2">Лучший курс</h4><p class="text-gray-600 leading-relaxed">Наша система в реальном времени фиксирует лучший курс в Таиланде, чтобы вы получили максимум за свои RUB или USDT.</p></div>
+                    </div>
+                    <div class="bg-white rounded-[2.5rem] p-6 md:p-8 flex items-start gap-6 group hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 shrink-0 bg-figma-lime rounded-full flex items-center justify-center text-black border border-black/5"><i data-lucide="map-pin"></i></div>
+                        <div><h4 class="text-xl font-extrabold text-gray-900 mb-2">Офис и легальность</h4><p class="text-gray-600 leading-relaxed">Работаем официально через тайскую компанию (Co., Ltd). Наш офис открыт для личных встреч и выдачи наличных на Пхукете: <a href="#" class="underline font-bold">Choeng Thale, Phuket (Google Maps)</a>.</p></div>
+                    </div>
+                    <div class="bg-white rounded-[2.5rem] p-6 md:p-8 flex items-start gap-6 group hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 shrink-0 bg-figma-lime rounded-full flex items-center justify-center text-black border border-black/5"><i data-lucide="shield-check"></i></div>
+                        <div><h4 class="text-xl font-extrabold text-gray-900 mb-2">Чистота и результат</h4><p class="text-gray-600 leading-relaxed">Вы получаете только легальные («чистые») средства и официальные банковские подтверждения платежей. Мы сопровождаем каждую сделку до момента зачисления.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASES SECTION ========== -->
+    <section id="cases" class="py-24 px-6 bg-[#F8FAF9] border-t border-ds-border">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-16 tracking-tight text-gray-900">Реальные кейсы</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left max-w-5xl mx-auto">
+                <!-- Case 1 -->
+                <div class="case-card-sketch">
+                    <div class="case-image-top" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800'); background-color: #A7F3D0;">
+                        <span class="case-tag text-emerald-600">Недвижимость</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="text-xl font-extrabold mb-4 leading-tight">Оплата недвижимости в условиях ограничений</h3>
+                        <p class="text-gray-500 text-xs mb-6 leading-relaxed">Когда банки отклоняют платежи из-за формальных причин, мы находим надежные маршруты. Успешно провели оплату инвойсов на 1 061 000 бат через Гонконг после отказа банка.</p>
+                        <button onclick="openCaseModal(1)" class="text-[#84CC16] font-bold flex items-center gap-2 hover:gap-4 transition-all mt-auto text-sm">Подробнее <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+                <!-- Case 2 -->
+                <div class="case-card-sketch">
+                    <div class="case-image-top" style="background-image: url('https://images.unsplash.com/photo-1580519542036-c47de6196ba5?auto=format&fit=crop&q=80&w=800'); background-color: #C7D2FE;">
+                        <span class="case-tag text-indigo-600">Аренда</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="text-xl font-extrabold mb-4 leading-tight">2 000 000 рублей наличными за 40 минут</h3>
+                        <p class="text-gray-500 text-xs mb-6 leading-relaxed">Владелец виллы на Пхукете отказался принимать перевод на карту. Мы приняли наличные в офисе и обеспечили выдачу бат владельцу прямо у дверей виллы.</p>
+                        <button onclick="openCaseModal(2)" class="text-[#84CC16] font-bold flex items-center gap-2 hover:gap-4 transition-all mt-auto text-sm">Подробнее <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== CTA SECTION ========== -->
+    <section class="py-20 px-6 bg-white border-t border-ds-border">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="flex justify-center mb-6 text-figma-lime opacity-30">
+                <i data-lucide="quote" class="w-8 h-8 fill-current"></i>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+                Готовы начать обмен?
+            </h2>
+            <p class="text-lg text-gray-500 mb-10 leading-relaxed font-medium">
+                Напишите нам в&nbsp;удобный мессенджер&nbsp;— зафиксируем лучший курс и&nbsp;проведем сделку прямо сейчас.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="contact('tg', 'cta_bottom')" class="bg-[#3B82F6] text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition flex items-center justify-center gap-3">
+                    <i data-lucide="send" class="w-6 h-6"></i> Telegram
+                </button>
+                <button onclick="contact('wa', 'cta_bottom')" class="bg-[#25D366] text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition flex items-center justify-center gap-3">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i> WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GRUSHA B2B ========== -->
+    <section id="grusha" class="py-24 px-6 bg-ds-background border-t border-ds-border overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 lg:max-w-xl">
+                    <span class="inline-block bg-[#bef264] text-[#0a1a1f] px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-6 border border-black/5 shadow-sm">White Label Platform</span>
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tighter leading-tight">
+                        Ваши сделки <br>под <span class="text-green-600 italic">вашим брендом</span>
+                    </h2>
+                    
+                    <div class="space-y-8 mb-12">
+                        <!-- Feature 1 -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
+                                <i data-lucide="zap" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Инвойс в один клик</h4>
+                                <p class="text-gray-500 leading-relaxed">Одно нажатие — и ссылка на оплату с вашим логотипом у клиента.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 2 -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
+                                <i data-lucide="percent" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Честный Profit Share 50/50</h4>
+                                <p class="text-gray-500 leading-relaxed">Мы делимся всей маржой пополам. Вы зарабатываете не только со сделок клиента, но и на его оплате.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
+                                <i data-lucide="wallet" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Мгновенный вывод</h4>
+                                <p class="text-gray-500 leading-relaxed">Комиссия падает в ваш кошелек сразу после оплаты. Выводите в USDT, батах или на тайский счет в ту же секунду.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="contact('tg', 'grusha')" class="w-full sm:w-auto bg-[#0a1a1f] text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition shadow-2xl flex items-center justify-center gap-3">
+                        <i data-lucide="rocket" class="w-6 h-6 text-figma-lime"></i> Стать партнером Grusha
+                    </button>
+                </div>
+
+                <!-- Promo Visual Side -->
+                <div class="flex-1 w-full relative flex justify-center items-center min-h-[600px]">
+                    <div class="relative z-10 w-[320px] transform hover:rotate-1 transition-transform duration-700">
+                        <!-- Phone Image Only (No frame) -->
+                        <div class="relative overflow-visible">
+                            <img src="grusha_phone.png" alt="Grusha Bot Interface" class="w-full h-auto block rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]">
+                            
+                            <!-- Left Label (Profit Share) -->
+                            <div class="absolute -left-16 bottom-1/4 bg-white text-black px-6 py-4 rounded-3xl font-black text-sm shadow-2xl animate-float z-20" style="animation-delay: 1.5s;">
+                                50% / 50% <br> <span class="text-[10px] font-bold opacity-40 uppercase tracking-wider text-gray-500">Чистый Profit Share</span>
+                            </div>
+
+                            <!-- Right Label (Commission) -->
+                            <div class="absolute -right-16 top-1/4 bg-[#bef264] text-black px-6 py-4 rounded-3xl font-black text-sm shadow-2xl animate-float z-20">
+                                ฿ 142,500 <br> <span class="text-[10px] font-bold opacity-60 uppercase tracking-wider">Твоя комиссия</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative background elements -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-figma-lime/10 to-transparent rounded-full blur-3xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-ds-background border-t border-ds-border py-20 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-2 mb-6">
+                <div class="w-10 h-10 bg-figma-lime rounded-xl flex items-center justify-center text-black border-2 border-black"><i data-lucide="refresh-cw"></i></div>
+                <span class="text-2xl font-extrabold tracking-tight">ExGreen</span>
+            </div>
+            <p class="text-gray-400 font-bold">© 2026 ExGreen. Все права защищены. +66 81 842 9939</p>
+        </div>
+    </footer>
+
+    <!-- ========== MODAL ========== -->
+    <div id="case-modal" class="modal-overlay" onclick="closeCaseModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-close" onclick="closeCaseModal(event)"><i data-lucide="x" class="w-8 h-8"></i></div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        lucide.createIcons();
+        
+        const config = {
+            currencies: {
+                'RUB': { flag: 'https://flagcdn.com/w40/ru.png' },
+                'THB': { flag: 'https://flagcdn.com/w40/th.png' },
+                'USDT': { flag: 'https://cryptologos.cc/logos/tether-usdt-logo.png?v=025' }
+            },
+            rates: { 
+                'USDT_THB': 31.22, 
+                'RUB_USDT': 84.015 
+            },
+            phone: '66818429939'
+        };
+        
+        let state = { from: 'RUB', to: 'THB', lastChanged: 'from', calcTimeout: null, isUserInteracting: false };
+        let quizStore = { goal: '', goalLabel: '', source: '', sourceLabel: '', delivery: '', deliveryLabel: '', amount: '', amountLabel: '' };
+
+        function formatNumber(num) {
+            if (isNaN(num) || num === null) return '';
+            let str = num < 1 && num > 0 ? num.toFixed(4) : num.toFixed(2);
+            if (str.includes('.')) str = str.replace(/\.?0+$/, '');
+            let parts = str.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            return parts.join('.');
+        }
+
+        function parseNumber(str) { if (!str) return 0; return parseFloat(str.toString().replace(/\s/g, '').replace(/,/g, '')) || 0; }
+
+        function calculateLocal(valFrom, valTo, direction) {
+            const { USDT_THB, RUB_USDT } = config.rates;
+            const FIX_COMM = 20;
+            const PCT_COMM = 0.0025;
+
+            // Normalize to RUB -> THB or USDT -> THB logic
+            if ((state.from === 'RUB' && state.to === 'THB') || (state.from === 'THB' && state.to === 'RUB')) {
+                const isForward = (state.from === 'RUB'); // RUB -> THB
+                const isInputRUB = (isForward && direction === 'from') || (!isForward && direction === 'to');
+
+                if (isInputRUB) {
+                    const amount_rub = isForward ? valFrom : valTo;
+                    let comm_usdt_thb;
+                    if (amount_rub < 500000) comm_usdt_thb = 0.0272;
+                    else if (amount_rub < 1000000) comm_usdt_thb = 0.017;
+                    else comm_usdt_thb = 0.0067;
+
+                    const amount_usdt = amount_rub / RUB_USDT;
+                    const kurs_usdt_thb = USDT_THB * (1 - comm_usdt_thb);
+                    const amount_thb_exch = amount_usdt * kurs_usdt_thb;
+                    const amount_thb_recv = amount_thb_exch * (1 - PCT_COMM) - FIX_COMM;
+                    
+                    const res_thb = Math.max(0, amount_thb_recv);
+                    const res_rub = amount_rub;
+                    return { 
+                        val: isForward ? res_thb : res_rub, 
+                        rate: res_rub / Math.max(1, res_thb) 
+                    };
+                } else {
+                    const amount_thb_recv = isForward ? valTo : valFrom;
+                    const amount_thb_exch = (amount_thb_recv + FIX_COMM) / (1 - PCT_COMM);
+                    const calculateForComm = (c) => (amount_thb_exch * RUB_USDT) / (USDT_THB * (1 - c));
+                    
+                    let rub = calculateForComm(0.0067);
+                    if (rub < 1000000) rub = calculateForComm(0.017);
+                    if (rub < 500000) rub = calculateForComm(0.0272);
+                    
+                    return { 
+                        val: isForward ? rub : amount_thb_recv, 
+                        rate: rub / Math.max(1, amount_thb_recv) 
+                    };
+                }
+            } else if ((state.from === 'USDT' && state.to === 'THB') || (state.from === 'THB' && state.to === 'USDT')) {
+                const isForward = (state.from === 'USDT'); // USDT -> THB
+                const isInputUSDT = (isForward && direction === 'from') || (!isForward && direction === 'to');
+
+                if (isInputUSDT) {
+                    const amount_usdt = isForward ? valFrom : valTo;
+                    let comm_usdt_thb;
+                    if (amount_usdt < 5000) comm_usdt_thb = 0.03;
+                    else if (amount_usdt < 10000) comm_usdt_thb = 0.025;
+                    else comm_usdt_thb = 0.02;
+
+                    const kurs_usdt_thb = USDT_THB * (1 - comm_usdt_thb);
+                    const amount_thb_exch = amount_usdt * kurs_usdt_thb;
+                    const amount_thb_recv = amount_thb_exch * (1 - PCT_COMM) - FIX_COMM;
+                    
+                    const res_thb = Math.max(0, amount_thb_recv);
+                    const res_usdt = amount_usdt;
+                    return { 
+                        val: isForward ? res_thb : res_usdt, 
+                        rate: res_thb / Math.max(1, res_usdt) 
+                    };
+                } else {
+                    const amount_thb_recv = isForward ? valTo : valFrom;
+                    const amount_thb_exch = (amount_thb_recv + FIX_COMM) / (1 - PCT_COMM);
+                    
+                    const calculateForComm = (c) => amount_thb_exch / (USDT_THB * (1 - c));
+                    let usdt = calculateForComm(0.02);
+                    if (usdt < 10000) usdt = calculateForComm(0.025);
+                    if (usdt < 5000) usdt = calculateForComm(0.03);
+                    
+                    return { 
+                        val: isForward ? usdt : amount_thb_recv, 
+                        rate: amount_thb_recv / Math.max(1, usdt) 
+                    };
+                }
+            }
+            return { val: direction === 'from' ? valFrom : valTo, rate: 1 };
+        }
+
+        async function fetchRates() {
+            try {
+                // 1. Пытаемся получить ВСЕ курсы через ваш api_server.py на VPS
+                const API_URL = 'http://85.234.106.125:5001/api/rates'; 
+                
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                if (data.success && data.usdt_thb && data.rub_usdt) {
+                    config.rates.USDT_THB = data.usdt_thb;
+                    config.rates.RUB_USDT = data.rub_usdt;
+                    console.log('✅ Курсы обновлены через VPS API:', config.rates);
+                    calculate();
+                    return;
+                }
+            } catch (err) {
+                console.warn('⚠️ VPS API недоступен, пробуем прямые запросы к Binance...', err);
+            }
+
+            // 2. Фоллбэк: Прямой запрос к Binance только для USDT/THB
+            try {
+                const binanceResp = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=USDTTHB');
+                const binanceData = await binanceResp.json();
+                if (binanceData.price) {
+                    config.rates.USDT_THB = parseFloat(binanceData.price);
+                    console.log('✅ USDT/THB обновлен напрямую через Binance:', config.rates.USDT_THB);
+                    calculate();
+                }
+            } catch (err) {
+                console.error('❌ Не удалось получить курсы никаким способом:', err);
+            }
+        }
+
+        function calculate() {
+            const sendInput = document.getElementById('send-input');
+            const receiveInput = document.getElementById('receive-input');
+            const badge = document.getElementById('course-badge');
+            let valFrom = parseNumber(sendInput.value);
+            let valTo = parseNumber(receiveInput.value);
+            
+            if (valFrom === 0 && valTo === 0) return;
+            if (state.calcTimeout) clearTimeout(state.calcTimeout);
+            
+            const targetInput = state.lastChanged === 'from' ? receiveInput : sendInput;
+            
+            if (state.isUserInteracting && (valFrom >= 100 || valTo >= 100)) {
+                targetInput.style.color = '#9CA3AF';
+                targetInput.value = 'Вычисляем...';
+            }
+            
+            const delay = state.isUserInteracting ? 500 : 0;
+            
+            state.calcTimeout = setTimeout(() => {
+                const result = calculateLocal(valFrom, valTo, state.lastChanged);
+                targetInput.style.color = '';
+                
+                if (state.lastChanged === 'from') {
+                    receiveInput.value = formatNumber(result.val);
+                } else {
+                    sendInput.value = formatNumber(result.val);
+                }
+                
+                // Бейдж теперь показывает ЛУЧШИЙ из двух вариантов: 
+                // либо реальный курс для текущей суммы, либо курс для 1000 руб.
+                // Это убирает пугающие цифры на мелких суммах, но показывает выгоду на крупных.
+                const refAmount = 1000;
+                const refResult = calculateLocal(refAmount, 0, 'from');
+                const displayRate = Math.min(result.rate, refResult.rate);
+
+                if (state.from === 'USDT' || state.to === 'USDT') {
+                    if (state.from === 'USDT') {
+                        badge.innerText = `1 USDT = ${displayRate.toFixed(2)} THB`;
+                    } else if (state.to === 'USDT') {
+                        badge.innerText = `1 USDT = ${(1/displayRate).toFixed(2)} THB`;
+                    }
+                } else {
+                    badge.innerText = `1 THB = ${displayRate.toFixed(2)} RUB`;
+                }
+
+                // Обновляем курсы в шапке (средний курс на 100к RUB и 1000 USDT)
+                const { USDT_THB, RUB_USDT } = config.rates;
+                const midRubRate = RUB_USDT / (USDT_THB * (1 - 0.0272)); // для 100к RUB комиссия 2.72%
+                const midUsdtRate = USDT_THB * (1 - 0.03); // для 1000 USDT комиссия 3.0%
+                
+                const headerRub = document.getElementById('header-rate-rub');
+                const headerUsdt = document.getElementById('header-rate-usdt');
+                if (headerRub) headerRub.innerText = `1 ฿ ≈ ${midRubRate.toFixed(2)} ₽`;
+                if (headerUsdt) headerUsdt.innerText = `1 $ ≈ ${midUsdtRate.toFixed(2)} ฿`;
+                
+                state.isUserInteracting = false;
+            }, delay);
+        }
+
+        function handleInput(e, type) {
+            state.lastChanged = type; state.isUserInteracting = true;
+            let input = e.target; let cursor = input.selectionStart; let val = input.value;
+            let beforeCursor = val.substring(0, cursor).replace(/[^\d.]/g, '').length;
+            let cleanVal = val.replace(/[^\d.]/g, '');
+            let parts = cleanVal.split('.'); if (parts.length > 2) cleanVal = parts[0] + '.' + parts.slice(1).join('');
+            parts = cleanVal.split('.'); if (parts[0]) parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            let formatted = parts.join('.'); input.value = formatted;
+            let newCursor = 0, digitsFound = 0;
+            for (let i = 0; i < formatted.length && digitsFound < beforeCursor; i++) { if (/[\d.]/.test(formatted[i])) digitsFound++; newCursor = i + 1; }
+            input.setSelectionRange(newCursor, newCursor);
+            calculate();
+        }
+
+        function setupDropdown(type) {
+            const pill = document.getElementById(type === 'from' ? 'from-pill' : 'to-pill');
+            const dropdown = document.getElementById(type === 'from' ? 'from-dropdown' : 'to-dropdown');
+            if (!dropdown) return; // Если выпадающего списка нет (для поля THB)
+            
+            pill.addEventListener('click', (e) => { e.stopPropagation(); document.querySelectorAll('.dropdown-menu').forEach(d => { if (d !== dropdown) d.classList.remove('show'); }); dropdown.classList.toggle('show'); });
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation(); const code = item.dataset.code; state[type === 'from' ? 'from' : 'to'] = code;
+                    document.getElementById(type === 'from' ? 'send-flag' : 'receive-flag').src = config.currencies[code].flag;
+                    document.getElementById(type === 'from' ? 'send-code' : 'receive-code').innerText = code;
+                    dropdown.classList.remove('show'); calculate();
+                });
+            });
+        }
+
+        function toggleTask(id) {
+            const container = document.getElementById('task-' + id); const icon = document.getElementById('icon-' + id);
+            const isCollapsed = container.classList.toggle('collapsed'); icon.setAttribute('data-lucide', isCollapsed ? 'plus' : 'minus');
+            lucide.createIcons();
+        }
+
+        function nextStep(step) {
+            document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('step-' + (step === 'summary' ? 'summary' : step));
+            if (target) target.classList.remove('hidden');
+            let progress = 25; if (step === 2) progress = 50; if (step === 3) progress = 75; if (step === 4 || step === 'summary') progress = 100;
+            document.getElementById('quiz-progress').style.width = progress + '%';
+            lucide.createIcons();
+        }
+
+        function showSummary() {
+            document.getElementById('sum-goal').innerText = quizStore.goalLabel;
+            document.getElementById('sum-source').innerText = quizStore.sourceLabel;
+            document.getElementById('sum-delivery').innerText = quizStore.deliveryLabel;
+            document.getElementById('sum-amount').innerText = quizStore.amountLabel;
+            nextStep('summary');
+        }
+
+        function setQuizData(key, value, label) { 
+            quizStore[key] = value; 
+            quizStore[key + 'Label'] = label; 
+            // Отправка цели прохождения шага квиза
+            try {
+                ym(106232718, 'reachGoal', `quiz_step_${key}_${value}`);
+            } catch(e) {}
+        }
+        function selectAmount(btn, value, label) { 
+            quizStore.amount = value; 
+            quizStore.amountLabel = label; 
+            try {
+                ym(106232718, 'reachGoal', `quiz_step_amount_${value}`);
+                ym(106232718, 'reachGoal', 'quiz_complete');
+            } catch(e) {}
+            showSummary(); 
+        }
+
+        function switchMethod(type) {
+            const sendBtn = document.getElementById('toggle-send'); const receiveBtn = document.getElementById('toggle-receive');
+            const sendGrid = document.getElementById('grid-send'); const receiveGrid = document.getElementById('grid-receive');
+            if (type === 'send') { sendBtn.classList.add('active'); receiveBtn.classList.remove('active'); sendGrid.classList.remove('hidden'); receiveGrid.classList.add('hidden'); }
+            else { sendBtn.classList.remove('active'); receiveBtn.classList.add('active'); sendGrid.classList.add('hidden'); receiveGrid.classList.remove('hidden'); }
+            lucide.createIcons();
+        }
+
+        // Case Modal
+        const caseData = {
+            1: { 
+                tag: 'Недвижимость', 
+                tagClass: 'text-emerald-600', 
+                title: 'Оплата недвижимости в условиях ограничений', 
+                content: `<div class="space-y-6 text-left">
+                    <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                        <h5 class="font-bold text-red-900 mb-2 flex items-center gap-2">Проблема</h5>
+                        <p class="text-red-800 text-sm leading-relaxed">Платеж через Лаос был отклонен из-за «рискованного» имени плательщика. Банк застройщика (Sansiri) грозил отменой бронирования.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                        <h5 class="font-bold text-blue-900 mb-2 flex items-center gap-2">Решение</h5>
+                        <p class="text-blue-800 text-sm leading-relaxed">Перестроили маршрут через Китай и Гонконг. Разделили оплату на два инвойса ($3,000 и $32,000) и согласовали с застройщиком зачисление одним пакетом от нашего тайского юрлица.</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-2xl border border-green-100">
+                        <h5 class="font-bold text-green-900 mb-2 flex items-center gap-2">Результат</h5>
+                        <p class="text-green-800 text-sm leading-relaxed">Застройщик получил средства за 3 дня, подтверждение от бухгалтерии — на 4-й день. Бронь сохранена.</p>
+                    </div>
+                </div>` 
+            },
+            2: { 
+                tag: 'Аренда', 
+                tagClass: 'text-indigo-600', 
+                title: '2 000 000 рублей наличными за 40 минут', 
+                content: `<div class="space-y-6 text-left">
+                    <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                        <h5 class="font-bold text-red-900 mb-2 flex items-center gap-2">Проблема</h5>
+                        <p class="text-red-800 text-sm leading-relaxed">Срочный депозит, собственник требует только кэш батами. У клиента только рубли на карте РФ.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                        <h5 class="font-bold text-blue-900 mb-2 flex items-center gap-2">Решение</h5>
+                        <p class="text-blue-800 text-sm leading-relaxed">Клиент привез 2 млн рублей в наш офис. Мы мгновенно зафиксировали курс и отправили курьера на Пхукете прямо к дверям виллы.</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-2xl border border-green-100">
+                        <h5 class="font-bold text-green-900 mb-2 flex items-center gap-2">Результат</h5>
+                        <p class="text-green-800 text-sm leading-relaxed">Через 40 минут после приема денег в РФ, владелец виллы подтвердил получение всей суммы на руки.</p>
+                    </div>
+                </div>` 
+            },
+            3: { 
+                tag: 'Бизнес', 
+                tagClass: 'text-amber-600', 
+                title: 'Оплата услуг и B2B инвойсов', 
+                content: `<div class="space-y-6 text-left">
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                        <h5 class="font-bold text-blue-900 mb-2 flex items-center gap-2">Решение</h5>
+                        <p class="text-blue-800 text-sm leading-relaxed">Прямые расчеты с компаниями в Таиланде. Принимаем USDT/RUB, отправляем баты по реквизитам тайских контрагентов.</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-2xl border border-green-100">
+                        <h5 class="font-bold text-green-900 mb-2 flex items-center gap-2">Детали</h5>
+                        <p class="text-green-800 text-sm leading-relaxed">Проводим платежи от нашего тайского юрлица. Предоставляем официальные чеки, которые принимает любая бухгалтерия.</p>
+                    </div>
+                </div>` 
+            }
+        };
+
+        function openCaseModal(id) {
+            const data = caseData[id];
+            document.getElementById('modal-body').innerHTML = `<span class="case-tag ${data.tagClass} mb-4 inline-block font-bold uppercase tracking-widest">${data.tag}</span><h3 class="text-3xl font-extrabold mb-8">${data.title}</h3>${data.content}`;
+            document.getElementById('case-modal').classList.add('show');
+            lucide.createIcons();
+        }
+
+        function closeCaseModal() { document.getElementById('case-modal').classList.remove('show'); }
+
+        function contact(platform, context) {
+            // Отправка цели в Яндекс Метрику
+            try {
+                const goalName = `click_${platform}_${context}`;
+                ym(106232718, 'reachGoal', goalName);
+                ym(106232718, 'reachGoal', 'any_contact'); // Общая цель на любой контакт
+            } catch(e) { console.warn('Metrika goal error:', e); }
+
+            const sendVal = document.getElementById('send-input').value;
+            const recvVal = document.getElementById('receive-input').value;
+            const rateStr = document.getElementById('course-badge').innerText.match(/\d+\.\d+/)?.[0] || '2.84';
+            const utm = new URLSearchParams(window.location.search).get('utm_source');
+            const formatShort = (val) => { let n = parseNumber(val); if (n >= 1000000) return (n/1000000) + 'kk'; if (n >= 1000) return (n/1000) + 'k'; return n; };
+
+            if (platform === 'wa') {
+                let text = "Здравствуйте! Хочу уточнить детали обмена.";
+                if (context === 'calc') text = `Здравствуйте! Хочу обменять ${sendVal} ${state.from} на ${recvVal} ${state.to}. (Курс: ${rateStr})`;
+                if (context === 'quiz') text = `Здравствуйте! Прошел квиз:\n🎯 Задача: ${quizStore.goalLabel}\n💳 Оплата: ${quizStore.sourceLabel}\n🚚 Получение: ${quizStore.deliveryLabel}\n💰 Объем: ${quizStore.amountLabel}`;
+                if (utm) text += `\n\n(Источник: ${utm})`;
+                window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(text)}`, '_blank');
+            } else {
+                let startParam = '';
+                if (context === 'calc') startParam = `${state.from.toLowerCase()}${formatShort(sendVal)}to${formatShort(recvVal)}${state.to.toLowerCase()}_${rateStr.replace('.', '-')}`;
+                else if (context === 'quiz') startParam = `${quizStore.goal}_${quizStore.source}_${quizStore.delivery}_${quizStore.amount}`;
+                else startParam = context;
+                if (utm) startParam = `u_${utm}_${startParam}`;
+                window.open(`https://t.me/exgreen_pro_bot?start=${encodeURIComponent(startParam)}`, '_blank');
+            }
+        }
+
+        document.getElementById('send-input').addEventListener('input', (e) => handleInput(e, 'from'));
+        document.getElementById('receive-input').addEventListener('input', (e) => handleInput(e, 'to'));
+        window.addEventListener('click', () => document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.remove('show')));
+        setupDropdown('from'); setupDropdown('to');
+        
+        // Инициализация при загрузке
+        calculate();
+        
+        // Запускаем обновление курсов через API
+        fetchRates();
+
+        // Принудительный скролл наверх при обновлении страницы (сбрасываем якорь)
+        if (window.location.hash) {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 1);
+        }
+    </script>
+</body>
+</html>
