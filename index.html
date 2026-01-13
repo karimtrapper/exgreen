@@ -170,11 +170,11 @@
             </div>
             <nav class="flex items-center space-x-4 lg:space-x-8 font-semibold text-ds-text-muted">
                 <div class="hidden lg:flex space-x-8">
-                    <a href="#tasks" class="hover:text-black transition">Задачи</a>
-                    <a href="#security" class="hover:text-black transition">Безопасность</a>
-                    <a href="#how-it-works" class="hover:text-black transition">Механика</a>
-                    <a href="#cases" class="hover:text-black transition">Кейсы</a>
-                    <a href="#grusha" class="hover:text-black transition text-green-600">Для бизнеса</a>
+                    <a href="#tasks" onclick="ym(106232718, 'reachGoal', 'nav_tasks')" class="hover:text-black transition">Задачи</a>
+                    <a href="#security" onclick="ym(106232718, 'reachGoal', 'nav_security')" class="hover:text-black transition">Безопасность</a>
+                    <a href="#how-it-works" onclick="ym(106232718, 'reachGoal', 'nav_mechanics')" class="hover:text-black transition">Механика</a>
+                    <a href="#cases" onclick="ym(106232718, 'reachGoal', 'nav_cases')" class="hover:text-black transition">Кейсы</a>
+                    <a href="#grusha" onclick="ym(106232718, 'reachGoal', 'nav_grusha')" class="hover:text-black transition text-green-600">Для бизнеса</a>
                 </div>
                 
                 <!-- Rates Badges in Header -->
@@ -931,6 +931,18 @@
             document.getElementById('sum-source').innerText = quizStore.sourceLabel;
             document.getElementById('sum-delivery').innerText = quizStore.deliveryLabel;
             document.getElementById('sum-amount').innerText = quizStore.amountLabel;
+            try {
+                ym(106232718, 'reachGoal', 'quiz_reached_summary');
+                // Отправляем ВСЕ ответы квиза как параметры визита
+                ym(106232718, 'params', {
+                    quiz_answers: {
+                        goal: quizStore.goalLabel,
+                        payment_method: quizStore.sourceLabel,
+                        delivery_method: quizStore.deliveryLabel,
+                        volume: quizStore.amountLabel
+                    }
+                });
+            } catch(e) {}
             nextStep('summary');
         }
 
@@ -939,6 +951,9 @@
             quizStore[key + 'Label'] = label; 
             // Отправка цели прохождения шага квиза
             try {
+                if (key === 'goal') {
+                    ym(106232718, 'reachGoal', 'quiz_start');
+                }
                 ym(106232718, 'reachGoal', `quiz_step_${key}_${value}`);
             } catch(e) {}
         }
@@ -1019,6 +1034,10 @@
 
         function openCaseModal(id) {
             const data = caseData[id];
+            // Отслеживаем просмотр кейса
+            try {
+                ym(106232718, 'reachGoal', `view_case_${id}`);
+            } catch(e) {}
             document.getElementById('modal-body').innerHTML = `<span class="case-tag ${data.tagClass} mb-4 inline-block font-bold uppercase tracking-widest">${data.tag}</span><h3 class="text-3xl font-extrabold mb-8">${data.title}</h3>${data.content}`;
             document.getElementById('case-modal').classList.add('show');
             lucide.createIcons();
@@ -1029,7 +1048,18 @@
         function contact(platform, context) {
             // Отправка цели в Яндекс Метрику
             try {
-                const goalName = `click_${platform}_${context}`;
+                let goalName = `click_${platform}_${context}`;
+                
+                // Специальные имена для Квиза по просьбе пользователя
+                if (context === 'quiz') {
+                    goalName = platform === 'tg' ? 'quiz_sent_telegram' : 'quiz_sent_whatsapp';
+                }
+                
+                // Специальные имена для Футера (секция CTA "Готовы начать обмен?")
+                if (context === 'cta_bottom') {
+                    goalName = platform === 'tg' ? 'click_tg_footer' : 'click_wa_footer';
+                }
+
                 ym(106232718, 'reachGoal', goalName);
                 ym(106232718, 'reachGoal', 'any_contact'); // Общая цель на любой контакт
             } catch(e) { console.warn('Metrika goal error:', e); }
