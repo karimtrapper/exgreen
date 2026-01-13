@@ -775,8 +775,8 @@
 
         async function fetchRates() {
             try {
-                // 1. Пытаемся получить ВСЕ курсы через ваш api_server.py на VPS
-                const API_URL = 'http://85.234.106.125:5001/api/rates'; 
+                // 1. Пытаемся получить ВСЕ курсы через ваш api_server.py на VPS (теперь через HTTPS)
+                const API_URL = 'https://api.exgreen.pro/api/rates'; 
                 
                 const response = await fetch(API_URL);
                 const data = await response.json();
