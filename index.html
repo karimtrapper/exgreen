@@ -217,11 +217,11 @@
             </div>
 
             <div class="calc-card mx-auto flex flex-col items-center">
-                <div id="course-badge" class="course-badge">1 THB = 2.84 RUB</div>
+                <div id="course-badge" class="course-badge">Загрузка курсов...</div>
                 <div class="w-full">
                     <label class="input-label">Вы отдаете:</label>
                     <div class="field-box relative">
-                        <input type="text" id="send-input" class="calc-input" value="1 000 000">
+                        <input type="text" id="send-input" class="calc-input" value="1 000 000" onfocus="this.select()">
                         <div id="from-pill" class="currency-pill">
                             <img src="https://flagcdn.com/w40/ru.png" class="flag-icon" id="send-flag">
                             <span class="font-bold text-gray-800" id="send-code">RUB</span>
@@ -229,12 +229,12 @@
                         </div>
                         <div id="from-dropdown" class="dropdown-menu">
                             <div class="dropdown-item" data-code="RUB"><img src="https://flagcdn.com/w40/ru.png" class="flag-icon"><span class="font-bold ml-2">RUB</span></div>
-                            <div class="dropdown-item" data-code="USDT"><img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=025" class="flag-icon"><span class="font-bold ml-2">USDT</span></div>
+                            <div class="dropdown-item" data-code="USDT"><img src="https://assets.coingecko.com/coins/images/325/small/Tether.png" class="flag-icon"><span class="font-bold ml-2">USDT</span></div>
                         </div>
                     </div>
                     <label class="input-label">Вы получаете:</label>
                     <div class="field-box relative">
-                        <input type="text" id="receive-input" class="calc-input">
+                        <input type="text" id="receive-input" class="calc-input" onfocus="this.select()">
                         <div id="to-pill" class="currency-pill cursor-default hover:bg-transparent">
                             <img src="https://flagcdn.com/w40/th.png" class="flag-icon" id="receive-flag">
                             <span class="font-bold text-gray-800" id="receive-code">THB</span>
@@ -669,7 +669,7 @@
             currencies: {
                 'RUB': { flag: 'https://flagcdn.com/w40/ru.png' },
                 'THB': { flag: 'https://flagcdn.com/w40/th.png' },
-                'USDT': { flag: 'https://cryptologos.cc/logos/tether-usdt-logo.png?v=025' }
+                'USDT': { flag: 'https://assets.coingecko.com/coins/images/325/small/Tether.png' }
             },
             rates: { 
                 'USDT_THB': 31.22, 
@@ -813,7 +813,6 @@
             let valFrom = parseNumber(sendInput.value);
             let valTo = parseNumber(receiveInput.value);
             
-            if (valFrom === 0 && valTo === 0) return;
             if (state.calcTimeout) clearTimeout(state.calcTimeout);
             
             const targetInput = state.lastChanged === 'from' ? receiveInput : sendInput;
@@ -826,21 +825,37 @@
             const delay = state.isUserInteracting ? 500 : 0;
             
             state.calcTimeout = setTimeout(() => {
+                // 1. Считаем реальный результат для полей ввода
                 const result = calculateLocal(valFrom, valTo, state.lastChanged);
                 targetInput.style.color = '';
                 
-                if (state.lastChanged === 'from') {
-                    receiveInput.value = formatNumber(result.val);
+                if (valFrom !== 0 || valTo !== 0) {
+                    if (state.lastChanged === 'from') {
+                        receiveInput.value = formatNumber(result.val);
+                    } else {
+                        sendInput.value = formatNumber(result.val);
+                    }
                 } else {
-                    sendInput.value = formatNumber(result.val);
+                    receiveInput.value = '';
                 }
                 
-                // Бейдж теперь показывает ЛУЧШИЙ из двух вариантов: 
-                // либо реальный курс для текущей суммы, либо курс для 1000 руб.
-                // Это убирает пугающие цифры на мелких суммах, но показывает выгоду на крупных.
-                const refAmount = 1000;
-                const refResult = calculateLocal(refAmount, 0, 'from');
-                const displayRate = Math.min(result.rate, refResult.rate);
+                // 2. Логика отображения КУРСА в бейдже
+                let displayRate;
+                
+                if (state.from === 'RUB') {
+                    // Для RUB: если ввод от 0 до 1000, показываем курс для 1000
+                    const refVal = (valFrom > 1000) ? valFrom : 1000;
+                    const refResult = calculateLocal(refVal, 0, 'from');
+                    displayRate = refResult.rate;
+                } else if (state.from === 'USDT') {
+                    // Для USDT: если ввод от 0 до 10, показываем курс для 10
+                    const refVal = (valFrom > 10) ? valFrom : 10;
+                    const refResult = calculateLocal(refVal, 0, 'from');
+                    displayRate = refResult.rate;
+                } else {
+                    // Для THB (если вдруг поменяли направление)
+                    displayRate = result.rate;
+                }
 
                 if (state.from === 'USDT' || state.to === 'USDT') {
                     if (state.from === 'USDT') {
@@ -1047,10 +1062,10 @@
         setupDropdown('from'); setupDropdown('to');
         
         // Инициализация при загрузке
-        calculate();
-        
-        // Запускаем обновление курсов через API
-        fetchRates();
+        window.addEventListener('DOMContentLoaded', () => {
+            calculate();
+            fetchRates();
+        });
 
         // Принудительный скролл наверх при обновлении страницы (сбрасываем якорь)
         if (window.location.hash) {
