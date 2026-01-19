@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+dist/
+build/
+.cursor/
+gcp-oauth.keys.json
+*.session
+*.proxy
+*.lock
+*.log
+*.zip
+*.db
+!exgreen_site/
+
