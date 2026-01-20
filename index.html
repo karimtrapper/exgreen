@@ -179,6 +179,12 @@
             line-height: 1;
             color: transparent !important;
             user-select: none;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
         /* Calculator Highlighting */
         @keyframes highlight-blink {
             0% { border-color: #E6E9E7; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transform: scale(1); }
@@ -361,7 +367,7 @@
                         </button>
                         <button onclick="setQuizData('goal', 'card', 'Тайская карта'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
                             <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="credit-card" class="text-purple-500"></i></div>
-                            <span class="font-bold text-gray-900 block text-lg">Пополнить тайскую карту</span>
+                            <span class="font-bold text-gray-900 block text-lg">Пополнить тайская карта</span>
                             <span class="text-sm text-gray-500">Личные нужды или расчеты в Таиланде</span>
                         </button>
                     </div>
@@ -706,6 +712,39 @@
         let state = { from: 'RUB', to: 'THB', lastChanged: 'from', calcTimeout: null, isUserInteracting: false };
         let quizStore = { goal: '', goalLabel: '', source: '', sourceLabel: '', delivery: '', deliveryLabel: '', amount: '', amountLabel: '' };
 
+        // --- UTM & PERSISTENCE LOGIC ---
+        const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        
+        function captureUTMs() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const captured = JSON.parse(localStorage.getItem('grusha_utms') || '{}');
+                let changed = false;
+
+                UTM_KEYS.forEach(key => {
+                    const val = params.get(key);
+                    if (val) {
+                        // Сохраняем и чистим от символов, которые запрещены в Telegram start (разрешены a-z, A-Z, 0-9, _ , -)
+                        captured[key] = val.replace(/[^a-zA-Z0-9_-]/g, '_'); 
+                        changed = true;
+                    }
+                });
+
+                if (changed) {
+                    localStorage.setItem('grusha_utms', JSON.stringify(captured));
+                }
+            } catch (e) { console.error('UTM capture error:', e); }
+        }
+
+        function getSavedUTMs() {
+            try {
+                return JSON.parse(localStorage.getItem('grusha_utms') || '{}');
+            } catch (e) { return {}; }
+        }
+
+        captureUTMs(); // Запускаем сразу при загрузке скрипта
+        // -------------------------------
+
         function formatNumber(num) {
             if (isNaN(num) || num === null) return '';
             let str = num < 1 && num > 0 ? num.toFixed(4) : num.toFixed(2);
@@ -731,32 +770,43 @@
                 const inputIsRUB = (direction === 'from' && isForward) || (direction === 'to' && !isForward);
 
                 if (inputIsRUB) {
-                    const amount_rub = (direction === 'from') ? valFrom : valTo;
+                    const real_amount_rub = (direction === 'from') ? valFrom : valTo;
+                    // Если сумма < 1000 руб, считаем курс как для 1000 руб
+                    const calc_amount_rub = Math.max(real_amount_rub, 1000);
+                    
                     let c;
-                    if (amount_rub < 500000) c = 0.0272;
-                    else if (amount_rub < 1000000) c = 0.017;
+                    if (calc_amount_rub < 500000) c = 0.0272;
+                    else if (calc_amount_rub < 1000000) c = 0.017;
                     else c = 0.0067;
 
-                    const thb_exch = (amount_rub / RUB_USDT) * USDT_THB * (1 - c);
+                    const thb_exch = (calc_amount_rub / RUB_USDT) * USDT_THB * (1 - c);
                     const thb_recv = thb_exch * (1 - PCT_COMM) - FIX_COMM;
-                    const res = Math.max(0, thb_recv);
+                    
+                    const rate = calc_amount_rub / Math.max(1, thb_recv);
+                    const res = real_amount_rub / rate;
                     
                     return { 
-                        val: (direction === 'from') ? res : amount_rub,
-                        rate: amount_rub / Math.max(1, res)
+                        val: (direction === 'from') ? res : real_amount_rub,
+                        rate: rate
                     };
                 } else {
-                    const amount_thb = (direction === 'from') ? valFrom : valTo;
-                    const thb_exch = (amount_thb + FIX_COMM) / (1 - PCT_COMM);
+                    const real_amount_thb = (direction === 'from') ? valFrom : valTo;
+                    // Для обратного расчета THB -> RUB тоже используем порог (примерно 400 бат ~= 1000 руб)
+                    const calc_amount_thb = Math.max(real_amount_thb, 400);
+                    
+                    const thb_exch = (calc_amount_thb + FIX_COMM) / (1 - PCT_COMM);
                     const getRUB = (c) => (thb_exch * RUB_USDT) / (USDT_THB * (1 - c));
                     
                     let rub = getRUB(0.0067);
                     if (rub < 1000000) rub = getRUB(0.017);
                     if (rub < 500000) rub = getRUB(0.0272);
                     
+                    const rate = rub / Math.max(1, calc_amount_thb);
+                    const res = real_amount_thb * rate;
+                    
                     return { 
-                        val: (direction === 'from') ? amount_thb : rub,
-                        rate: rub / Math.max(1, amount_thb)
+                        val: (direction === 'from') ? real_amount_thb : res,
+                        rate: rate
                     };
                 }
             }
@@ -766,32 +816,42 @@
                 const inputIsUSDT = (direction === 'from' && isForward) || (direction === 'to' && !isForward);
 
                 if (inputIsUSDT) {
-                    const amount_usdt = (direction === 'from') ? valFrom : valTo;
+                    const real_amount_usdt = (direction === 'from') ? valFrom : valTo;
+                    // Если сумма < 10 USDT, считаем курс как для 10 USDT
+                    const calc_amount_usdt = Math.max(real_amount_usdt, 10);
+                    
                     let c;
-                    if (amount_usdt < 5000) c = 0.03;
-                    else if (amount_usdt < 10000) c = 0.025;
+                    if (calc_amount_usdt < 5000) c = 0.03;
+                    else if (calc_amount_usdt < 10000) c = 0.025;
                     else c = 0.02;
 
-                    const thb_exch = amount_usdt * USDT_THB * (1 - c);
+                    const thb_exch = calc_amount_usdt * USDT_THB * (1 - c);
                     const thb_recv = thb_exch * (1 - PCT_COMM) - FIX_COMM;
-                    const res = Math.max(0, thb_recv);
+                    
+                    const rate = thb_recv / Math.max(0.0001, calc_amount_usdt);
+                    const res = real_amount_usdt * rate;
                     
                     return { 
-                        val: (direction === 'from') ? res : amount_usdt,
-                        rate: res / Math.max(1, amount_usdt)
+                        val: (direction === 'from') ? res : real_amount_usdt,
+                        rate: rate
                     };
                 } else {
-                    const amount_thb = (direction === 'from') ? valFrom : valTo;
-                    const thb_exch = (amount_thb + FIX_COMM) / (1 - PCT_COMM);
+                    const real_amount_thb = (direction === 'from') ? valFrom : valTo;
+                    const calc_amount_thb = Math.max(real_amount_thb, 350); // порог для THB (~10 USDT)
+                    
+                    const thb_exch = (calc_amount_thb + FIX_COMM) / (1 - PCT_COMM);
                     const getUSDT = (c) => thb_exch / (USDT_THB * (1 - c));
                     
                     let usdt = getUSDT(0.02);
                     if (usdt < 10000) usdt = getUSDT(0.025);
                     if (usdt < 5000) usdt = getUSDT(0.03);
                     
+                    const rate = calc_amount_thb / Math.max(0.0001, usdt);
+                    const res = real_amount_thb / rate;
+                    
                     return { 
-                        val: (direction === 'from') ? amount_thb : usdt,
-                        rate: amount_thb / Math.max(1, usdt)
+                        val: (direction === 'from') ? real_amount_thb : res,
+                        rate: rate
                     };
                 }
             }
@@ -1110,40 +1170,82 @@
             // Отправка цели в Яндекс Метрику
             try {
                 let goalName = `click_${platform}_${context}`;
-                
-                // Специальные имена для Квиза по просьбе пользователя
-                if (context === 'quiz') {
-                    goalName = platform === 'tg' ? 'quiz_sent_telegram' : 'quiz_sent_whatsapp';
-                }
-                
-                // Специальные имена для Футера (секция CTA "Готовы начать обмен?")
-                if (context === 'cta_bottom') {
-                    goalName = platform === 'tg' ? 'click_tg_footer' : 'click_wa_footer';
-                }
+                if (context === 'quiz') goalName = platform === 'tg' ? 'quiz_sent_telegram' : 'quiz_sent_whatsapp';
+                if (context === 'cta_bottom') goalName = platform === 'tg' ? 'click_tg_footer' : 'click_wa_footer';
 
                 ym(106232718, 'reachGoal', goalName);
-                ym(106232718, 'reachGoal', 'any_contact'); // Общая цель на любой контакт
+                ym(106232718, 'reachGoal', 'any_contact');
             } catch(e) { console.warn('Metrika goal error:', e); }
 
             const sendVal = document.getElementById('send-input').value;
             const recvVal = document.getElementById('receive-input').value;
             const rateStr = document.getElementById('course-badge').innerText.match(/\d+\.\d+/)?.[0] || '2.84';
-            const utm = new URLSearchParams(window.location.search).get('utm_source');
-            const formatShort = (val) => { let n = parseNumber(val); if (n >= 1000000) return (n/1000000) + 'kk'; if (n >= 1000) return (n/1000) + 'k'; return n; };
+            
+            // Берем сохраненные UTM из localStorage
+            const savedUtms = getSavedUTMs();
+            const mainUtm = savedUtms.utm_source || '';
+            
+            const formatShort = (val) => { 
+                let n = parseNumber(val); 
+                if (n >= 1000000) return Math.floor(n/1000000) + 'kk'; 
+                if (n >= 1000) return Math.floor(n/1000) + 'k'; 
+                return Math.floor(n); 
+            };
 
             if (platform === 'wa') {
                 let text = "Здравствуйте! Хочу уточнить детали обмена.";
                 if (context === 'calc') text = `Здравствуйте! Хочу обменять ${sendVal} ${state.from} на ${recvVal} ${state.to}. (Курс: ${rateStr})`;
                 if (context === 'quiz') text = `Здравствуйте! Прошел квиз:\n🎯 Задача: ${quizStore.goalLabel}\n💳 Оплата: ${quizStore.sourceLabel}\n🚚 Получение: ${quizStore.deliveryLabel}\n💰 Объем: ${quizStore.amountLabel}`;
-                if (utm) text += `\n\n(Источник: ${utm})`;
+                if (mainUtm) text += `\n\n(Источник: ${mainUtm})`;
                 window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(text)}`, '_blank');
             } else {
                 let startParam = '';
-                if (context === 'calc') startParam = `${state.from.toLowerCase()}${formatShort(sendVal)}to${formatShort(recvVal)}${state.to.toLowerCase()}_${rateStr.replace('.', '-')}`;
-                else if (context === 'quiz') startParam = `${quizStore.goal}_${quizStore.source}_${quizStore.delivery}_${quizStore.amount}`;
-                else startParam = context;
-                if (utm) startParam = `u_${utm}_${startParam}`;
-                window.open(`https://t.me/exgreen_pro_bot?start=${encodeURIComponent(startParam)}`, '_blank');
+                
+                // Формируем техническую часть start параметра
+                if (context === 'calc') {
+                    startParam = `c_${state.from.toLowerCase()}_${formatShort(sendVal)}_${state.to.toLowerCase()}`;
+                } else if (context === 'quiz') {
+                    // Короткие ключи для квиза, чтобы не превысить лимит 64 символа в Telegram start
+                    startParam = `q_${quizStore.goal.substring(0,3)}_${quizStore.source.substring(0,3)}_${quizStore.amount}`;
+                } else {
+                    startParam = context.substring(0, 15);
+                }
+
+                // Добавляем UTM, если есть. Используем формат utm_source__Value
+                // Telegram разрешает только: A-Z, a-z, 0-9, _ и -
+                let finalStart = '';
+                if (mainUtm) {
+                    // Чистим само значение метки: убираем всё кроме букв и цифр
+                    const cleanUtm = mainUtm.replace(/[^a-zA-Z0-9]/g, ''); 
+                    
+                    // Собираем данные квиза/калькулятора ПОНЯТНО (как в операционной модели)
+                    let dataPart = '';
+                    if (context === 'calc') {
+                        // Формат: calc_RUB_1kk_THB
+                        dataPart = `_calc_${state.from}_${formatShort(sendVal)}_${state.to}`;
+                    } else if (context === 'quiz' && quizStore.goal) {
+                        // Формат: quiz_goal_source_delivery_amount
+                        dataPart = `_quiz_${quizStore.goal}_${quizStore.source}_${quizStore.delivery}_${quizStore.amount}`;
+                    } else if (context !== 'quiz' && context !== 'calc') {
+                        dataPart = `_${context}`;
+                    }
+
+                    // Итоговый формат: utm_source__VALUE_quiz_buy_sbp_qr_1 (двойной подчерк как сепаратор)
+                    finalStart = `utm_source__${cleanUtm}${dataPart}`;
+                } else {
+                    finalStart = startParam;
+                }
+
+                // Финальная очистка всей строки для Telegram: только буквы, цифры и подчеркивания
+                finalStart = finalStart.replace(/[^a-zA-Z0-9_]/g, '_');
+                
+                // Если строка длиннее 64 символов, обрезаем данные квиза, но оставляем UTM
+                if (finalStart.length > 64) {
+                    finalStart = finalStart.substring(0, 64);
+                }
+
+                // Используем прямой переход
+                window.location.href = `https://t.me/exgreen_pro_bot?start=${finalStart}`;
             }
         }
 
