@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- Grusha Landing v7.1 - Force Update -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Grusha — надежный сервис обмена RUB/USDT на тайские баты (THB). Оплата инвойсов застройщиков, аренды недвижимости и выдача наличных по всему Таиланде с официальными подтверждениями.">
@@ -185,12 +184,6 @@
             line-height: 1;
             color: transparent !important;
             user-select: none;
-        }
-        @keyframes skeleton-loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
         /* Calculator Highlighting */
         @keyframes highlight-blink {
             0% { border-color: #E6E9E7; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transform: scale(1); }
@@ -221,13 +214,13 @@
                 <!-- Rates Badges in Header -->
                 <div class="flex items-center gap-2 sm:gap-4 lg:ml-8 lg:border-l border-ds-border lg:pl-8">
                     <div onclick="scrollToCalc('RUB')" class="bg-[#F1F3F2] px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 group relative cursor-pointer hover:bg-gray-200 transition" title="Введите сумму, чтобы увидеть точный курс для вашего объема">
-                        <img src="https://flagcdn.com/w20/th.png" alt="Курс Бата к Рублю" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
+                        <img src="assets/images/flags/th.png" alt="Курс Бата к Рублю" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
                         <div class="flex items-center gap-1">
                             <span class="text-[11px] sm:text-[13px] font-black text-gray-800 whitespace-nowrap skeleton" id="header-rate-rub">1 ฿ ≈ 00.00 ₽</span>
                         </div>
                     </div>
                     <div onclick="scrollToCalc('USDT')" class="hidden min-[450px]:flex bg-[#F1F3F2] px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl items-center gap-2 sm:gap-3 group relative cursor-pointer hover:bg-gray-200 transition" title="Введите сумму, чтобы увидеть точный курс для вашего объема">
-                        <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=025" alt="Курс USDT к Бату" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
+                        <img src="assets/images/crypto/usdt.svg" alt="Курс USDT к Бату" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
                         <div class="flex items-center gap-1">
                             <span class="text-[11px] sm:text-[13px] font-black text-gray-800 whitespace-nowrap skeleton" id="header-rate-usdt">1 $ ≈ 00.00 ฿</span>
                         </div>
@@ -265,20 +258,20 @@
                     <div class="field-box relative">
                         <input type="text" id="send-input" class="calc-input" value="1 000 000" onfocus="this.select()">
                         <div id="from-pill" class="currency-pill">
-                            <img src="https://flagcdn.com/w40/ru.png" alt="RUB" class="flag-icon" id="send-flag" decoding="async">
+                            <img src="assets/images/flags/ru.png" alt="RUB" class="flag-icon" id="send-flag" decoding="async">
                             <span class="font-bold text-gray-800" id="send-code">RUB</span>
                             <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400"></i>
                         </div>
                         <div id="from-dropdown" class="dropdown-menu">
-                            <div class="dropdown-item" data-code="RUB"><img src="https://flagcdn.com/w40/ru.png" alt="RUB" class="flag-icon" decoding="async"><span class="font-bold ml-2">RUB</span></div>
-                            <div class="dropdown-item" data-code="USDT"><img src="https://assets.coingecko.com/coins/images/325/small/Tether.png" alt="USDT" class="flag-icon" decoding="async"><span class="font-bold ml-2">USDT</span></div>
+                            <div class="dropdown-item" data-code="RUB"><img src="assets/images/flags/ru.png" alt="RUB" class="flag-icon" decoding="async"><span class="font-bold ml-2">RUB</span></div>
+                            <div class="dropdown-item" data-code="USDT"><img src="assets/images/crypto/usdt.svg" alt="USDT" class="flag-icon" decoding="async"><span class="font-bold ml-2">USDT</span></div>
                         </div>
                     </div>
                     <label class="input-label">Вы получаете:</label>
                     <div class="field-box relative">
                         <input type="text" id="receive-input" class="calc-input skeleton" onfocus="this.select()">
                         <div id="to-pill" class="currency-pill cursor-default hover:bg-transparent">
-                            <img src="https://flagcdn.com/w40/th.png" alt="THB" class="flag-icon" id="receive-flag" decoding="async">
+                            <img src="assets/images/flags/th.png" alt="THB" class="flag-icon" id="receive-flag" decoding="async">
                             <span class="font-bold text-gray-800" id="receive-code">THB</span>
                         </div>
                     </div>
@@ -373,7 +366,7 @@
                         </button>
                         <button onclick="setQuizData('goal', 'card', 'Тайская карта'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
                             <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="credit-card" class="text-purple-500"></i></div>
-                            <span class="font-bold text-gray-900 block text-lg">Пополнить тайская карта</span>
+                            <span class="font-bold text-gray-900 block text-lg">Пополнить тайскую карту</span>
                             <span class="text-sm text-gray-500">Личные нужды или расчеты в Таиланде</span>
                         </button>
                     </div>
@@ -561,7 +554,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left max-w-5xl mx-auto">
                 <!-- Case 1 -->
                 <div class="case-card-sketch">
-                    <div class="case-image-top" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800'); background-color: #A7F3D0;">
+                    <div class="case-image-top" style="background-image: url('assets/images/cases/property-placeholder.svg'); background-color: #A7F3D0;">
                         <span class="case-tag text-emerald-600">Недвижимость</span>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
@@ -572,7 +565,7 @@
                 </div>
                 <!-- Case 2 -->
                 <div class="case-card-sketch">
-                    <div class="case-image-top" style="background-image: url('https://images.unsplash.com/photo-1580519542036-c47de6196ba5?auto=format&fit=crop&q=80&w=800'); background-color: #C7D2FE;">
+                    <div class="case-image-top" style="background-image: url('assets/images/cases/rent-placeholder.svg'); background-color: #C7D2FE;">
                         <span class="case-tag text-indigo-600">Аренда</span>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
@@ -704,9 +697,9 @@
     <script>
         const config = {
             currencies: {
-                'RUB': { flag: 'https://flagcdn.com/w40/ru.png' },
-                'THB': { flag: 'https://flagcdn.com/w40/th.png' },
-                'USDT': { flag: 'https://assets.coingecko.com/coins/images/325/small/Tether.png' }
+                'RUB': { flag: 'assets/images/flags/ru.png' },
+                'THB': { flag: 'assets/images/flags/th.png' },
+                'USDT': { flag: 'assets/images/crypto/usdt.svg' }
             },
             rates: { 
                 'USDT_THB': null, 
