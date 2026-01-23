@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" width="40" height="40">
   <circle cx="1000" cy="1000" r="1000" fill="#26A17B"/>
-  <path d="M1000 800L500 1200h200v400h600v-400h200L1000 800z" fill="#fff"/>
-  <text x="1000" y="1100" font-size="400" fill="#fff" text-anchor="middle" font-weight="bold">®</text>
+  <path d="M1100 600 H900 V850 H600 V1050 H900 V1400 H1100 V1050 H1400 V850 H1100 Z" fill="#fff"/>
+  <rect x="700" y="1050" width="600" height="80" fill="#fff" rx="10"/>
 </svg>
