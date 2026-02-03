@@ -15,3 +15,4 @@ gcp-oauth.keys.json
 *.db
 !exgreen_site/
 
+.claude/google-drive-mcp.sh
