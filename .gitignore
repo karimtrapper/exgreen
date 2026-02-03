@@ -16,3 +16,8 @@ gcp-oauth.keys.json
 !exgreen_site/
 
 .claude/google-drive-mcp.sh
+
+# Секреты
+.env
+**/.env
+Dev/Tools/.env
