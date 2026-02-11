@@ -1,23 +1,79 @@
+# === Лендинг grusha.space ===
+# Этот репо — только для лендинга. Всё остальное игнорируется.
+
+# Системные
+.DS_Store
 .env
+**/.env
 __pycache__/
 *.pyc
-.DS_Store
 node_modules/
 dist/
 build/
-.cursor/
-gcp-oauth.keys.json
 *.session
 *.proxy
 *.lock
 *.log
 *.zip
 *.db
-!exgreen_site/
 
-.claude/google-drive-mcp.sh
+# Claude Code / IDE
+.claude/
+.cursor/
+.playwright-mcp/
+CLAUDE*.md
+tests/
+
+# Dev проекты (отдельные репозитории)
+Dev/
+Docs/
+
+# Telegram сессии
+49/
+573105900353/
+919679243361*/
+919752131017*/
+923423494710*/
+923430716317*/
+
+# Старые версии и бэкапы
+exgreen_site/
+landing_grusha_v7.html
+landing_grusha_v8.html
+CHANGELOG_v8.md
+Procfile
+requirements.txt
+
+# Инструменты
+handypy/
+remotion-video/
+public/
+
+# Лишние картинки (есть .webp)
+appartments.jpg
+cash.jpg
+rent.jpg
+why.jpg
+Bangkokatm.png
+usdt.png
+usdt2.webp
+og-image.png
+logo_grusha.png
+grusha_phone.png
 
 # Секреты
-.env
-**/.env
-Dev/Tools/.env
+gcp-oauth.keys.json
+.claude/google-drive-mcp.sh
+
+# Submodules
+.gitmodules
+
+# Скриншоты QA
+*.png
+!grushalogo.png
+!assets/images/flags/th.png
+!assets/images/flags/ru.png
+# Договора
+*.docx
+*.doc
+*.pdf

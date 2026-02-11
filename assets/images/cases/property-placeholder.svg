@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
-  <rect width="800" height="600" fill="#A7F3D0"/>
-  <g transform="translate(400, 300)">
-    <rect x="-150" y="-80" width="300" height="160" fill="#fff" opacity="0.3" rx="8"/>
-    <rect x="-100" y="-50" width="60" height="80" fill="#fff" opacity="0.5" rx="4"/>
-    <rect x="40" y="-50" width="60" height="80" fill="#fff" opacity="0.5" rx="4"/>
-    <polygon points="0,-120 180,0 -180,0" fill="#fff" opacity="0.4"/>
-  </g>
-</svg>
