@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Import map для Agentation (используется только на localhost) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.3.1",
+            "react-dom": "https://esm.sh/react-dom@18.3.1",
+            "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+            "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime"
+        }
+    }
+    </script>
     <meta name="description" content="Grusha — надежный сервис обмена RUB/USDT на тайские баты (THB). Оплата инвойсов застройщиков, аренды недвижимости и выдача наличных по всему Таиланде с официальными подтверждениями.">
     
     <!-- Canonical URL -->
@@ -158,8 +169,8 @@
             max-width: 460px; border: 1px solid #E6E9E7;
         }
         .course-badge {
-            background: #F1F3F2; padding: 8px 24px; border-radius: 100px;
-            font-size: 14px; font-weight: 700; color: #111513;
+            background: #D9F99D; padding: 10px 28px; border-radius: 100px;
+            font-size: 15px; font-weight: 800; color: #111513; letter-spacing: 0.02em;
             display: inline-block; margin-bottom: 24px;
         }
         .input-label { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #111513; display: block; }
@@ -332,7 +343,7 @@
     </header>
 
     <!-- ========== HERO + CALCULATOR ========== -->
-    <section class="min-h-[calc(100dvh-80px)] flex items-center pt-10 pb-12 md:pt-20 md:pb-24 px-6 relative overflow-hidden border-b border-ds-border">
+    <section class="min-h-[calc(100dvh-80px)] flex items-start pt-6 pb-10 md:pt-12 md:pb-16 px-6 relative overflow-hidden border-b border-ds-border">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16 relative z-10 w-full">
             <div class="flex-1 text-center lg:text-left">
                 <h1 class="text-3xl md:text-6xl font-extrabold text-gray-900 leading-[1.15] mb-6 md:mb-8 tracking-tight">
@@ -348,6 +359,22 @@
                     <button onclick="contact('wa', 'hero')" class="border-2 border-[#4ADE80] text-[#16A34A] px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-[#4ADE80]/5 transition flex items-center justify-center gap-3">
                         <i data-lucide="message-circle" class="w-5 h-5 md:w-6 md:h-6"></i> в&nbsp;WhatsApp
                     </button>
+                </div>
+                <!-- Три преимущества — после CTA -->
+                <div class="flex flex-wrap md:flex-nowrap items-center justify-center lg:justify-start gap-2 md:gap-3 mt-6 md:mt-8 pt-5 md:pt-6 border-t border-gray-200/60">
+                    <a href="http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044" target="_blank" rel="noopener" class="flex items-center gap-1.5 md:gap-2 bg-[#F1F3F2] rounded-full px-3 md:px-4 py-1.5 md:py-2 hover:bg-[#E8EBE9] transition group">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#16A34A] shrink-0"></i>
+                        <span class="text-[11px] md:text-sm font-medium text-gray-700 whitespace-nowrap underline decoration-dotted underline-offset-2 group-hover:text-[#16A34A]">Лицензия ЦБ Таиланда</span>
+                        <i data-lucide="external-link" class="w-2.5 h-2.5 md:w-3 md:h-3 text-gray-400 shrink-0"></i>
+                    </a>
+                    <div class="flex items-center gap-1.5 md:gap-2 bg-[#F1F3F2] rounded-full px-3 md:px-4 py-1.5 md:py-2">
+                        <i data-lucide="banknote" class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#3B82F6] shrink-0"></i>
+                        <span class="text-[11px] md:text-sm font-medium text-gray-700 whitespace-nowrap">Индивидуальный курс</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 md:gap-2 bg-[#F1F3F2] rounded-full px-3 md:px-4 py-1.5 md:py-2">
+                        <i data-lucide="badge-check" class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#F59E0B] shrink-0"></i>
+                        <span class="text-[11px] md:text-sm font-medium text-gray-700 whitespace-nowrap">Без скрытых комиссий</span>
+                    </div>
                 </div>
             </div>
 
@@ -383,7 +410,7 @@
                 </div>
                 <div class="flex items-start gap-4 bg-[#F8FAF9] p-4 rounded-2xl w-full">
                     <span class="text-[#84CC16] font-extrabold text-xl mt-0.5">!</span>
-                    <p class="text-xs text-gray-500 leading-relaxed">Курс является ориентировочным. В&nbsp;зависимости от&nbsp;объемов и&nbsp;способов оплаты курс может корректироваться, точный курс предоставит менеджер после оформления заявки.</p>
+                    <p class="text-xs text-gray-500 leading-relaxed">Ориентировочный курс. Точный — зафиксирует менеджер под&nbsp;ваш объём.</p>
                 </div>
             </div>
         </div>
@@ -402,8 +429,8 @@
                 <div class="task-content">
                     <div class="space-y-4">
                         <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Проводим платежи напрямую застройщикам в&nbsp;любой банк Таиланда. Обеспечиваем юридическую чистоту и&nbsp;предоставляем официальные чеки.</p>
-                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Инвойсы застройщиков</h4><p class="text-gray-500 text-sm font-medium">Принимаем RUB и&nbsp;USDT для оплаты любых счетов от&nbsp;девелоперов.</p></div></div>
-                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Официальный чек</h4><p class="text-gray-500 text-sm font-medium">Гарантированное подтверждение платежа, которое принимает любой застройщик.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Freehold и&nbsp;Leasehold</h4><p class="text-gray-500 text-sm font-medium">Оплачиваем инвойсы застройщиков для любого типа владения. Подберём маршрут платежа с&nbsp;получением FET.</p></div></div>
+                        <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Официальные документы</h4><p class="text-gray-500 text-sm font-medium">Банковские подтверждения, FET-форма для фрихолда, чеки для застройщика.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Сопровождение</h4><p class="text-gray-500 text-sm font-medium">Контролируем процесс до&nbsp;момента зачисления средств на&nbsp;баланс объекта.</p></div></div>
                     </div>
                     <div class="task-image-wrapper shadow-2xl"><img src="appartments.webp" alt="Покупка виллы в Таиланде через Grusha" loading="lazy" decoding="async"></div>
@@ -604,8 +631,8 @@
                 </div>
                 <div class="ogvio-card">
                     <div class="ogvio-icon-circle"><i data-lucide="building"></i></div>
-                    <h3 class="text-2xl font-bold mb-4">Инвойсы застройщиков</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Прямой платеж с необходимыми вам данными. Сопровождение для получения формы FET.</p>
+                    <h3 class="text-2xl font-bold mb-4">Оплата недвижимости</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Freehold и&nbsp;leasehold: подберём маршрут и&nbsp;оформим FET. Инвойсы застройщиков под&nbsp;ключ.</p>
                 </div>
                 <div class="ogvio-card">
                     <div class="ogvio-icon-circle"><i data-lucide="truck"></i></div>
@@ -637,7 +664,7 @@
                     </div>
                     <div class="bg-white rounded-[2.5rem] p-6 md:p-8 flex items-start gap-6 group hover:shadow-md transition-shadow">
                         <div class="w-12 h-12 shrink-0 bg-figma-lime rounded-full flex items-center justify-center text-black border border-black/5"><i data-lucide="map-pin"></i></div>
-                        <div><h4 class="text-xl font-extrabold text-gray-900 mb-2">Офис и легальность</h4><p class="text-gray-600 leading-relaxed">Работаем официально через тайскую компанию (Co., Ltd). Наш офис открыт для личных встреч и выдачи наличных на Пхукете: <a href="#" class="underline font-bold">Choeng Thale, Phuket (Google Maps)</a>.</p></div>
+                        <div><h4 class="text-xl font-extrabold text-gray-900 mb-2">Офис и легальность</h4><p class="text-gray-600 leading-relaxed">Работаем официально через тайскую компанию (Co., Ltd), <a href="http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044" target="_blank" rel="noopener" class="underline font-bold hover:text-[#16A34A] transition">лицензия&nbsp;MC225660186</a>. Наш офис открыт для личных встреч и выдачи наличных на Пхукете: <a href="#" class="underline font-bold">Choeng Thale, Phuket (Google Maps)</a>.</p></div>
                     </div>
                     <div class="bg-white rounded-[2.5rem] p-6 md:p-8 flex items-start gap-6 group hover:shadow-md transition-shadow">
                         <div class="w-12 h-12 shrink-0 bg-figma-lime rounded-full flex items-center justify-center text-black border border-black/5"><i data-lucide="shield-check"></i></div>
@@ -1368,6 +1395,27 @@
                 window.scrollTo(0, 0);
             }, 1);
         }
+    </script>
+
+    <!-- Agentation: визуальная обратная связь для UI (только localhost) -->
+    <script>
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        const div = document.createElement('div');
+        div.id = 'agentation-root';
+        document.body.appendChild(div);
+
+        const mod = document.createElement('script');
+        mod.type = 'module';
+        mod.textContent = `
+            import React from 'react';
+            import { createRoot } from 'react-dom/client';
+            import { Agentation } from 'https://esm.sh/agentation@2.2.0?external=react,react-dom';
+            const root = createRoot(document.getElementById('agentation-root'));
+            root.render(React.createElement(Agentation, { endpoint: 'http://localhost:4747' }));
+            console.log('[Agentation] Overlay загружен');
+        `;
+        document.body.appendChild(mod);
+    }
     </script>
 </body>
 </html>
