@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Import map для Agentation (используется только на localhost) -->
-    <script type="importmap">
-    {
-        "imports": {
-            "react": "https://esm.sh/react@18.3.1",
-            "react-dom": "https://esm.sh/react-dom@18.3.1",
-            "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-            "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime"
-        }
-    }
-    </script>
-    <meta name="description" content="Обменник на Пхукете с лицензией ЦБ Таиланда. Обмен рублей, криптовалюты и USDT на баты. Оплата недвижимости, аренды, выдача наличных. Курс бата к рублю и калькулятор.">
+    <meta name="description" content="Обменник на Пхукете с лицензией ЦБ Таиланда. Меняем рубли и USDT на баты. Оплата недвижимости, аренды, выдача наличных. Напишите в Telegram.">
     <meta name="keywords" content="обменник пхукет, обмен крипты пхукет, обменник usdt пхукет, обмен usdt на баты, криптообменник пхукет, обмен рублей на баты, курс бата к рублю">
     <meta name="robots" content="index, follow">
     
@@ -29,6 +18,7 @@
     <meta property="og:image" content="https://grusha.space/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Обменник на Пхукете — Grusha">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="Grusha">
     
@@ -123,19 +113,6 @@
     }
     </script>
     
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106232718', 'ym');
-
-        ym(106232718, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/106232718" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
     <title>Обменник на Пхукете — Grusha | Курс рубля к бату сегодня</title>
     <link rel="icon" href="grushalogo.png" type="image/png">
     <link rel="shortcut icon" href="grushalogo.png" type="image/png">
@@ -318,13 +295,13 @@
                 <!-- Rates Badges in Header -->
                 <div class="flex items-center gap-2 sm:gap-4 lg:ml-8 lg:border-l border-ds-border lg:pl-8">
                     <div onclick="scrollToCalc('RUB')" class="bg-[#F1F3F2] px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 group relative cursor-pointer hover:bg-gray-200 transition" title="Введите сумму, чтобы увидеть точный курс для вашего объема">
-                        <img src="assets/images/flags/th.png" alt="Курс Бата к Рублю" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
+                        <img src="assets/images/flags/th.png" alt="Курс Бата к Рублю" width="20" height="20" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
                         <div class="flex items-center gap-1">
                             <span class="text-[11px] sm:text-[13px] font-black text-gray-800 whitespace-nowrap skeleton" id="header-rate-rub">1 ฿ ≈ 00.00 ₽</span>
                         </div>
                     </div>
                     <div onclick="scrollToCalc('USDT')" class="hidden min-[450px]:flex bg-[#F1F3F2] px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl items-center gap-2 sm:gap-3 group relative cursor-pointer hover:bg-gray-200 transition" title="Введите сумму, чтобы увидеть точный курс для вашего объема">
-                        <img src="assets/images/crypto/usdt.webp" alt="Курс USDT к Бату" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
+                        <img src="assets/images/crypto/usdt.webp" alt="Курс USDT к Бату" width="20" height="20" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full" decoding="async">
                         <div class="flex items-center gap-1">
                             <span class="text-[11px] sm:text-[13px] font-black text-gray-800 whitespace-nowrap skeleton" id="header-rate-usdt">1 $ ≈ 00.00 ฿</span>
                         </div>
@@ -333,6 +310,8 @@
             </nav>
         </div>
     </header>
+
+    <main id="main-content">
 
     <!-- ========== HERO + CALCULATOR ========== -->
     <section class="min-h-[calc(100dvh-80px)] flex items-start md:items-center pt-6 pb-10 md:pt-12 md:pb-16 px-6 relative overflow-hidden border-b border-ds-border">
@@ -378,20 +357,20 @@
                     <div class="field-box relative">
                         <input type="text" id="send-input" class="calc-input" value="1 000 000" onfocus="this.select()">
                         <div id="from-pill" class="currency-pill">
-                            <img src="assets/images/flags/ru.png" alt="RUB" class="flag-icon" id="send-flag" decoding="async">
+                            <img src="assets/images/flags/ru.png" alt="RUB" width="22" height="22" class="flag-icon" id="send-flag" decoding="async">
                             <span class="font-bold text-gray-800" id="send-code">RUB</span>
                             <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400"></i>
                         </div>
                         <div id="from-dropdown" class="dropdown-menu">
-                            <div class="dropdown-item" data-code="RUB"><img src="assets/images/flags/ru.png" alt="RUB" class="flag-icon" decoding="async"><span class="font-bold ml-2">RUB</span></div>
-                            <div class="dropdown-item" data-code="USDT"><img src="assets/images/crypto/usdt.webp" alt="USDT" class="flag-icon" decoding="async"><span class="font-bold ml-2">USDT</span></div>
+                            <div class="dropdown-item" data-code="RUB"><img src="assets/images/flags/ru.png" alt="RUB" width="22" height="22" class="flag-icon" decoding="async"><span class="font-bold ml-2">RUB</span></div>
+                            <div class="dropdown-item" data-code="USDT"><img src="assets/images/crypto/usdt.webp" alt="USDT" width="22" height="22" class="flag-icon" decoding="async"><span class="font-bold ml-2">USDT</span></div>
                         </div>
                     </div>
                     <label class="input-label">Вы получаете:</label>
                     <div class="field-box relative">
                         <input type="text" id="receive-input" class="calc-input skeleton" onfocus="this.select()">
                         <div id="to-pill" class="currency-pill cursor-default hover:bg-transparent">
-                            <img src="assets/images/flags/th.png" alt="THB" class="flag-icon" id="receive-flag" decoding="async">
+                            <img src="assets/images/flags/th.png" alt="THB" width="22" height="22" class="flag-icon" id="receive-flag" decoding="async">
                             <span class="font-bold text-gray-800" id="receive-code">THB</span>
                         </div>
                     </div>
@@ -417,7 +396,7 @@
             </div>
             <!-- Task 1 -->
             <div class="task-container" id="task-1">
-                <div class="task-header" onclick="toggleTask(1)"><h2 class="task-title">1. Покупка недвижимости и&nbsp;оплата инвойсов</h2><div class="toggle-btn"><i data-lucide="minus" class="w-6 h-6" id="icon-1"></i></div></div>
+                <div class="task-header" onclick="toggleTask(1)"><h2 class="task-title">Оплата инвойсов застройщиков в&nbsp;Таиланде</h2><div class="toggle-btn"><i data-lucide="minus" class="w-6 h-6" id="icon-1"></i></div></div>
                 <div class="task-content">
                     <div class="space-y-4">
                         <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Проводим платежи напрямую застройщикам в&nbsp;любой банк Таиланда. Обеспечиваем юридическую чистоту и&nbsp;предоставляем официальные чеки.</p>
@@ -425,12 +404,12 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Официальные документы</h4><p class="text-gray-500 text-sm font-medium">Банковские подтверждения, FET-форма для фрихолда, чеки для застройщика.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Сопровождение</h4><p class="text-gray-500 text-sm font-medium">Контролируем процесс до&nbsp;момента зачисления средств на&nbsp;баланс объекта.</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="appartments.webp" alt="Покупка виллы в Таиланде через Grusha" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="appartments.webp" alt="Покупка виллы в Таиланде через Grusha" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
             <!-- Task 2 -->
             <div class="task-container collapsed" id="task-2">
-                <div class="task-header" onclick="toggleTask(2)"><h2 class="task-title">2. Аренда жилья и&nbsp;бронирование отдыха</h2><div class="toggle-btn"><i data-lucide="plus" class="w-6 h-6" id="icon-2"></i></div></div>
+                <div class="task-header" onclick="toggleTask(2)"><h2 class="task-title">Аренда жилья и&nbsp;бронирование на Пхукете</h2><div class="toggle-btn"><i data-lucide="plus" class="w-6 h-6" id="icon-2"></i></div></div>
                 <div class="task-content">
                     <div class="space-y-4">
                         <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Мгновенные переводы владельцам жилья, автопрокатам и&nbsp;туристическим агентствам. Бронируйте отдых без&nbsp;границ.</p>
@@ -438,12 +417,12 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Пополнение за&nbsp;пару минут</h4><p class="text-gray-500 text-sm font-medium">Деньги поступают на&nbsp;счёт тайского банка мгновенно.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Оплата сервисов</h4><p class="text-gray-500 text-sm font-medium">Трансферы, аренда авто, экскурсии и&nbsp;другие туристические услуги.</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="rent.webp" alt="Аренда недвижимости в Таиланде" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="rent.webp" alt="Аренда недвижимости в Таиланде" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
             <!-- Task 3 -->
             <div class="task-container collapsed" id="task-3">
-                <div class="task-header" onclick="toggleTask(3)"><h2 class="task-title">3. Получение наличных</h2><div class="toggle-btn"><i data-lucide="plus" class="w-6 h-6" id="icon-3"></i></div></div>
+                <div class="task-header" onclick="toggleTask(3)"><h2 class="task-title">Выдача наличных батов на&nbsp;Пхукете</h2><div class="toggle-btn"><i data-lucide="plus" class="w-6 h-6" id="icon-3"></i></div></div>
                 <div class="task-content">
                     <div class="space-y-4">
                         <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Самый простой способ получить местную валюту для&nbsp;личных расходов. Различные варианты выдачи по&nbsp;всему Таиланде.</p>
@@ -451,7 +430,7 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Доставка курьером</h4><p class="text-gray-500 text-sm font-medium">Доставляем баты в любую точку Пхукета.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Выдача в офисе</h4><p class="text-gray-500 text-sm font-medium">Ждем вас в нашем офисе на Пхукете (район Choeng Thale).</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="cash.webp" alt="Получение наличных бат на Пхукете" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="cash.webp" alt="Получение наличных бат на Пхукете" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
         </div>
@@ -644,7 +623,7 @@
     <section id="security" class="py-20 md:py-24 px-6 bg-white border-t border-ds-border min-h-[80dvh] flex flex-col justify-center">
         <div class="max-w-7xl mx-auto bg-figma-lime rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch">
             <div class="lg:w-[45%] relative min-h-[400px] lg:min-h-auto">
-                <img src="why.webp" alt="Безопасность и легальность обмена валюты в Таиланде через Grusha" class="absolute inset-0 w-full h-full object-cover rounded-tr-[120px]" loading="lazy" decoding="async">
+                <img src="why.webp" alt="Безопасность и легальность обмена валюты в Таиланде через Grusha" class="absolute inset-0 w-full h-full object-cover rounded-tr-[120px]" width="800" height="400" loading="lazy" decoding="async">
             </div>
             <div class="lg:w-[55%] p-8 md:p-16 flex flex-col justify-center">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Почему выбирают Grusha</h2>
@@ -773,7 +752,7 @@
                     <div class="relative z-10 w-[320px] transform hover:rotate-1 transition-transform duration-700">
                         <!-- Phone Image Only (No frame) -->
                         <div class="relative overflow-visible">
-                            <img src="grusha_phone.webp" alt="Интерфейс Grusha Bot для партнеров" class="w-full h-auto block rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]" loading="lazy" decoding="async">
+                            <img src="grusha_phone.webp" alt="Интерфейс Grusha Bot для партнеров" class="w-full h-auto block rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]" width="400" height="700" loading="lazy" decoding="async">
                             
                             <!-- Left Label (Profit Share) -->
                             <div class="absolute -left-16 bottom-1/4 bg-white text-black px-6 py-4 rounded-3xl font-black text-sm shadow-2xl animate-float z-20" style="animation-delay: 1.5s;">
@@ -795,6 +774,8 @@
     </section>
 
     <!-- ========== FOOTER ========== -->
+    </main>
+
     <footer class="bg-ds-background border-t border-ds-border py-20 px-6">
         <div class="max-w-6xl mx-auto text-center">
             <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" class="inline-flex items-center justify-center space-x-3 mb-6 cursor-pointer hover:opacity-80 transition-opacity">
@@ -1114,16 +1095,15 @@
         function toggleTask(id) {
             const container = document.getElementById('task-' + id); const icon = document.getElementById('icon-' + id);
             const isCollapsed = container.classList.toggle('collapsed'); icon.setAttribute('data-lucide', isCollapsed ? 'plus' : 'minus');
-            lucide.createIcons();
+            lucide.createIcons({ nodes: [icon] });
         }
 
         function nextStep(step) {
             document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden'));
             const target = document.getElementById('step-' + (step === 'summary' ? 'summary' : step));
-            if (target) target.classList.remove('hidden');
+            if (target) { target.classList.remove('hidden'); lucide.createIcons({ nodes: target.querySelectorAll('[data-lucide]') }); }
             let progress = 25; if (step === 2) progress = 50; if (step === 3) progress = 75; if (step === 4 || step === 'summary') progress = 100;
             document.getElementById('quiz-progress').style.width = progress + '%';
-            lucide.createIcons();
         }
 
         function showSummary() {
@@ -1413,5 +1393,18 @@
         document.body.appendChild(mod);
     }
     </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106232718', 'ym');
+        ym(106232718, 'init', {clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106232718" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </body>
 </html>
