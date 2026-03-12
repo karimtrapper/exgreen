@@ -3,6 +3,5 @@ Allow: /
 Sitemap: https://grusha.space/sitemap.xml
 
 # Disallow admin and internal paths
-Disallow: /assets/
 Disallow: /*.svg$
 Disallow: /*.json$
