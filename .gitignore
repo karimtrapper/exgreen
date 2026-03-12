@@ -44,6 +44,12 @@ CHANGELOG_v8.md
 Procfile
 requirements.txt
 
+# Tailwind build tools (не нужны в деплое — собранный CSS уже в assets/css/)
+tailwind.config.js
+input.css
+package.json
+package-lock.json
+
 # Инструменты
 handypy/
 remotion-video/
