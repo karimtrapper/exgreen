@@ -63,7 +63,6 @@ why.jpg
 Bangkokatm.png
 usdt.png
 usdt2.webp
-og-image.png
 logo_grusha.png
 grusha_phone.png
 
@@ -79,6 +78,7 @@ gcp-oauth.keys.json
 !grushalogo.png
 !assets/images/flags/th.png
 !assets/images/flags/ru.png
+!og-image.png
 # Договора
 *.docx
 *.doc
