@@ -60,16 +60,36 @@
             "latitude": 7.9878,
             "longitude": 98.3044
           },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            "opens": "09:00",
-            "closes": "21:00"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Thailand"
-          },
+          "sameAs": [
+            "https://t.me/exgreen_pro_bot",
+            "http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044"
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "url": "https://t.me/exgreen_pro_bot",
+              "availableLanguage": ["Russian", "English"]
+            }
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+              "opens": "09:00",
+              "closes": "21:00"
+            }
+          ],
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "Thailand"
+            },
+            {
+              "@type": "City",
+              "name": "Phuket"
+            }
+          ],
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Услуги обмена валюты",
@@ -117,6 +137,8 @@
     <link rel="icon" href="grushalogo.webp" type="image/webp">
     <link rel="apple-touch-icon" href="grushalogo.webp">
     <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="preconnect" href="https://api.exgreen.pro">
+    <link rel="dns-prefetch" href="https://api.binance.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -351,6 +373,7 @@
             <div id="calculator" class="calc-card mx-auto flex flex-col items-center relative">
                 <div id="calc-hint" class="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#111513] text-white text-xs py-2 px-4 rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-xl z-20"></div>
                 <div id="course-badge" class="course-badge skeleton">1 THB = 0.00 RUB</div>
+                <noscript><p style="text-align:center;color:#666;font-size:14px;margin:8px 0">Актуальный курс обмена рублей и USDT на баты уточняйте у менеджера в Telegram: @exgreen_pro_bot. Курс обновляется ежедневно.</p></noscript>
                 <div class="w-full">
                     <label class="input-label">Вы отдаете:</label>
                     <div class="field-box relative">
@@ -696,6 +719,64 @@
         </div>
     </section>
 
+    <!-- ========== FAQ SECTION ========== -->
+    <section id="faq" class="py-20 md:py-24 px-6 bg-[#F8FAF9] border-t border-ds-border">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-12 tracking-tight text-center">Частые вопросы</h2>
+            <div class="space-y-4">
+                <details class="bg-white rounded-2xl p-6 shadow-sm group" open>
+                    <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-lg text-gray-900">
+                        Как работает обмен через Grusha?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Вы пишете нам в Telegram или WhatsApp, мы фиксируем курс и согласовываем детали. Вы отправляете рубли по СБП или USDT на наш кошелёк. После подтверждения получаете баты — на карту тайского банка, наличными через курьера, в банкомате по QR-коду или в нашем офисе на Пхукете. Весь процесс занимает от 15 минут.</p>
+                </details>
+                <details class="bg-white rounded-2xl p-6 shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-lg text-gray-900">
+                        Это безопасно? Какая у вас лицензия?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Да. Мы работаем через тайскую компанию (Co., Ltd) с лицензией Центрального Банка Таиланда MC225660186. Проверить лицензию можно на <a href="http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044" target="_blank" rel="noopener" class="underline font-bold hover:text-[#16A34A] transition">сайте Bank of Thailand</a>. Все платежи проходят через официальные банковские каналы с подтверждениями.</p>
+                </details>
+                <details class="bg-white rounded-2xl p-6 shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-lg text-gray-900">
+                        Какой минимальный и максимальный объём обмена?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Минимальная сумма — от 50 000 рублей или 500 USDT. Максимальная сумма не ограничена: мы проводили сделки свыше 1 000 000 бат. Для крупных сумм согласовываем индивидуальный курс.</p>
+                </details>
+                <details class="bg-white rounded-2xl p-6 shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-lg text-gray-900">
+                        Нужен ли паспорт или документы?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Для стандартного обмена документы не требуются. Для оплаты инвойсов застройщиков может потребоваться копия контракта — это зависит от банка получателя.</p>
+                </details>
+                <details class="bg-white rounded-2xl p-6 shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-lg text-gray-900">
+                        Какие направления обмена доступны?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Основные направления: рубли → баты (RUB→THB), USDT → баты (USDT→THB), баты → USDT (THB→USDT), рубли → USDT (RUB→USDT). Курс обновляется в реальном времени и фиксируется на момент сделки.</p>
+                </details>
+                <details class="bg-white rounded-2xl p-6 shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-lg text-gray-900">
+                        Как быстро я получу деньги?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Наличные через курьера или в офисе — от 15 до 40 минут после подтверждения оплаты. Перевод на тайский банковский счёт — в тот же день. Оплата инвойсов застройщиков — 1-2 рабочих дня.</p>
+                </details>
+                <details class="bg-white rounded-2xl p-6 shadow-sm group">
+                    <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-lg text-gray-900">
+                        Где находится ваш офис?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Наш офис расположен по адресу: <a href="https://maps.app.goo.gl/JgnuCtcc2q1v411T9" target="_blank" rel="noopener" class="underline font-bold hover:text-[#16A34A] transition">48/207 Choeng Thale, Thalang, Phuket 83110</a>. Работаем ежедневно с 09:00 до 21:00. Вы можете приехать для обмена наличных или личной встречи.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== GRUSHA B2B ========== -->
     <section id="grusha" class="py-24 px-6 bg-ds-background border-t border-ds-border overflow-hidden">
         <div class="max-w-7xl mx-auto">
@@ -778,7 +859,7 @@
     <footer class="bg-ds-background border-t border-ds-border py-20 px-6">
         <div class="max-w-6xl mx-auto text-center">
             <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" class="inline-flex items-center justify-center space-x-3 mb-6 cursor-pointer hover:opacity-80 transition-opacity">
-                <img src="grushalogo.webp" alt="Grusha" width="48" height="48" fetchpriority="high" class="h-12 w-auto">
+                <img src="grushalogo.webp" alt="Grusha — обменник на Пхукете" width="48" height="48" loading="lazy" decoding="async" class="h-12 w-auto">
                 <span class="text-2xl font-extrabold tracking-tight">Grusha</span>
             </a>
             <p class="text-gray-400 font-bold">© 2026 Grusha. Все права защищены. +66 81 842 9939</p>
