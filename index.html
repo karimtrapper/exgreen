@@ -255,9 +255,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <script type="module">
-    import{createIcons,BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap}from'https://esm.sh/lucide@0.577.0?exports=createIcons,BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap';
-    window.lucide={createIcons,icons:{BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap}};
-    createIcons();
+    import{createIcons,BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap}from'https://esm.sh/lucide@0.577.0';
+    const icons={BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap};
+    window.lucide={createIcons:function(opts){return createIcons(Object.assign({icons},opts||{}));}};
+    createIcons({icons});
     </script>
     <style>
         @font-face {
