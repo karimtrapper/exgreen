@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Обменник на Пхукете с лицензией ЦБ Таиланда. Меняем рубли и USDT на баты. Оплата недвижимости, аренды, выдача наличных. Напишите в Telegram.">
+    <meta name="description" content="Обменник на Пхукете с лицензией ЦБ Таиланда MC225660186. Обмен рублей и USDT на баты. Оплата инвойсов застройщиков, аренда, выдача наличных. Криптообменник с офисом.">
     <meta name="keywords" content="обменник пхукет, обмен крипты пхукет, обменник usdt пхукет, обмен usdt на баты, криптообменник пхукет, обмен рублей на баты, курс бата к рублю">
     <meta name="robots" content="index, follow">
     
@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://grusha.space/">
     <meta property="og:title" content="Обменник на Пхукете — Grusha | Курс рубля к бату сегодня">
     <meta property="og:description" content="Обменник на Пхукете с лицензией ЦБ Таиланда. Обмен рублей, криптовалюты и USDT на баты. Оплата недвижимости, аренды, выдача наличных.">
-    <meta property="og:image" content="https://grusha.space/og-image.png">
+    <meta property="og:image" content="https://grusha.space/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Обменник на Пхукете — Grusha">
@@ -27,7 +27,7 @@
     <meta name="twitter:url" content="https://grusha.space/">
     <meta name="twitter:title" content="Обменник на Пхукете — Grusha | Курс рубля к бату">
     <meta name="twitter:description" content="Обмен рублей, криптовалюты и USDT на баты на Пхукете. Криптообменник с лицензией, офис, выдача наличных.">
-    <meta name="twitter:image" content="https://grusha.space/og-image.png">
+    <meta name="twitter:image" content="https://grusha.space/assets/images/og-image.png">
     
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -40,13 +40,34 @@
           "name": "Grusha — Обменник на Пхукете",
           "alternateName": "Груша обменник",
           "description": "Обмен рублей, криптовалюты и USDT на тайские баты на Пхукете. Криптообменник с лицензией ЦБ Таиланда MC225660186. Оплата недвижимости, аренды, выдача наличных.",
-          "url": "https://grusha.space",
-          "image": "https://grusha.space/og-image.png",
-          "logo": "https://grusha.space/grushalogo.webp",
+          "url": "https://grusha.space/",
+          "image": "https://grusha.space/assets/images/og-image.png",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://grusha.space/assets/images/grushalogo.webp",
+            "width": 512,
+            "height": 512
+          },
           "telephone": "+66818429939",
           "priceRange": "$$",
           "currenciesAccepted": "RUB, USDT, THB",
           "paymentAccepted": "Cash, USDT, Bank Transfer",
+          "legalName": "Grusha Co., Ltd",
+          "hasCredential": {
+            "@type": "GovernmentPermit",
+            "name": "Bank of Thailand Money Changer License",
+            "identifier": "MC225660186",
+            "validIn": {
+              "@type": "Country",
+              "name": "Thailand"
+            },
+            "issuedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "Bank of Thailand",
+              "url": "https://www.bot.or.th"
+            },
+            "url": "http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044"
+          },
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "48/207 Choeng Thale",
@@ -68,6 +89,7 @@
             {
               "@type": "ContactPoint",
               "contactType": "customer service",
+              "telephone": "+66818429939",
               "url": "https://t.me/exgreen_pro_bot",
               "availableLanguage": ["Russian", "English"]
             }
@@ -82,12 +104,8 @@
           ],
           "areaServed": [
             {
-              "@type": "Country",
-              "name": "Thailand"
-            },
-            {
-              "@type": "City",
-              "name": "Phuket"
+              "@type": "AdministrativeArea",
+              "name": "Phuket, Thailand"
             }
           ],
           "hasOfferCatalog": {
@@ -98,8 +116,24 @@
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
+                  "name": "Обмен рублей на баты (RUB→THB)",
+                  "description": "Перевод рублей через СБП с получением тайских бат на карту, наличными или через банкомат"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Обмен USDT на баты (USDT→THB)",
+                  "description": "Перевод USDT с получением тайских бат за 15 минут"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
                   "name": "Оплата инвойсов застройщиков",
-                  "description": "Прямые платежи застройщикам с официальными подтверждениями"
+                  "description": "Прямые платежи застройщикам с официальными подтверждениями и FET"
                 }
               },
               {
@@ -107,7 +141,7 @@
                 "itemOffered": {
                   "@type": "Service",
                   "name": "Аренда недвижимости",
-                  "description": "Мгновенные переводы владельцам жилья"
+                  "description": "Мгновенные переводы владельцам жилья на Пхукете"
                 }
               },
               {
@@ -115,7 +149,7 @@
                 "itemOffered": {
                   "@type": "Service",
                   "name": "Выдача наличных",
-                  "description": "Получение батов через банкомат, курьера или в офисе"
+                  "description": "Получение батов через банкомат по QR-коду, курьера или в офисе на Пхукете"
                 }
               }
             ]
@@ -124,18 +158,95 @@
         {
           "@type": "WebSite",
           "@id": "https://grusha.space/#website",
-          "url": "https://grusha.space",
+          "url": "https://grusha.space/",
           "name": "Grusha — Обменник на Пхукете",
           "inLanguage": "ru",
           "publisher": { "@id": "https://grusha.space/#business" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://grusha.space/#webpage",
+          "url": "https://grusha.space/",
+          "name": "Обменник на Пхукете — Grusha | Курс рубля к бату сегодня",
+          "description": "Обменник на Пхукете с лицензией ЦБ Таиланда. Меняем рубли и USDT на баты. Оплата недвижимости, аренды, выдача наличных.",
+          "isPartOf": { "@id": "https://grusha.space/#website" },
+          "about": { "@id": "https://grusha.space/#business" },
+          "inLanguage": "ru",
+          "dateModified": "2026-03-26"
         }
       ]
     }
     </script>
-    
-    <title>Обменник на Пхукете — Grusha | Курс рубля к бату сегодня</title>
-    <link rel="icon" href="grushalogo.webp" type="image/webp">
-    <link rel="apple-touch-icon" href="grushalogo.webp">
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как работает обмен через Grusha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Вы пишете нам в Telegram или WhatsApp, мы фиксируем курс и согласовываем детали. Вы отправляете рубли по СБП или USDT на наш кошелёк. После подтверждения получаете баты — на карту тайского банка, наличными через курьера, в банкомате по QR-коду или в нашем офисе на Пхукете. Весь процесс занимает от 15 минут."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Это безопасно? Какая у вас лицензия?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Мы работаем через тайскую компанию (Co., Ltd) с лицензией Центрального Банка Таиланда MC225660186. Проверить лицензию можно на сайте Bank of Thailand. Все платежи проходят через официальные банковские каналы с подтверждениями."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какой минимальный и максимальный объём обмена?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Минимальная сумма — от 50 000 рублей или 500 USDT. Максимальная сумма не ограничена: мы проводили сделки свыше 1 000 000 бат. Для крупных сумм согласовываем индивидуальный курс."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Нужен ли паспорт или документы?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для стандартного обмена документы не требуются. Для оплаты инвойсов застройщиков может потребоваться копия контракта — это зависит от банка получателя."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какие направления обмена доступны?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Основные направления: рубли → баты (RUB→THB), USDT → баты (USDT→THB), баты → USDT (THB→USDT), рубли → USDT (RUB→USDT). Курс обновляется в реальном времени и фиксируется на момент сделки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как быстро я получу деньги?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Наличные через курьера или в офисе — от 15 до 40 минут после подтверждения оплаты. Перевод на тайский банковский счёт — в тот же день. Оплата инвойсов застройщиков — 1-2 рабочих дня."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Где находится ваш офис?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Наш офис расположен по адресу: 48/207 Choeng Thale, Thalang, Phuket 83110. Работаем ежедневно с 09:00 до 21:00. Вы можете приехать для обмена наличных или личной встречи."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <title>Обменник на Пхукете — Grusha | Обмен рублей и USDT на баты</title>
+    <link rel="icon" href="assets/images/grushalogo.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="assets/images/grushalogo.webp">
     <link rel="stylesheet" href="assets/css/styles.min.css">
     <link rel="preconnect" href="https://api.exgreen.pro">
     <link rel="dns-prefetch" href="https://api.binance.com">
@@ -149,6 +260,7 @@
             font-family: 'Plus Jakarta Sans';
             font-display: swap;
         }
+        html, body { overflow-x: hidden; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAF9; scroll-behavior: smooth; }
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
         
@@ -286,6 +398,11 @@
             line-height: 1;
             color: transparent !important;
             user-select: none;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
         /* Calculator Highlighting */
         @keyframes highlight-blink {
             0% { border-color: #E6E9E7; box-shadow: 0 10px 40px rgba(0,0,0,0.04); transform: scale(1); }
@@ -301,7 +418,7 @@
     <header class="py-4 px-6 glass border-b border-ds-border sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" class="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity">
-                <img src="grushalogo.webp" alt="Grusha" width="48" height="48" fetchpriority="high" class="h-12 w-auto">
+                <img src="assets/images/grushalogo.webp" alt="Grusha" width="48" height="48" fetchpriority="high" class="h-12 w-auto">
                 <span class="text-2xl font-extrabold tracking-tight">Grusha</span>
             </a>
             <nav class="flex items-center space-x-4 lg:space-x-8 font-semibold text-ds-text-muted">
@@ -338,11 +455,16 @@
     <section class="min-h-[calc(100dvh-80px)] flex items-start md:items-center pt-6 pb-10 md:pt-12 md:pb-16 px-6 relative overflow-hidden border-b border-ds-border">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16 relative z-10 w-full">
             <div class="flex-1 text-center lg:text-left">
+                <a href="http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044" target="_blank" rel="noopener" class="md:hidden inline-flex items-center gap-2 bg-[#F1F3F2] rounded-full px-4 py-2 mb-4 hover:bg-[#E8EBE9] transition group">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-[#16A34A] shrink-0"></i>
+                    <span class="text-[13px] font-medium text-gray-700 underline decoration-dotted underline-offset-2 group-hover:text-[#16A34A]">Лицензия ЦБ Таиланда</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-gray-400 shrink-0"></i>
+                </a>
                 <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 leading-[1.25] mb-6 md:mb-8 tracking-tight md:max-w-[580px]">
-                    Оплата инвойсов застройщиков,<br>аренды недвижимости и обмен на баты на Пхукете
+                    Не&nbsp;просто обменник&nbsp;— оплатим недвижимость, аренду и&nbsp;выдадим наличные на&nbsp;Пхукете
                 </h1>
                 <p class="text-lg md:text-xl text-gray-700 mb-8 md:mb-12 md:max-w-[580px] leading-relaxed">
-                    Принимаем рубли и&nbsp;USDT, чтобы финансовые вопросы не мешали жить в&nbsp;Таиланде.
+                    Принимаем рубли и&nbsp;USDT. Оплачиваем инвойсы застройщиков, аренду жилья и&nbsp;выдаём баты&nbsp;— чтобы финансовые вопросы не&nbsp;мешали жить в&nbsp;Таиланде.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                     <button onclick="contact('tg', 'hero')" class="bg-[#3B82F6] text-white px-8 py-4 rounded-full font-bold text-base md:text-lg shadow-xl hover:brightness-110 transition flex items-center justify-center gap-3">
@@ -352,20 +474,20 @@
                         <i data-lucide="message-circle" class="w-5 h-5 md:w-6 md:h-6"></i> в&nbsp;WhatsApp
                     </button>
                 </div>
-                <!-- Три преимущества — после CTA -->
-                <div class="flex flex-wrap md:flex-nowrap items-center justify-center lg:justify-start gap-2.5 md:gap-3 mt-6 md:mt-8 pt-5 md:pt-6 border-t border-gray-200/60">
-                    <a href="http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044" target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#F1F3F2] rounded-full px-4 md:px-5 py-2 md:py-2.5 hover:bg-[#E8EBE9] transition group">
+                <!-- Преимущества — после CTA (desktop only) -->
+                <div class="hidden md:flex flex-nowrap items-center lg:justify-start gap-3 mt-8 pt-6 border-t border-gray-200/60">
+                    <a href="http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044" target="_blank" rel="noopener" class="flex items-center gap-2 bg-[#F1F3F2] rounded-full px-5 py-2.5 hover:bg-[#E8EBE9] transition group">
                         <i data-lucide="shield-check" class="w-4 h-4 md:w-5 md:h-5 text-[#16A34A] shrink-0"></i>
                         <span class="text-[13px] md:text-base font-medium text-gray-700 whitespace-nowrap underline decoration-dotted underline-offset-2 group-hover:text-[#16A34A]">Лицензия ЦБ Таиланда</span>
                         <i data-lucide="external-link" class="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-400 shrink-0"></i>
                     </a>
-                    <div class="flex items-center gap-2 bg-[#F1F3F2] rounded-full px-4 md:px-5 py-2 md:py-2.5">
-                        <i data-lucide="banknote" class="w-4 h-4 md:w-5 md:h-5 text-[#3B82F6] shrink-0"></i>
-                        <span class="text-[13px] md:text-base font-medium text-gray-700 whitespace-nowrap">Индивидуальный курс</span>
+                    <div class="flex items-center gap-2 bg-[#F1F3F2] rounded-full px-5 py-2.5">
+                        <i data-lucide="banknote" class="w-5 h-5 text-[#3B82F6] shrink-0"></i>
+                        <span class="text-base font-medium text-gray-700 whitespace-nowrap">Индивидуальный курс</span>
                     </div>
-                    <div class="flex items-center gap-2 bg-[#F1F3F2] rounded-full px-4 md:px-5 py-2 md:py-2.5">
-                        <i data-lucide="badge-check" class="w-4 h-4 md:w-5 md:h-5 text-[#F59E0B] shrink-0"></i>
-                        <span class="text-[13px] md:text-base font-medium text-gray-700 whitespace-nowrap">Без скрытых комиссий</span>
+                    <div class="flex items-center gap-2 bg-[#F1F3F2] rounded-full px-5 py-2.5">
+                        <i data-lucide="badge-check" class="w-5 h-5 text-[#F59E0B] shrink-0"></i>
+                        <span class="text-base font-medium text-gray-700 whitespace-nowrap">Без скрытых комиссий</span>
                     </div>
                 </div>
             </div>
@@ -426,7 +548,7 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Официальные документы</h4><p class="text-gray-500 text-sm font-medium">Банковские подтверждения, FET-форма для фрихолда, чеки для застройщика.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Сопровождение</h4><p class="text-gray-500 text-sm font-medium">Контролируем процесс до&nbsp;момента зачисления средств на&nbsp;баланс объекта.</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="appartments.webp" alt="Покупка виллы в Таиланде через Grusha" width="800" height="480" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/appartments.webp" alt="Покупка виллы в Таиланде через Grusha" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
             <!-- Task 2 -->
@@ -439,7 +561,7 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Пополнение за&nbsp;пару минут</h4><p class="text-gray-500 text-sm font-medium">Деньги поступают на&nbsp;счёт тайского банка мгновенно.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Оплата сервисов</h4><p class="text-gray-500 text-sm font-medium">Трансферы, аренда авто, экскурсии и&nbsp;другие туристические услуги.</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="rent.webp" alt="Аренда недвижимости в Таиланде" width="800" height="480" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/rent.webp" alt="Аренда недвижимости в Таиланде" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
             <!-- Task 3 -->
@@ -447,12 +569,12 @@
                 <div class="task-header" onclick="toggleTask(3)"><h2 class="task-title">Выдача наличных батов на&nbsp;Пхукете</h2><div class="toggle-btn"><i data-lucide="plus" class="w-6 h-6" id="icon-3"></i></div></div>
                 <div class="task-content">
                     <div class="space-y-4">
-                        <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Самый простой способ получить местную валюту для&nbsp;личных расходов. Различные варианты выдачи по&nbsp;всему Таиланде.</p>
+                        <p class="text-xl text-gray-800 mb-8 leading-relaxed font-medium">Самый простой способ получить местную валюту для&nbsp;личных расходов. Различные варианты выдачи по&nbsp;всему Таиланду.</p>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Наличные через банкомат</h4><p class="text-gray-500 text-sm font-medium">Отправим вам QR-код — покажите его на&nbsp;экране банкомата и&nbsp;заберите баты. Без карты, за&nbsp;5&nbsp;минут.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Доставка курьером</h4><p class="text-gray-500 text-sm font-medium">Доставляем баты в любую точку Пхукета.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Выдача в офисе</h4><p class="text-gray-500 text-sm font-medium">Ждем вас в нашем офисе на Пхукете (район Choeng Thale).</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="cash.webp" alt="Получение наличных бат на Пхукете" width="800" height="480" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/cash.webp" alt="Получение наличных бат на Пхукете" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
         </div>
@@ -469,24 +591,24 @@
                 <!-- Step 1 -->
                 <div id="step-1" class="quiz-step">
                     <h3 class="text-2xl font-bold mb-8 text-center">Какую задачу в Таиланде решаем сегодня?</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <button onclick="setQuizData('goal', 'buy', 'Оплата недвижимости'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="building-2" class="text-blue-500"></i></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-4">
+                        <button onclick="setQuizData('goal', 'buy', 'Оплата недвижимости'); nextStep(2)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="building-2" class="text-blue-500"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Оплатить недвижимость</span>
                             <span class="text-sm text-gray-500">Крупные сделки, официальные подтверждения</span>
                         </button>
-                        <button onclick="setQuizData('goal', 'cash', 'Наличные баты'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="banknote" class="text-orange-500"></i></div>
+                        <button onclick="setQuizData('goal', 'cash', 'Наличные баты'); nextStep(2)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="banknote" class="text-orange-500"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Получить наличные баты на руки</span>
                             <span class="text-sm text-gray-500">В офисе на Пхукете, через банкомат или курьера</span>
                         </button>
-                        <button onclick="setQuizData('goal', 'rent', 'Аренда жилья'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="key" class="text-green-500"></i></div>
+                        <button onclick="setQuizData('goal', 'rent', 'Аренда жилья'); nextStep(2)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="key" class="text-green-500"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Арендовать жилье или авто</span>
                             <span class="text-sm text-gray-500">Мгновенный перевод владельцу</span>
                         </button>
-                        <button onclick="setQuizData('goal', 'card', 'Тайская карта'); nextStep(2)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="credit-card" class="text-purple-500"></i></div>
+                        <button onclick="setQuizData('goal', 'card', 'Тайская карта'); nextStep(2)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="credit-card" class="text-purple-500"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Пополнить тайскую карту</span>
                             <span class="text-sm text-gray-500">Личные нужды или расчеты в Таиланде</span>
                         </button>
@@ -499,19 +621,19 @@
                         <button onclick="nextStep(1)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-200 transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                         <h3 class="text-2xl font-bold text-center flex-1 pr-10">Как вам удобнее передать средства для обмена?</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <button onclick="setQuizData('source', 'sbp', 'Перевод RUB (СБП)'); nextStep(3)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="smartphone" class="text-green-500"></i></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-4">
+                        <button onclick="setQuizData('source', 'sbp', 'Перевод RUB (СБП)'); nextStep(3)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="smartphone" class="text-green-500"></i></div>
                             <span class="font-bold text-gray-900 block">Перевести рубли через СБП</span>
                             <span class="text-[10px] font-extrabold text-green-600 uppercase mt-2">Самый быстрый</span>
                         </button>
-                        <button onclick="setQuizData('source', 'crypto', 'Криптовалюта (USDT)'); nextStep(3)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="coins" class="text-blue-400"></i></div>
+                        <button onclick="setQuizData('source', 'crypto', 'Криптовалюта (USDT)'); nextStep(3)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="coins" class="text-blue-400"></i></div>
                             <span class="font-bold text-gray-900 block">Криптовалюта (USDT)</span>
                             <span class="text-[10px] font-extrabold text-blue-600 uppercase mt-2">Лучший курс</span>
                         </button>
-                        <button onclick="setQuizData('source', 'office', 'Наличные рубли'); nextStep(3)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="map-pin" class="text-red-500"></i></div>
+                        <button onclick="setQuizData('source', 'office', 'Наличные рубли'); nextStep(3)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-center group flex flex-col items-center">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="map-pin" class="text-red-500"></i></div>
                             <span class="font-bold text-gray-900 block">Наличные рубли</span>
                             <span class="text-[10px] font-extrabold text-red-600 uppercase mt-2">50+ городов РФ</span>
                         </button>
@@ -524,24 +646,24 @@
                         <button onclick="nextStep(2)" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-200 transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                         <h3 class="text-2xl font-bold text-center flex-1 pr-10">Как получить деньги?</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <button onclick="setQuizData('delivery', 'qr', 'Наличные через банкомат по QR-коду'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="qr-code" class="text-blue-600"></i></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-4">
+                        <button onclick="setQuizData('delivery', 'qr', 'Наличные через банкомат по QR-коду'); nextStep(4)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="qr-code" class="text-blue-600"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Снять в банкомате по QR-коду</span>
                             <span class="text-sm text-gray-500">Отправим QR — покажите на экране и заберите баты</span>
                         </button>
-                        <button onclick="setQuizData('delivery', 'courier', 'Доставка курьером до двери'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="truck" class="text-orange-600"></i></div>
+                        <button onclick="setQuizData('delivery', 'courier', 'Доставка курьером до двери'); nextStep(4)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="truck" class="text-orange-600"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Доставка курьером до двери</span>
                             <span class="text-sm text-gray-500">Привезем баты прямо к вашей вилле</span>
                         </button>
-                        <button onclick="setQuizData('delivery', 'send', 'Прямой перевод получателю'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="send" class="text-green-600"></i></div>
+                        <button onclick="setQuizData('delivery', 'send', 'Прямой перевод получателю'); nextStep(4)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="send" class="text-green-600"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Прямой перевод получателю</span>
                             <span class="text-sm text-gray-500">На счет застройщика или владельца жилья</span>
                         </button>
-                        <button onclick="setQuizData('delivery', 'office', 'Забор в офисе (Пхукет)'); nextStep(4)" class="p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
-                            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="map" class="text-purple-600"></i></div>
+                        <button onclick="setQuizData('delivery', 'office', 'Забор в офисе (Пхукет)'); nextStep(4)" class="p-4 md:p-6 bg-[#F8FAF9] rounded-2xl border-2 border-gray-100 hover:border-black hover:bg-white transition text-left group">
+                            <div class="w-12 h-12 bg-white rounded-xl hidden md:flex items-center justify-center mb-4 border border-gray-100"><i data-lucide="map" class="text-purple-600"></i></div>
                             <span class="font-bold text-gray-900 block text-lg">Забрать баты в офисе</span>
                             <span class="text-sm text-gray-500">Личное получение в районе Лагуны</span>
                         </button>
@@ -645,7 +767,7 @@
     <section id="security" class="py-20 md:py-24 px-6 bg-white border-t border-ds-border min-h-[80dvh] flex flex-col justify-center">
         <div class="max-w-7xl mx-auto bg-figma-lime rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch">
             <div class="lg:w-[45%] relative min-h-[400px] lg:min-h-auto">
-                <img src="why.webp" alt="Безопасность и легальность обмена валюты в Таиланде через Grusha" class="absolute inset-0 w-full h-full object-cover rounded-tr-[120px]" width="800" height="400" loading="lazy" decoding="async">
+                <img src="assets/images/why.webp" alt="Безопасность и легальность обмена валюты в Таиланде через Grusha" class="absolute inset-0 w-full h-full object-cover rounded-tr-[120px]" width="800" height="400" loading="lazy" decoding="async">
             </div>
             <div class="lg:w-[55%] p-8 md:p-16 flex flex-col justify-center">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Почему выбирают Grusha</h2>
@@ -719,6 +841,82 @@
         </div>
     </section>
 
+    <!-- ========== GRUSHA B2B ========== -->
+    <section id="grusha" class="py-24 px-6 bg-ds-background border-t border-ds-border overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="flex-1 lg:max-w-xl">
+                    <span class="inline-block bg-[#bef264] text-[#0a1a1f] px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-6 border border-black/5 shadow-sm">White Label Platform</span>
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tighter leading-[1.15]">
+                        Ваши сделки <br>под <span class="text-green-600 italic">вашим брендом</span>
+                    </h2>
+                    
+                    <div class="space-y-8 mb-12">
+                        <!-- Feature 1 -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
+                                <i data-lucide="zap" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Инвойс в один клик</h4>
+                                <p class="text-gray-500 leading-relaxed">Одно нажатие — и ссылка на оплату с вашим логотипом у клиента.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 2 -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
+                                <i data-lucide="percent" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Честный Profit Share 50/50</h4>
+                                <p class="text-gray-500 leading-relaxed">Мы делимся всей маржой пополам. Вы зарабатываете не только со сделок клиента, но и на его оплате.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
+                                <i data-lucide="wallet" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Мгновенный вывод</h4>
+                                <p class="text-gray-500 leading-relaxed">Комиссия падает в ваш кошелек сразу после оплаты. Выводите в USDT, батах или на тайский счет в ту же секунду.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="contact('tg', 'grusha')" class="w-full sm:w-auto bg-[#0a1a1f] text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition shadow-2xl flex items-center justify-center gap-3">
+                        <i data-lucide="rocket" class="w-6 h-6 text-figma-lime"></i> Стать партнером Grusha
+                    </button>
+                </div>
+
+                <!-- Promo Visual Side -->
+                <div class="flex-1 w-full relative flex justify-center items-center min-h-[600px]">
+                    <div class="relative z-10 w-[320px] transform hover:rotate-1 transition-transform duration-700">
+                        <!-- Phone Image Only (No frame) -->
+                        <div class="relative overflow-visible">
+                            <img src="assets/images/grusha_phone.webp" alt="Интерфейс Grusha Bot для партнеров" class="w-full h-auto block rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]" width="400" height="700" loading="lazy" decoding="async">
+                            
+                            <!-- Left Label (Profit Share) -->
+                            <div class="absolute -left-4 md:-left-16 bottom-1/4 bg-white text-black px-4 md:px-6 py-3 md:py-4 rounded-3xl font-black text-xs md:text-sm shadow-2xl animate-float z-20" style="animation-delay: 1.5s;">
+                                50% / 50% <br> <span class="text-[10px] font-bold opacity-40 uppercase tracking-wider text-gray-500">Чистый Profit Share</span>
+                            </div>
+
+                            <!-- Right Label (Commission) -->
+                            <div class="absolute -right-4 md:-right-16 top-1/4 bg-[#bef264] text-black px-4 md:px-6 py-3 md:py-4 rounded-3xl font-black text-xs md:text-sm shadow-2xl animate-float z-20">
+                                ฿ 142,500 <br> <span class="text-[10px] font-bold opacity-60 uppercase tracking-wider">Твоя комиссия</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative background elements -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-figma-lime/10 to-transparent rounded-full blur-3xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== FAQ SECTION ========== -->
     <section id="faq" class="py-20 md:py-24 px-6 bg-[#F8FAF9] border-t border-ds-border">
         <div class="max-w-3xl mx-auto">
@@ -777,89 +975,13 @@
         </div>
     </section>
 
-    <!-- ========== GRUSHA B2B ========== -->
-    <section id="grusha" class="py-24 px-6 bg-ds-background border-t border-ds-border overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="flex-1 lg:max-w-xl">
-                    <span class="inline-block bg-[#bef264] text-[#0a1a1f] px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-6 border border-black/5 shadow-sm">White Label Platform</span>
-                    <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tighter leading-[1.15]">
-                        Ваши сделки <br>под <span class="text-green-600 italic">вашим брендом</span>
-                    </h2>
-                    
-                    <div class="space-y-8 mb-12">
-                        <!-- Feature 1 -->
-                        <div class="flex items-start gap-5 group">
-                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
-                                <i data-lucide="zap" class="w-6 h-6 text-green-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Инвойс в один клик</h4>
-                                <p class="text-gray-500 leading-relaxed">Одно нажатие — и ссылка на оплату с вашим логотипом у клиента.</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Feature 2 -->
-                        <div class="flex items-start gap-5 group">
-                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
-                                <i data-lucide="percent" class="w-6 h-6 text-green-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Честный Profit Share 50/50</h4>
-                                <p class="text-gray-500 leading-relaxed">Мы делимся всей маржой пополам. Вы зарабатываете не только со сделок клиента, но и на его оплате.</p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 3 -->
-                        <div class="flex items-start gap-5 group">
-                            <div class="w-12 h-12 shrink-0 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-ds-border group-hover:bg-figma-lime transition-colors">
-                                <i data-lucide="wallet" class="w-6 h-6 text-green-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Мгновенный вывод</h4>
-                                <p class="text-gray-500 leading-relaxed">Комиссия падает в ваш кошелек сразу после оплаты. Выводите в USDT, батах или на тайский счет в ту же секунду.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="contact('tg', 'grusha')" class="w-full sm:w-auto bg-[#0a1a1f] text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition shadow-2xl flex items-center justify-center gap-3">
-                        <i data-lucide="rocket" class="w-6 h-6 text-figma-lime"></i> Стать партнером Grusha
-                    </button>
-                </div>
-
-                <!-- Promo Visual Side -->
-                <div class="flex-1 w-full relative flex justify-center items-center min-h-[600px]">
-                    <div class="relative z-10 w-[320px] transform hover:rotate-1 transition-transform duration-700">
-                        <!-- Phone Image Only (No frame) -->
-                        <div class="relative overflow-visible">
-                            <img src="grusha_phone.webp" alt="Интерфейс Grusha Bot для партнеров" class="w-full h-auto block rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]" width="400" height="700" loading="lazy" decoding="async">
-                            
-                            <!-- Left Label (Profit Share) -->
-                            <div class="absolute -left-16 bottom-1/4 bg-white text-black px-6 py-4 rounded-3xl font-black text-sm shadow-2xl animate-float z-20" style="animation-delay: 1.5s;">
-                                50% / 50% <br> <span class="text-[10px] font-bold opacity-40 uppercase tracking-wider text-gray-500">Чистый Profit Share</span>
-                            </div>
-
-                            <!-- Right Label (Commission) -->
-                            <div class="absolute -right-16 top-1/4 bg-[#bef264] text-black px-6 py-4 rounded-3xl font-black text-sm shadow-2xl animate-float z-20">
-                                ฿ 142,500 <br> <span class="text-[10px] font-bold opacity-60 uppercase tracking-wider">Твоя комиссия</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Decorative background elements -->
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-figma-lime/10 to-transparent rounded-full blur-3xl -z-10"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ========== FOOTER ========== -->
     </main>
 
     <footer class="bg-ds-background border-t border-ds-border py-20 px-6">
         <div class="max-w-6xl mx-auto text-center">
             <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" class="inline-flex items-center justify-center space-x-3 mb-6 cursor-pointer hover:opacity-80 transition-opacity">
-                <img src="grushalogo.webp" alt="Grusha — обменник на Пхукете" width="48" height="48" loading="lazy" decoding="async" class="h-12 w-auto">
+                <img src="assets/images/grushalogo.webp" alt="Grusha — обменник на Пхукете" width="48" height="48" loading="lazy" decoding="async" class="h-12 w-auto">
                 <span class="text-2xl font-extrabold tracking-tight">Grusha</span>
             </a>
             <p class="text-gray-400 font-bold">© 2026 Grusha. Все права защищены. +66 81 842 9939</p>
