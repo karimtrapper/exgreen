@@ -254,7 +254,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-    <script src="https://unpkg.com/lucide@0.577.0/dist/umd/lucide.min.js" defer></script>
+    <script type="module">
+    import{createIcons,BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap}from'https://esm.sh/lucide@0.577.0?exports=createIcons,BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap';
+    window.lucide={createIcons,icons:{BadgeCheck,Banknote,Building,Building2,Check,ChevronDown,ChevronLeft,ChevronRight,Coins,CreditCard,ExternalLink,Home,Key,Map,MapPin,MessageCircle,Minus,Percent,Plus,QrCode,Rocket,Send,ShieldCheck,Smartphone,Target,Truck,Wallet,X,Zap}};
+    createIcons();
+    </script>
     <style>
         @font-face {
             font-family: 'Plus Jakarta Sans';
@@ -548,7 +552,7 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Официальные документы</h4><p class="text-gray-500 text-sm font-medium">Банковские подтверждения, FET-форма для фрихолда, чеки для застройщика.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Сопровождение</h4><p class="text-gray-500 text-sm font-medium">Контролируем процесс до&nbsp;момента зачисления средств на&nbsp;баланс объекта.</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/appartments.webp" alt="Покупка виллы в Таиланде через Grusha" width="800" height="480" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/appartments.webp" srcset="assets/images/appartments-400w.webp 400w, assets/images/appartments.webp 800w" sizes="(max-width: 768px) 100vw, 50vw" alt="Покупка виллы в Таиланде через Grusha" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
             <!-- Task 2 -->
@@ -561,7 +565,7 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Пополнение за&nbsp;пару минут</h4><p class="text-gray-500 text-sm font-medium">Деньги поступают на&nbsp;счёт тайского банка мгновенно.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Оплата сервисов</h4><p class="text-gray-500 text-sm font-medium">Трансферы, аренда авто, экскурсии и&nbsp;другие туристические услуги.</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/rent.webp" alt="Аренда недвижимости в Таиланде" width="800" height="480" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/rent.webp" srcset="assets/images/rent-400w.webp 400w, assets/images/rent.webp 800w" sizes="(max-width: 768px) 100vw, 50vw" alt="Аренда недвижимости в Таиланде" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
             <!-- Task 3 -->
@@ -574,7 +578,7 @@
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Доставка курьером</h4><p class="text-gray-500 text-sm font-medium">Доставляем баты в любую точку Пхукета.</p></div></div>
                         <div class="feature-card"><i data-lucide="check" class="w-5 h-5 text-green-600 mt-1"></i><div><h4 class="font-bold text-gray-900 mb-1 text-lg">Выдача в офисе</h4><p class="text-gray-500 text-sm font-medium">Ждем вас в нашем офисе на Пхукете (район Choeng Thale).</p></div></div>
                     </div>
-                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/cash.webp" alt="Получение наличных бат на Пхукете" width="800" height="480" loading="lazy" decoding="async"></div>
+                    <div class="task-image-wrapper shadow-2xl"><img src="assets/images/cash.webp" srcset="assets/images/cash-400w.webp 400w, assets/images/cash.webp 800w" sizes="(max-width: 768px) 100vw, 50vw" alt="Получение наличных бат на Пхукете" width="800" height="480" loading="lazy" decoding="async"></div>
                 </div>
             </div>
         </div>
@@ -767,7 +771,7 @@
     <section id="security" class="py-20 md:py-24 px-6 bg-white border-t border-ds-border min-h-[80dvh] flex flex-col justify-center">
         <div class="max-w-7xl mx-auto bg-figma-lime rounded-[3rem] overflow-hidden flex flex-col lg:flex-row items-stretch">
             <div class="lg:w-[45%] relative min-h-[400px] lg:min-h-auto">
-                <img src="assets/images/why.webp" alt="Безопасность и легальность обмена валюты в Таиланде через Grusha" class="absolute inset-0 w-full h-full object-cover rounded-tr-[120px]" width="800" height="400" loading="lazy" decoding="async">
+                <img src="assets/images/why.webp" srcset="assets/images/why-400w.webp 400w, assets/images/why.webp 800w" sizes="(max-width: 768px) 100vw, 45vw" alt="Безопасность и легальность обмена валюты в Таиланде через Grusha" class="absolute inset-0 w-full h-full object-cover rounded-tr-[120px]" width="800" height="400" loading="lazy" decoding="async">
             </div>
             <div class="lg:w-[55%] p-8 md:p-16 flex flex-col justify-center">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Почему выбирают Grusha</h2>
@@ -896,7 +900,7 @@
                     <div class="relative z-10 w-[320px] transform hover:rotate-1 transition-transform duration-700">
                         <!-- Phone Image Only (No frame) -->
                         <div class="relative overflow-visible">
-                            <img src="assets/images/grusha_phone.webp" alt="Интерфейс Grusha Bot для партнеров" class="w-full h-auto block rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]" width="400" height="700" loading="lazy" decoding="async">
+                            <img src="assets/images/grusha_phone.webp" srcset="assets/images/grusha_phone-400w.webp 400w, assets/images/grusha_phone.webp 800w" sizes="320px" alt="Интерфейс Grusha Bot для партнеров" class="w-full h-auto block rounded-[3rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)]" width="400" height="700" loading="lazy" decoding="async">
                             
                             <!-- Left Label (Profit Share) -->
                             <div class="absolute -left-4 md:-left-16 bottom-1/4 bg-white text-black px-4 md:px-6 py-3 md:py-4 rounded-3xl font-black text-xs md:text-sm shadow-2xl animate-float z-20" style="animation-delay: 1.5s;">
