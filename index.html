@@ -452,7 +452,7 @@
     <main id="main-content">
 
     <!-- ========== HERO + CALCULATOR ========== -->
-    <section class="min-h-[calc(100dvh-80px)] flex items-start md:items-center pt-6 pb-10 md:pt-12 md:pb-16 px-6 relative overflow-hidden border-b border-ds-border">
+    <section class="min-h-[calc(100dvh-80px)] flex items-start md:items-center pt-6 pb-10 md:pt-12 md:pb-16 px-6 relative overflow-hidden border-b border-ds-border" style="background: linear-gradient(to right, rgba(248,250,249,0.92), rgba(248,250,249,0.75)), url('assets/images/hero-bg.png') center/cover no-repeat">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16 relative z-10 w-full">
             <div class="flex-1 text-center lg:text-left">
                 <a href="http://app.bot.or.th/BOTLicenseCheck/License/ViewDetail?id=2044" target="_blank" rel="noopener" class="md:hidden inline-flex items-center gap-2 bg-[#F1F3F2] rounded-full px-4 py-2 mb-4 hover:bg-[#E8EBE9] transition group">
@@ -1126,10 +1126,7 @@
                     // Если сумма < 10 USDT, считаем курс как для 10 USDT
                     const calc_amount_usdt = Math.max(real_amount_usdt, 10);
                     
-                    let c;
-                    if (calc_amount_usdt < 5000) c = 0.03;
-                    else if (calc_amount_usdt < 10000) c = 0.025;
-                    else c = 0.02;
+                    let c = 0.02;
 
                     const thb_exch = calc_amount_usdt * USDT_THB * (1 - c);
                     const thb_recv = thb_exch * (1 - PCT_COMM) - FIX_COMM;
@@ -1149,8 +1146,6 @@
                     const getUSDT = (c) => thb_exch / (USDT_THB * (1 - c));
                     
                     let usdt = getUSDT(0.02);
-                    if (usdt < 10000) usdt = getUSDT(0.025);
-                    if (usdt < 5000) usdt = getUSDT(0.03);
                     
                     const rate = calc_amount_thb / Math.max(0.0001, usdt);
                     const res = real_amount_thb / rate;
