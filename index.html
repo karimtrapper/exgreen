@@ -1049,6 +1049,14 @@
         }
 
         captureUTMs(); // Запускаем сразу при загрузке скрипта
+
+        // Реферальный код: grusha.space/?ref=GR-KARIM
+        (function captureRef() {
+            try {
+                const ref = new URLSearchParams(window.location.search).get('ref');
+                if (ref) localStorage.setItem('grusha_ref', ref.replace(/[^a-zA-Z0-9_-]/g, ''));
+            } catch(e) {}
+        })();
         // -------------------------------
 
         function formatNumber(num) {
@@ -1511,10 +1519,23 @@
                     startParam = context.substring(0, 15);
                 }
 
+                // Реферальный код из localStorage (если клиент перешёл по реф-ссылке)
+                const savedRef = (localStorage.getItem('grusha_ref') || '').replace(/[^a-zA-Z0-9_-]/g, '');
+
                 // Добавляем UTM, если есть. Используем формат utm_source__Value
                 // Telegram разрешает только: A-Z, a-z, 0-9, _ и -
                 let finalStart = '';
-                if (mainUtm) {
+                if (savedRef) {
+                    // Приоритет: реферальный код. Формат: ref__GRKARIM_calc_RUB_1k_THB
+                    const cleanRef = savedRef.replace(/[^a-zA-Z0-9]/g, '');
+                    let dataPart = '';
+                    if (context === 'calc') {
+                        dataPart = `_calc_${state.from}_${formatShort(sendVal)}_${state.to}`;
+                    } else if (context !== 'quiz' && context !== 'calc') {
+                        dataPart = `_${context}`;
+                    }
+                    finalStart = `ref__${cleanRef}${dataPart}`;
+                } else if (mainUtm) {
                     // Чистим само значение метки: убираем всё кроме букв и цифр
                     const cleanUtm = mainUtm.replace(/[^a-zA-Z0-9]/g, ''); 
                     
