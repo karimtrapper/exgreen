@@ -73,13 +73,17 @@ gcp-oauth.keys.json
 # Submodules
 .gitmodules
 
+# Временные файлы (скриншоты, артефакты)
+_temp/
+
 # Скриншоты QA
 *.png
-!grushalogo.png
+!assets/images/grushalogo.webp
 !assets/images/flags/th.png
 !assets/images/flags/ru.png
-!og-image.png
+!assets/images/og-image.png
 # Договора
 *.docx
 *.doc
 *.pdf
+.superdesign
