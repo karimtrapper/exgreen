@@ -943,8 +943,8 @@
                         <span class="case-tag text-emerald-600">Недвижимость</span>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
-                        <h3 class="text-xl font-extrabold mb-4 leading-snug">Оплата недвижимости в условиях ограничений</h3>
-                        <p class="text-gray-500 text-xs mb-6 leading-relaxed">Когда банки отклоняют платежи из-за формальных причин, мы находим надежные маршруты. Успешно провели оплату инвойсов на 1 061 000 бат через Гонконг после отказа банка.</p>
+                        <h3 class="text-xl font-extrabold mb-4 leading-snug">Оплата недвижимости наличными рублями</h3>
+                        <p class="text-gray-500 text-xs mb-6 leading-relaxed">У клиента были наличные рубли, а застройщику нужно было оплатить инвойс за юнит в Таиланде. Приняли наличные и оплатили с расчётного счёта нашей компании за 15 минут.</p>
                         <button onclick="openCaseModal(1)" class="text-[#84CC16] font-bold flex items-center gap-2 hover:gap-4 transition-all mt-auto text-sm">Подробнее <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
                     </div>
                 </div>
@@ -1740,23 +1740,23 @@
         // Case Modal
         const caseData = {
             1: { 
-                tag: 'Недвижимость', 
-                tagClass: 'text-emerald-600', 
-                title: 'Оплата недвижимости в условиях ограничений', 
+                tag: 'Недвижимость',
+                tagClass: 'text-emerald-600',
+                title: 'Оплата недвижимости наличными рублями',
                 content: `<div class="space-y-6 text-left">
                     <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
                         <h5 class="font-bold text-red-900 mb-2 flex items-center gap-2">Проблема</h5>
-                        <p class="text-red-800 text-sm leading-relaxed">Платеж через Лаос был отклонен из-за «рискованного» имени плательщика. Банк застройщика (Sansiri) грозил отменой бронирования.</p>
+                        <p class="text-red-800 text-sm leading-relaxed">У клиента на руках были наличные рубли, а застройщику в Таиланде нужно было оплатить инвойс за купленный юнит. Своего тайского счёта у клиента не было, сроки поджимали.</p>
                     </div>
                     <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
                         <h5 class="font-bold text-blue-900 mb-2 flex items-center gap-2">Решение</h5>
-                        <p class="text-blue-800 text-sm leading-relaxed">Перестроили маршрут через Китай и Гонконг. Разделили оплату на два инвойса ($3,000 и $32,000) и согласовали с застройщиком зачисление одним пакетом от нашего тайского юрлица.</p>
+                        <p class="text-blue-800 text-sm leading-relaxed">Приняли у клиента наличные рубли и оплатили инвойс напрямую с расчётного счёта нашей компании.</p>
                     </div>
                     <div class="bg-green-50 p-6 rounded-2xl border border-green-100">
                         <h5 class="font-bold text-green-900 mb-2 flex items-center gap-2">Результат</h5>
-                        <p class="text-green-800 text-sm leading-relaxed">Застройщик получил средства за 3 дня, подтверждение от бухгалтерии — на 4-й день. Бронь сохранена.</p>
+                        <p class="text-green-800 text-sm leading-relaxed">Застройщик получил оплату за юнит в течение 15 минут после приёма наличных.</p>
                     </div>
-                </div>` 
+                </div>`
             },
             2: { 
                 tag: 'Аренда', 
