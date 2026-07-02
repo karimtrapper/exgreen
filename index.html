@@ -1409,6 +1409,14 @@
                 if (ref) localStorage.setItem('grusha_ref', ref.replace(/[^a-zA-Z0-9_-]/g, ''));
             } catch(e) {}
         })();
+
+        // fbclid из рекламы Meta — сохраняем для проброса в бот (CAPI-атрибуция)
+        (function captureFbclid() {
+            try {
+                const f = new URLSearchParams(window.location.search).get('fbclid');
+                if (f) localStorage.setItem('grusha_fbclid', f.replace(/[^a-zA-Z0-9_-]/g, ''));
+            } catch(e) {}
+        })();
         // -------------------------------
 
         function formatNumber(num) {
@@ -1844,6 +1852,11 @@
             // Берем сохраненные UTM из localStorage
             const savedUtms = getSavedUTMs();
             const mainUtm = savedUtms.utm_source || '';
+
+            // Meta Pixel: метка крео (utm_content) + fbclid для события Lead и CAPI-атрибуции
+            const creative = (savedUtms.utm_content || 'direct').replace(/[^a-zA-Z0-9_-]/g, '');
+            const fbclid = (localStorage.getItem('grusha_fbclid') || '').replace(/[^a-zA-Z0-9_-]/g, '');
+            const trackLead = (name) => { try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: name }); } catch (e) {} };
             
             const formatShort = (val) => { 
                 let n = parseNumber(val); 
@@ -1857,6 +1870,8 @@
                 if (context === 'calc') text = `Здравствуйте! Хочу обменять ${sendVal} ${state.from} на ${recvVal} ${state.to}. (Курс: ${rateStr})`;
                 if (context === 'quiz') text = `Здравствуйте! Прошел квиз:\n🎯 Задача: ${quizStore.goalLabel}\n💳 Оплата: ${quizStore.sourceLabel}\n🚚 Получение: ${quizStore.deliveryLabel}\n💰 Объем: ${quizStore.amountLabel}`;
                 if (mainUtm) text += `\n\n(Источник: ${mainUtm})`;
+                if (savedUtms.utm_content) text += `\nКод: ${creative.toUpperCase()}`;
+                trackLead(creative + '_wa');
                 window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(text)}`, '_blank');
             } else {
                 let startParam = '';
@@ -1916,6 +1931,13 @@
                 if (finalStart.length > 64) {
                     finalStart = finalStart.substring(0, 64);
                 }
+
+                // Реклама Meta (есть fbclid): payload по спеке CAPI — крео__fbclid, лимит start = 64
+                if (fbclid) {
+                    finalStart = (creative + '__' + fbclid).slice(0, 64);
+                }
+
+                trackLead(creative);
 
                 // Используем прямой переход
                 window.location.href = `https://t.me/Grushath_bot?start=${finalStart}`;
