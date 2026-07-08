@@ -87,3 +87,6 @@ _temp/
 *.doc
 *.pdf
 .superdesign
+
+# WLExchangeBot — отдельный проект (github.com/karimtrapper/wlexchange-bot)
+Dev/WLExchangeBot/
