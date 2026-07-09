@@ -1854,7 +1854,28 @@
             // Meta Pixel: метка крео (utm_content) + fbclid для события Lead и CAPI-атрибуции
             const creative = (savedUtms.utm_content || 'direct').replace(/[^a-zA-Z0-9_-]/g, '');
             const fbclid = (localStorage.getItem('grusha_fbclid') || '').replace(/[^a-zA-Z0-9_-]/g, '');
-            const trackLead = (name) => { try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: name }); } catch (e) {} };
+            const getFbCookie = (n) => { const m = document.cookie.match('(^|;)\\s*' + n + '\\s*=\\s*([^;]+)'); return m ? m.pop() : ''; };
+            const trackLead = (name) => {
+                try {
+                    // Общий event_id для дедупликации Pixel ↔ CAPI: сервер шлёт то же событие с тем же id
+                    const eventId = 'ld.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
+                    if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: name }, { eventID: eventId });
+                    // Серверный дубль через exgreen-api CAPI — берёт полный _fbc из cookie (без лимита Telegram start)
+                    fetch('https://api.exgreen.pro/api/capi/lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            event_id: eventId,
+                            content_name: name,
+                            fbc: getFbCookie('_fbc'),
+                            fbp: getFbCookie('_fbp'),
+                            event_source_url: location.href
+                        }),
+                        keepalive: true,
+                        mode: 'cors'
+                    }).catch(() => {});
+                } catch (e) {}
+            };
             
             const formatShort = (val) => { 
                 let n = parseNumber(val); 
