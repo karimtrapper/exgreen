@@ -1412,7 +1412,14 @@
         (function captureFbclid() {
             try {
                 const f = new URLSearchParams(window.location.search).get('fbclid');
-                if (f) localStorage.setItem('grusha_fbclid', f.replace(/[^a-zA-Z0-9_-]/g, ''));
+                if (!f) return;
+                const clean = f.replace(/[^a-zA-Z0-9_-]/g, '');
+                localStorage.setItem('grusha_fbclid', clean);
+                // Пиксель заблокирован (adblock/ITP) → _fbc не выставлена: ставим сами по формату Meta
+                // fb.1.<ms>.<fbclid>, чтобы Lead (браузер и CAPI) привязался к клику по рекламе
+                if (!document.cookie.match(/(^|;)\s*_fbc=/)) {
+                    document.cookie = '_fbc=fb.1.' + Date.now() + '.' + clean + '; max-age=7776000; path=/; SameSite=Lax';
+                }
             } catch(e) {}
         })();
         // -------------------------------
@@ -1859,16 +1866,19 @@
                 try {
                     // Общий event_id для дедупликации Pixel ↔ CAPI: сервер шлёт то же событие с тем же id
                     const eventId = 'ld.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
-                    if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: name }, { eventID: eventId });
-                    // Серверный дубль через exgreen-api CAPI — берёт полный _fbc из cookie (без лимита Telegram start)
+                    // _fbc может отсутствовать (adblock/ITP) — fallback: собираем fb.1.<ms>.<fbclid> из fbclid
+                    const fbc = getFbCookie('_fbc') || (fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : '');
+                    const fbp = getFbCookie('_fbp');
+                    if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: name, fbc: fbc, fbp: fbp }, { eventID: eventId });
+                    // Серверный дубль через exgreen-api CAPI — полный fbc без лимита Telegram start
                     fetch('https://api.exgreen.pro/api/capi/lead', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             event_id: eventId,
                             content_name: name,
-                            fbc: getFbCookie('_fbc'),
-                            fbp: getFbCookie('_fbp'),
+                            fbc: fbc,
+                            fbp: fbp,
                             event_source_url: location.href
                         }),
                         keepalive: true,
