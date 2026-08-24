@@ -90,3 +90,12 @@ _temp/
 
 # WLExchangeBot — отдельный проект (github.com/karimtrapper/wlexchange-bot)
 Dev/WLExchangeBot/
+Dev/InterviewAssistant/config.local.js
+Dev/InterviewAssistant/guide-b2c.html
+
+# Регламент IPPS — содержит пароли ролей, не коммитить
+wiki/pages/ipps-send-money-reglament.md
+.claude/scripts/.cbr-cache.json
+
+# Внутренняя вики — переехала в приватный репо karimtrapper/grusha-wiki
+wiki/
