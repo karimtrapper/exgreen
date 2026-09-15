@@ -1,10 +1,6 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOSS’in × Grusha — демонстрация</title>
-  <style>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MOSS’in × Grusha — реальный интерфейс</title><style>
     @font-face{font-family:Manrope;src:url('assets/Manrope.woff2') format('woff2');font-weight:200 800;font-display:block;unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
     @font-face{font-family:Manrope;src:url('assets/Manrope-latin.woff2') format('woff2');font-weight:200 800;font-display:block;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF,U+FEFF,U+FFFD}
     :root{--bg:#0f1115;--card:#1a1d24;--fg:#e8eaed;--muted:#9aa0a6;--accent:#6cc24a;--line:#2a2e37}
@@ -17,139 +13,117 @@
     .caption{position:absolute;left:74px;top:246px;width:920px;opacity:0}.caption .eyebrow{font-size:23px;letter-spacing:3px;font-weight:600;color:var(--accent);margin:0 0 23px}.caption h2{font-size:68px;line-height:1.12;letter-spacing:-3px;font-weight:700;margin:0}.caption h2 span{display:block}.caption p{font-size:28px;line-height:1.5;color:var(--muted);margin:25px 0 0}.green{color:var(--accent)}
     .footer{position:absolute;left:74px;right:74px;bottom:76px;display:flex;align-items:center;justify-content:space-between;color:#959ca2;font-size:18px;letter-spacing:.2px;z-index:30}.footer b{color:#b8bfc4;font-size:17px;font-weight:500}.progress{position:absolute;left:74px;bottom:126px;width:932px;height:2px;background:#2a2e37;z-index:30}.progress-fill{height:100%;width:100%;background:var(--accent);transform-origin:left}
     #hook{position:absolute;inset:0}.hook-copy{position:absolute;top:330px;left:74px;width:920px;font-size:92px;line-height:1.08;font-weight:700;letter-spacing:-5px}.hook-copy span{display:block}.hook-copy .hook-line{overflow:hidden;padding-bottom:9px}.hook-copy .hook-line span{display:block}.hook-pair{position:absolute;left:74px;top:975px;width:932px;height:260px;display:flex;align-items:center;gap:25px}.currency-block{height:234px;width:350px;border:1px solid #3a4240;border-radius:30px;display:flex;flex-direction:column;justify-content:center;padding:36px;background:var(--card)}.currency-block .symbol{font-size:99px;line-height:1;font-weight:600}.currency-block small{font-size:24px;color:var(--muted);margin-top:13px}.currency-block.thb{border-color:#6cc24a66;color:var(--accent)}.exchange-line{width:180px;position:relative;height:3px;background:var(--accent)}.exchange-line:after{content:'';position:absolute;right:0;top:-8px;width:18px;height:18px;border-top:3px solid var(--accent);border-right:3px solid var(--accent);rotate:45deg}.hook-note{position:absolute;left:76px;top:1375px;color:var(--muted);font-size:29px;line-height:1.5;width:810px}
-    #desktop{position:absolute;left:74px;top:677px;width:1260px;height:860px;transform-origin:0 0;opacity:0;border:1px solid #4b5055;border-radius:19px;background:var(--bg);box-shadow:0 35px 100px #0008;overflow:hidden}
-    .browserbar{height:49px;background:#20232a;border-bottom:1px solid #32363d;display:flex;align-items:center;padding:0 18px;gap:8px}.browserbar i{height:8px;width:8px;border-radius:50%;background:#5c6169}.browserbar .browser-title{margin-left:28px;font-size:12px;color:#a6aeb5;background:#16191f;padding:7px 70px;border-radius:7px}.browserbar .mock-label{margin-left:auto;font-size:10px;letter-spacing:1px;color:#969fa5}
-    .desktop-inner{position:relative;height:811px;display:flex}.sidebar{width:240px;flex-shrink:0;padding:24px 12px;background:#14171d;border-right:1px solid var(--line);font-size:14.5px}.side-brand{font-weight:750;font-size:20px;padding:0 12px 6px;display:flex;align-items:center;gap:8px}.side-brand img{width:23px;height:25px;object-fit:contain}.side-sub{font-size:13px;color:var(--muted);padding:0 12px 24px}.nav{display:flex;gap:11px;align-items:center;padding:12px;border-radius:8px;margin-bottom:2px}.nav svg{width:18px;height:18px;stroke:#969fa6;fill:none;stroke-width:1.6}.nav.active{background:#6cc24a22;color:var(--accent);font-weight:650}.nav.active svg{stroke:var(--accent)}.nav-foot{position:absolute;bottom:30px;color:var(--muted);font-size:12px;padding:0 12px}
-    .workspace{position:relative;width:1020px;padding:28px 32px}.view{position:absolute;left:32px;top:28px;width:956px;opacity:0}.view h3{font-size:22px;font-weight:750;margin:0 0 24px;display:flex;gap:12px;align-items:center}.view h3 span{color:var(--accent);font-size:28px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}.card h4{font-size:16px;font-weight:650;margin:0 0 16px}.create-grid{display:grid;grid-template-columns:320px 1fr;gap:16px}.form-card{padding:16px}.field{margin-bottom:16px}.field:last-child{margin-bottom:0}.field-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:7px}.fixed{color:var(--accent);font-size:11px}.control{border:1px solid var(--line);border-radius:10px;background:#14171d;padding:12px;font-size:15px;min-height:45px;display:flex;align-items:center;justify-content:space-between}.control.focused{border-color:var(--accent)}.muted{color:var(--muted)}.field-row{display:flex;align-items:center;gap:10px}.field-row .control{flex:1}.unit{width:30px;color:var(--muted);font-size:13px}.typed{position:relative}.blank-value,.typed-value{display:block}.typed-value{position:absolute;left:0;top:0;opacity:0;white-space:nowrap}.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}.preview-cell{padding:16px;border:1px solid var(--line);border-radius:12px;background:#14171d}.preview-cell small{color:var(--muted);font-size:12px;display:block;margin-bottom:7px}.preview-cell strong{font-size:24px;letter-spacing:-.6px;display:block}.preview-cell .sub{font-size:15px}.button{display:flex;justify-content:center;align-items:center;gap:9px;background:var(--accent);color:var(--bg);border:1px solid var(--accent);border-radius:10px;padding:13px 18px;font-size:15px;font-weight:750}.button.secondary{background:transparent;color:var(--fg);border-color:var(--line)}
-    #ready-card{margin-top:16px;border-color:#6cc24a66;opacity:0}.ready-desc{font-size:13px;color:var(--muted);margin-top:-5px;margin-bottom:16px}.link-field{font-size:14px;background:#14171d;border:1px solid var(--line);padding:15px;border-radius:10px;color:#b9c4cc;margin-bottom:12px}.ready-actions{display:flex;gap:9px}.ready-actions .button{font-size:14px}.checkmark{display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700}
-    #pointer{position:absolute;left:525px;top:870px;width:38px;height:44px;opacity:0;z-index:12;filter:drop-shadow(0 3px 4px #0009)}
-    .action-note{position:absolute;top:1550px;left:74px;width:932px;font-size:27px;display:flex;align-items:center;gap:16px;color:#cad0d5;opacity:0}.action-note .number{width:43px;height:43px;border:1px solid #6cc24a88;border-radius:50%;font-size:19px;color:var(--accent);display:flex;align-items:center;justify-content:center}.action-note strong{font-weight:550}
-    #link-token{position:absolute;left:238px;top:1120px;width:604px;height:123px;z-index:16;opacity:0;border:1px solid #6cc24a88;border-radius:22px;background:#202d23;box-shadow:0 16px 50px #0005;display:flex;align-items:center;padding:26px;gap:23px;transform-origin:center}.link-icon{width:56px;height:56px;background:#6cc24a22;border-radius:14px;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:35px}.link-copy strong{display:block;font-size:23px;font-weight:650}.link-copy small{font-size:18px;color:#a6b4a6;display:block;margin-top:7px}
-    #phone{position:absolute;left:235px;top:570px;width:610px;height:1120px;opacity:0;transform-origin:center center;border:3px solid #5d6268;border-radius:62px;padding:15px;background:#191c22;box-shadow:0 45px 100px #0008}.phone-screen{position:relative;overflow:hidden;width:100%;height:100%;border-radius:46px;background:#f3f4f1;color:#222720}.phone-status{height:63px;padding:24px 28px 10px;display:flex;justify-content:space-between;font-size:17px;font-weight:750}.island{width:150px;height:30px;background:#14171d;position:absolute;top:16px;left:211px;border-radius:25px}.phone-address{height:43px;margin:0 20px;border-radius:12px;background:#e7e9e4;color:#788174;font-size:17px;text-align:center;padding:10px}.phone-content{position:absolute;left:0;right:0;top:130px;bottom:0}.chat-view{position:absolute;inset:0;padding:28px;background:#eff1ed}.chat-header{font-size:26px;font-weight:750;border-bottom:1px solid #d8ddd5;padding:0 0 23px;display:flex;gap:14px;align-items:center}.chat-avatar{width:45px;height:45px;border-radius:50%;background:#252d24;color:#dce3d8;display:flex;align-items:center;justify-content:center;font-size:18px}.chat-date{text-align:center;font-size:16px;color:#858e7f;margin-top:37px}.message{font-size:23px;line-height:1.5;margin-top:31px;width:430px;background:white;padding:23px 26px;border-radius:22px 22px 22px 5px}.message small{font-size:14px;color:#92998e;display:block;text-align:right;margin-top:10px}.chat-link-slot{margin-top:22px;height:112px;border-radius:16px;background:#e2e9df}.chat-bottom{position:absolute;bottom:30px;left:22px;right:22px;border:1px solid #d5dbd1;border-radius:30px;padding:18px 24px;font-size:20px;color:#9ba294;background:white}
-    #pay-view{position:absolute;inset:0;padding:25px 35px;background:#f3f4f1;opacity:0}.moss-logo{width:265px;height:140px;object-fit:contain;display:block;margin:5px auto 18px;border-radius:4px}.pay-kicker{font-size:18px;text-align:center;color:#80897a}.pay-title{font-size:28px;text-align:center;font-weight:750;margin:12px 0 27px}.pay-card{background:white;border:1px solid #d9dfd4;border-radius:23px;padding:27px}.pay-card .pay-label{font-size:19px;color:#838c7d}.pay-card .pay-amount{font-size:57px;font-weight:750;letter-spacing:-2px;margin-top:8px}.pay-card .pay-line{font-size:20px;border-top:1px solid #e6e9e2;margin-top:22px;padding-top:20px;display:flex;justify-content:space-between;color:#65715b}.sbp-choice{border:2px solid #78b857;background:#eaf0e4;padding:24px 20px;display:flex;align-items:center;gap:18px;border-radius:17px;margin-top:22px;font-size:25px;font-weight:750}.sbp-symbol{width:40px;height:40px;display:flex;align-items:center;justify-content:center}.sbp-choice small{font-size:17px;font-weight:500;color:#69775f;display:block;margin-top:3px}.radio{margin-left:auto;width:21px;height:21px;border:6px solid #65994b;border-radius:50%}.phone-button{margin-top:28px;background:#6cc24a;border-radius:16px;color:#14200f;padding:23px;font-size:23px;text-align:center;font-weight:800}.secure-copy{text-align:center;font-size:16px;color:#83907b;margin-top:20px}.home-indicator{position:absolute;bottom:12px;left:191px;background:#333a2f;width:196px;height:6px;border-radius:5px}
-    #phone-success{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding-top:208px;background:#f3f4f1;opacity:0}.success-ring{width:156px;height:156px;border-radius:50%;background:#e1edd9;border:1px solid #c5ddba;display:flex;align-items:center;justify-content:center;color:#659c47;font-size:88px}.success-title{font-size:35px;font-weight:800;margin-top:36px}.success-sub{font-size:23px;color:#788570;margin-top:13px}.success-pill{font-size:20px;padding:14px 28px;border:1px solid #d1ddc7;border-radius:12px;margin-top:45px;color:#5e774c}.powered{position:absolute;bottom:76px;font-size:18px;color:#8b9583}
-    .balance-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:27px}.balance-card small{font-size:15px;color:var(--muted)}.balance-number{font-size:37px;font-weight:750;letter-spacing:-1px;margin-top:12px}.balance-foot{font-size:13px;color:var(--muted);margin-top:14px}.balance-card.bonus small{color:var(--muted)}.table{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}.table-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;align-items:center;gap:18px;padding:20px;font-size:15px;border-top:1px solid var(--line)}.table-row:first-child{border-top:none}.table-head{color:var(--muted);font-size:12px;background:#181b21;padding-top:13px;padding-bottom:13px}.table-name{font-weight:650}.table-name small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:5px}.status{color:var(--accent);background:#6cc24a18;border-radius:20px;display:inline-flex;padding:7px 12px;font-size:13px;width:max-content}.status.pending{color:#d9b65d;background:#d9b65d15}.status-slot{position:relative}.paid-status{position:absolute;inset:0;opacity:0}.mini-log{font-size:13px;color:var(--muted);margin-top:22px;display:flex;align-items:center;gap:8px}.dot{height:6px;width:6px;display:block;background:var(--accent);border-radius:50%}
-    #paid-float{position:absolute;left:156px;top:1282px;width:770px;opacity:0;border:1px solid #6cc24a66;border-radius:22px;padding:31px;background:#1c2920;display:flex;align-items:center;gap:25px;z-index:18}.paid-circle{width:68px;height:68px;background:#6cc24a22;color:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:39px}.paid-float-copy strong{display:block;font-size:33px}.paid-float-copy small{display:block;font-size:20px;color:#a0b397;margin-top:8px}
-    #bonus-hero{position:absolute;left:74px;top:592px;width:932px;opacity:0;text-align:center}.bonus-numeral{font-size:330px;letter-spacing:-23px;font-weight:750;line-height:1;color:var(--accent)}.bonus-numeral span{font-size:130px;letter-spacing:-8px}.bonus-label{font-size:32px;color:#bdc8b8;margin-top:20px}.bonus-rule{width:380px;height:1px;background:#6cc24a55;margin:42px auto}
-    .bonus-transfer{display:flex;align-items:center;gap:14px;margin-top:21px}.bonus-transfer .control{width:250px}.bonus-transfer .button{width:200px}.transfer-flow{display:flex;align-items:center;gap:25px;margin-top:25px}.transfer-box{padding:23px;border:1px solid var(--line);background:#14171d;border-radius:12px;flex:1}.transfer-box small{color:var(--muted);font-size:13px}.transfer-box strong{font-size:23px;display:block;margin-top:10px}.transfer-arrow{font-size:33px;color:var(--accent)}.transfer-done{margin-top:23px;font-size:16px;color:var(--accent);opacity:0}.bonus-hint{color:var(--muted);font-size:13px;margin-top:18px}
-    .payout-choices{display:flex;gap:15px;margin-bottom:23px}.payout-choice{display:flex;align-items:center;gap:14px;padding:21px;border:1px solid var(--line);border-radius:12px;background:#14171d;flex:1;font-size:19px}.payout-choice svg{width:28px;height:28px;fill:none;stroke:var(--muted);stroke-width:1.6}.payout-choice.selected{border-color:var(--accent);background:#6cc24a12}.payout-choice.selected svg{stroke:var(--accent)}.payout-form{display:grid;grid-template-columns:1fr 1fr;gap:17px}.payout-create{margin-top:20px;width:100%}.payout-success{position:absolute;inset:63px 0 auto 0;height:375px;background:var(--card);border:1px solid #6cc24a77;border-radius:14px;opacity:0;display:flex;flex-direction:column;justify-content:center;align-items:center}.payout-success .success-ring{width:92px;height:92px;font-size:52px;background:#6cc24a15;border-color:#6cc24a44;color:var(--accent)}.payout-success h4{font-size:29px;margin:22px 0 9px}.payout-success p{color:var(--muted);font-size:16px;margin:0}.payout-success .status{margin-top:22px}
-    #view-paid,#view-history,#view-bonus,#view-payout{width:770px}
-    .bonus-transfer{align-items:flex-end}.bonus-transfer .control{width:210px}.bonus-transfer .button{width:180px}.bonus-transfer label{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:7px}.saved-method{font-size:13px;color:var(--muted);margin:0 0 20px}
-    .nav-foot{max-width:216px;line-height:1.6;white-space:normal}#note-link{top:1650px}.bonus-label{margin-top:52px}.create-grid{align-items:start}
-    .phone-address{color:#646b60}#phone-success .success-ring{color:#5f9343}.success-sub{color:#687361}.powered{color:#6a7264}
-    .moss-logo{width:300px;height:110px;object-fit:cover}#link-token{top:1435px}.chat-date{color:#697064}.message small{color:#73786f}.chat-bottom{color:#73786e}
     #outro{position:absolute;inset:0;opacity:0}.end-brands{position:absolute;left:74px;top:480px;width:932px;display:flex;align-items:center;justify-content:center;gap:46px}.end-grusha{display:flex;align-items:center;gap:17px;font-size:56px;font-weight:750;letter-spacing:-2px}.end-grusha img{width:81px;height:91px;object-fit:contain}.end-x{font-size:38px;font-weight:300;color:#8a9484}.end-moss{width:280px;height:164px;object-fit:cover;border-radius:12px}.end-line{position:absolute;left:74px;top:760px;width:932px;height:1px;background:#394533}.end-copy{position:absolute;left:74px;top:870px;width:920px;font-size:80px;line-height:1.15;font-weight:700;letter-spacing:-3.5px}.end-copy span{display:block}.end-bottom{position:absolute;left:74px;top:1295px;font-size:30px;color:#a2ad9b;letter-spacing:-.5px}.end-mini{display:flex;align-items:center;gap:20px;margin-top:46px;font-size:24px;color:var(--accent)}.end-mini i{width:5px;height:5px;border-radius:50%;background:#56644d}
-  </style>
-</head>
-<body>
+#root{width:1080px;height:1920px}.top-small{letter-spacing:1px}
+.caption{top:250px}.caption h2{font-size:66px;letter-spacing:-2.5px}.caption p{font-size:27px}
+#viewport{position:absolute;left:0;top:590px;width:1080px;height:1050px;overflow:hidden;opacity:0}
+#camera{position:absolute;left:0;top:0;width:1440px;height:1000px;transform-origin:0 0}
+.real-screen{position:absolute;inset:0;width:1440px;height:1000px;opacity:0;object-fit:contain}
+#focus-ring{position:absolute;border:2px solid #6cc24a;border-radius:10px;opacity:0;pointer-events:none}
+#cursor{position:absolute;left:0;top:0;width:26px;height:32px;opacity:0;filter:drop-shadow(0 2px 3px #0009)}
+#phone{position:absolute;left:264px;top:560px;width:552px;height:1104px;opacity:0;transform-origin:center;overflow:hidden;border-radius:22px;border:2px solid #586169}
+#phone img{position:absolute;inset:0;width:552px;height:1104px;object-fit:contain;opacity:0;transform-origin:50% 55%}
+#phone-focus{position:absolute;border:3px solid #6cc24a;border-radius:12px;opacity:0}
+#note{position:absolute;left:74px;top:1670px;width:932px;font-size:27px;line-height:1.45;color:#c6ceca;opacity:0}
+#bonus-hero{position:absolute;top:645px;left:74px;width:932px;text-align:center;opacity:0}
+.bonus-number{font-size:300px;font-weight:750;letter-spacing:-18px;line-height:1;color:#6cc24a}
+.bonus-number span{font-size:126px;letter-spacing:-6px}.bonus-copy{font-size:35px;margin-top:45px}
+.bonus-example{font-size:25px;color:#a8b6ad;margin-top:24px}.footer{font-size:17px}.footer b{font-size:16px}
+</style></head><body>
 <div id="root" data-composition-id="mossin-promo" data-width="1080" data-height="1920" data-duration="60">
-  <div id="promo-stage" class="clip stage" data-start="0" data-duration="60" data-track-index="0">
-    <div class="ambient"></div><div class="grid"></div>
-    <div class="topline"><div class="grusha-lockup"><img src="assets/grusha-logo.png" alt="">Grusha</div><span class="top-small">ДЛЯ ВАШЕГО БИЗНЕСА</span></div>
+<div id="promo-stage" class="clip stage" data-start="0" data-duration="60" data-track-index="0">
+<div class="ambient"></div><div class="grid"></div>
+<div class="topline"><div class="grusha-lockup"><img src="assets/grusha-logo.png" alt="">Grusha</div><span class="top-small">MOSS’in · ОДИН ПЛАТЁЖ</span></div>
     <div id="hook"><div class="hook-copy"><div class="hook-line"><span id="hook-l1">Клиент платит</span></div><div class="hook-line"><span id="hook-l2">рублями.</span></div><div class="hook-line"><span id="hook-l3" class="green">Вы получаете</span></div><div class="hook-line"><span id="hook-l4" class="green">баты.</span></div></div><div class="hook-pair"><div class="currency-block rub"><div class="symbol">₽</div><small>КЛИЕНТ</small></div><div class="exchange-line"></div><div class="currency-block thb"><div class="symbol">฿</div><small>ВАШ БИЗНЕС</small></div></div><div class="hook-note">Платёжная ссылка. Оплата через СБП.<div>Баты — в вашем кабинете.</div></div></div>
-    <div id="caption-create" class="caption"><p class="eyebrow">01 / СОЗДАЙТЕ ПЛАТЁЖ</p><h2><span>Сумма. Комментарий.</span><span class="green">Ссылка готова.</span></h2><p>Показываем на примере бронирования.</p></div>
-    <div id="caption-client" class="caption"><p class="eyebrow">02 / ПЕРЕДАЙТЕ ССЫЛКУ</p><h2><span>Клиенту —</span><span class="green">привычная оплата.</span></h2></div>
-    <div id="caption-paid" class="caption"><p class="eyebrow">03 / ПЛАТЁЖ ПОЛУЧЕН</p><h2><span>Статус — «Оплачен».</span><span class="green">Баланс — в батах.</span></h2></div>
-    <div id="caption-bonus" class="caption"><p class="eyebrow">04 / БОНУСЫ</p><h2><span>За каждый платёж —</span><span class="green">бонус вашему бизнесу.</span></h2></div>
-    <div id="caption-withdraw" class="caption"><p class="eyebrow">05 / ЗАЯВКИ НА ВЫВОД</p><h2><span>Наличными</span><span class="green">или на счёт.</span></h2><p>Выберите удобный способ получения.</p></div>
-    <div id="desktop" data-layout-allow-overflow="true">
-      <div class="browserbar"><i></i><i></i><i></i><div class="browser-title">Grusha · ЛК мерчанта</div><div class="mock-label">DEMO</div></div>
-      <div class="desktop-inner"><aside class="sidebar"><div class="side-brand"><img src="assets/grusha-logo.png" alt="">Grusha</div><div class="side-sub">ЛК мерчанта</div><div id="nav-home" class="nav"><svg viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v11h-7v-7h-4v7H3Z"/></svg>Главная</div><div id="nav-create" class="nav active"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg>Создать платёж</div><div id="nav-payments" class="nav"><svg viewBox="0 0 24 24"><path d="M5 3h14v18l-3-2-4 2-4-2-3 2ZM8 8h8M8 12h8"/></svg>История платежей</div><div id="nav-bonuses" class="nav"><svg viewBox="0 0 24 24"><path d="M3 8h18v5H3ZM5 13v8h14v-8M12 8v13"/><path d="M12 8C0 8 7-2 12 8c5-10 12 0 0 0Z"/></svg>Бонусы</div><div id="nav-payouts" class="nav"><svg viewBox="0 0 24 24"><path d="M4 5h16v15H4ZM16 11h5v5h-5Z"/></svg>Заявки на вывод</div><div class="nav"><svg viewBox="0 0 24 24"><path d="m3 8 9-5 9 5ZM4 20h16M6 10v7M12 10v7M18 10v7"/></svg>Способы выплат</div><div class="nav"><svg viewBox="0 0 24 24"><circle cx="10" cy="7" r="4"/><path d="M3 21v-3a7 7 0 0 1 14 0v3M18 4a4 4 0 0 1 0 8M21 21v-3a6 6 0 0 0-3-5"/></svg>Менеджеры</div><div class="nav"><svg viewBox="0 0 24 24"><path d="M5 17h14l-2-4V8A5 5 0 0 0 7 8v5ZM10 21h4"/></svg>Уведомления</div><div class="nav-foot">Владелец · демонстрационный кабинет</div></aside>
-      <main class="workspace">
-        <section id="view-create" class="view"><h3><span>⊕</span>Создать платёж</h3><div class="create-grid"><div class="card form-card"><div class="field"><div class="field-label">Валютная пара</div><div class="control">RUB → THB<span class="muted">⌄</span></div></div><div class="field"><div class="field-label">К получению<span class="fixed">фиксируем</span></div><div class="field-row"><div id="amount-control" class="control focused"><div class="typed"><span id="amount-blank" class="blank-value muted">0.00</span><span id="amount-typed" class="typed-value">10 000</span></div></div><span class="unit">THB</span></div></div><div class="field"><div class="field-label">К оплате</div><div class="field-row"><div class="control"><span id="rub-preview" class="muted">по курсу</span></div><span class="unit">RUB</span></div></div><div class="field"><div class="field-label">Комментарий</div><div class="control"><div class="typed"><span id="comment-blank" class="blank-value muted">заказ №…</span><span id="comment-typed" class="typed-value">Бронирование № 104</span></div></div></div></div><div><div class="card"><h4>Предпросмотр</h4><div class="preview-grid"><div class="preview-cell"><small>Клиент заплатит</small><strong>Рубли</strong></div><div class="preview-cell"><small>Вы получите</small><strong id="preview-thb">10 000 THB</strong></div><div class="preview-cell"><small>Курс</small><span class="sub">На момент оплаты</span></div><div class="preview-cell"><small>Бонус</small><span class="sub">По условиям</span></div></div><div id="create-button" class="button">Создать платёжную ссылку</div></div><div id="ready-card" class="card"><h4>Ссылка готова</h4><p class="ready-desc">Бронирование № 104 · ожидает оплаты</p><div class="link-field">demo.example / pay / booking-104</div><div class="ready-actions"><div id="copy-button" class="button">Скопировать ссылку</div><div class="button secondary">К истории</div></div></div></div></div></section>
-        <section id="view-history" class="view"><h3><span>▤</span>История платежей</h3><div class="table"><div class="table-row table-head"><div>Комментарий</div><div>К получению</div><div>Статус</div></div><div class="table-row"><div class="table-name">Бронирование № 104<small>Демонстрационный платёж</small></div><div>10 000 THB</div><div class="status-slot"><div id="pending-status" class="status pending">Ожидает оплаты</div><div id="paid-status" class="status paid-status">✓ Оплачен</div></div></div></div><div class="mini-log"><i class="dot"></i>Информация о платеже в одном кабинете</div></section>
-        <section id="view-paid" class="view"><h3><span>⌂</span>Главная</h3><div class="balance-grid"><div class="card balance-card"><small>Основной баланс, THB</small><div class="balance-number"><span id="balance-counter">0</span> THB</div><div class="balance-foot">Доступно к выводу</div></div><div class="card balance-card bonus"><small>Бонусный баланс, USDT</small><div class="balance-number" style="font-size:25px">Начисление бонуса</div><div class="balance-foot green">История и перевод →</div></div></div><div class="card"><h4>Создайте платёжную ссылку и передайте её клиенту.</h4><div style="display:flex;gap:12px"><div class="button">Создать платёж</div><div class="button secondary">История платежей</div></div></div></section>
-        <section id="view-bonus" class="view"><h3><span>◇</span>Бонусы</h3><div class="card"><h4>Перевод бонусов</h4><div class="transfer-flow"><div class="transfer-box"><small>Откуда</small><strong>Бонусный баланс</strong></div><div class="transfer-arrow">→</div><div id="main-transfer-box" class="transfer-box"><small>Куда</small><strong>Основной баланс</strong></div></div><div class="bonus-transfer"><label>Сумма USDT (пусто — вся)<div class="control"><span class="muted">вся сумма</span></div></label><label>Валюта расчёта<div class="control">THB<span>⌄</span></div></label><div id="transfer-button" class="button">Перевести</div></div><div id="transfer-done" class="transfer-done">✓ Бонусы переведены на основной баланс</div></div><div class="bonus-hint">История начислений и переводов — в разделе «Бонусы»</div></section>
-        <section id="view-payout" class="view"><h3><span>▱</span>Заявки на вывод</h3><div class="card"><h4>Новая заявка</h4><div class="payout-choices"><div id="cash-choice" class="payout-choice"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M5 9v6M19 9v6"/></svg>Наличные</div><div id="bank-choice" class="payout-choice"><svg viewBox="0 0 24 24"><path d="m3 8 9-5 9 5ZM4 21h16M6 10v8M12 10v8M18 10v8"/></svg>Банковский счёт</div></div><p class="saved-method">Банковский счёт · сохранённый способ выплаты</p><div class="payout-form"><div class="field"><div class="field-label">Валюта</div><div class="control">THB<span>⌄</span></div></div><div class="field"><div class="field-label">Сумма вывода</div><div class="control focused">10 000<span class="muted">THB</span></div></div></div><div id="payout-button" class="button payout-create">Создать заявку</div></div><div id="payout-success" class="payout-success"><div class="success-ring">✓</div><h4>Заявка создана</h4><p>Вывод на банковский счёт · 10 000 THB</p><div class="status">Создана</div></div></section>
-      </main></div>
-    </div>
-    <svg id="pointer" viewBox="0 0 34 42"><path d="M3 2 29 25 18 26 13 38 7 35 12 24 2 29Z" fill="#f0f3ee" stroke="#151a13" stroke-width="2"/></svg>
-    <div id="note-create" class="action-note"><span class="number">1</span><strong>Фиксируете сумму, которую хотите получить.</strong></div>
-    <div id="note-link" class="action-note"><span class="number">2</span><strong>Копируете ссылку и отправляете клиенту.</strong></div>
-    <div id="link-token"><div class="link-icon">↗</div><div class="link-copy"><strong>Оплатить бронирование № 104</strong><small>Платёжная ссылка · MOSS’in</small></div></div>
-    <div id="phone"><div class="phone-screen"><div class="phone-status"><span>9:41</span><span>▰ ▮</span></div><div class="island"></div><div class="phone-address">Демонстрация оплаты</div><div class="phone-content"><div id="chat-view" class="chat-view"><div class="chat-header"><div class="chat-avatar">M</div><div>MOSS’in</div></div><div class="chat-date">Сегодня</div><div class="message">Ваше бронирование № 104.<div>Ссылка на оплату ниже.</div><small>9:41</small></div><div class="chat-link-slot"></div><div class="chat-bottom">Сообщение</div></div><div id="pay-view"><img class="moss-logo" src="assets/mossin-logo.jpg" alt="MOSS’in"><div class="pay-kicker">ОПЛАТА БРОНИРОВАНИЯ</div><div class="pay-title">Бронирование № 104</div><div class="pay-card"><div class="pay-label">К оплате</div><div class="pay-amount">В рублях</div><div class="pay-line"><span>Заказ</span><strong>10 000 THB</strong></div></div><div id="sbp-choice" class="sbp-choice"><svg class="sbp-symbol" viewBox="0 0 40 40"><path d="m5 2 14 8v12L5 30Z" fill="#8455cc"/><path d="m19 10 16 9-16 10V18l-14-8Z" fill="#58b98b"/><path d="m5 30 14-8 16-3-16 18Z" fill="#ed655d"/></svg><div>СБП<small>Через приложение банка</small></div><div class="radio"></div></div><div id="pay-button" class="phone-button">Оплатить через СБП</div><div class="secure-copy">Демонстрация · без реального перевода</div></div><div id="phone-success"><div class="success-ring">✓</div><div class="success-title">Оплата прошла</div><div class="success-sub">Спасибо за бронирование</div><div class="success-pill">Бронирование № 104</div><div class="powered">MOSS’in × Grusha</div></div></div><div class="home-indicator"></div></div></div>
-    <div id="paid-float"><div class="paid-circle">✓</div><div class="paid-float-copy"><strong>+10 000 THB</strong><small>Платёж получен · бронирование № 104</small></div></div>
-    <div id="bonus-hero"><div class="bonus-numeral">1<span>%</span></div><div class="bonus-label">бонус вашему бизнесу</div><div class="bonus-rule"></div></div>
+<div id="caption-create" class="caption"><h2>Создайте ссылку.<br><span class="green">Отправьте клиенту.</span></h2><p>Один пример — от оплаты до вывода.</p></div>
+<div id="caption-client" class="caption"><h2>Так видит оплату<br><span class="green">ваш клиент.</span></h2></div>
+<div id="caption-paid" class="caption"><h2>Откройте историю.<br><span class="green">Платёж — «Оплачен».</span></h2></div>
+<div id="caption-bonus" class="caption"><h2>Получайте бонус.<br><span class="green">Переводите на баланс.</span></h2></div>
+<div id="caption-withdraw" class="caption"><h2>Оформите вывод.<br><span class="green">Наличными или на счёт.</span></h2></div>
+<div id="viewport"><div id="camera">
+<img id="create-empty" class="real-screen" src="assets/real-ui/create-empty.png" alt="Настоящий интерфейс: create-empty">
+<img id="create-filled" class="real-screen" src="assets/real-ui/create-filled.png" alt="Настоящий интерфейс: create-filled">
+<img id="create-ready" class="real-screen" src="assets/real-ui/create-ready.png" alt="Настоящий интерфейс: create-ready">
+<img id="create-copied" class="real-screen" src="assets/real-ui/create-copied.png" alt="Настоящий интерфейс: create-copied">
+<img id="history-paid" class="real-screen" src="assets/real-ui/history-paid.png" alt="Настоящий интерфейс: history-paid">
+<img id="home-paid" class="real-screen" src="assets/real-ui/home-paid.png" alt="Настоящий интерфейс: home-paid">
+<img id="bonus-before" class="real-screen" src="assets/real-ui/bonus-before.png" alt="Настоящий интерфейс: bonus-before">
+<img id="bonus-filled" class="real-screen" src="assets/real-ui/bonus-filled.png" alt="Настоящий интерфейс: bonus-filled">
+<img id="bonus-after" class="real-screen" src="assets/real-ui/bonus-after.png" alt="Настоящий интерфейс: bonus-after">
+<img id="payout-filled" class="real-screen" src="assets/real-ui/payout-filled.png" alt="Настоящий интерфейс: payout-filled">
+<img id="payout-methods-open" class="real-screen" src="assets/real-ui/payout-methods-open.png" alt="Настоящий интерфейс: payout-methods-open">
+<img id="payout-created" class="real-screen" src="assets/real-ui/payout-created.png" alt="Настоящий интерфейс: payout-created">
+<div id="focus-ring"></div>
+<svg id="cursor" viewBox="0 0 32 40"><path d="M3 2 29 25 18 26 13 38 7 35 12 24 2 29Z" fill="#f0f3ee" stroke="#151a13" stroke-width="2"/></svg>
+</div></div>
+<div id="phone"><img id="payment-pending" src="assets/real-ui/payment-pending.png" alt="Платёжная страница до оплаты"><img id="payment-paid" src="assets/real-ui/payment-paid.png" alt="Платёжная страница после оплаты"><div id="phone-focus"></div></div>
+<div id="note"></div>
+<div id="bonus-hero"><div class="bonus-number">1<span>%</span></div><div class="bonus-copy">бонусом после оплаты</div><div class="bonus-example">Условие демонстрационного примера</div></div>
     <div id="outro"><div class="end-brands"><div class="end-grusha"><img src="assets/grusha-logo.png" alt="">Grusha</div><div class="end-x">×</div><img class="end-moss" src="assets/mossin-logo.jpg" alt="MOSS’in"></div><div class="end-line"></div><div class="end-copy"><span>Оплаты, бонусы</span><span>и вывод —</span><span class="green">в одном кабинете.</span></div><div class="end-bottom">Вы занимаетесь бизнесом.<div>Grusha помогает принимать оплату.</div><div class="end-mini"><span>RUB → THB</span><i></i><span>СБП</span><i></i><span>MOSS’in</span></div></div></div>
-    <div class="progress"><div class="progress-fill"></div></div><div class="footer"><span>Демонстрация интерфейса</span><b>MOSS’in × Grusha</b></div>
-  </div>
-  <audio id="narration-mix" src="assets/audio-mix.wav" data-start="0" data-duration="60" data-track-index="1" data-volume="1"></audio>
-</div>
-<script src="assets/gsap.min.js"></script>
-<script>
-// Один платёж проходит всю историю; все состояния вычисляются из позиции таймлайна.
-const tl = gsap.timeline({paused:true,defaults:{ease:'power3.inOut'}});
-const show=(selector,time,duration=.55,y=30)=>tl.fromTo(selector,{opacity:0,y},{opacity:1,y:0,duration,immediateRender:false,ease:'power3.out'},time);
-const hide=(selector,time,duration=.4,y=-25)=>tl.to(selector,{opacity:0,y,duration},time);
-const nav=(oldId,newId,time)=>{tl.to(oldId,{backgroundColor:'rgba(108,194,74,0)',color:'#e8eaed',duration:.25},time);tl.to(newId,{backgroundColor:'rgba(108,194,74,.15)',color:'#6cc24a',duration:.25},time)};
-const click=(selector,time)=>{tl.to(selector,{scale:.97,duration:.12,ease:'power2.out'},time);tl.to(selector,{scale:1,duration:.24,ease:'power2.out'},time+.12)};
-tl.addLabel('hook',0).addLabel('create',5).addLabel('client',16).addLabel('paid',26).addLabel('bonus',34).addLabel('withdraw',44).addLabel('end',54);
+<div class="progress"><div class="progress-fill"></div></div><div class="footer"><span>Демонстрационные данные · реальный UI</span><b>MOSS’in × Grusha</b></div>
+</div><audio id="narration-mix" src="assets/audio-mix.wav" data-start="0" data-duration="60" data-track-index="1" data-volume="1"></audio></div>
+<script src="assets/gsap.min.js"></script><script>
+// Кадры настоящего UI. Камера и рамка — монтаж поверх, не элементы продукта.
+const tl=gsap.timeline({paused:true,defaults:{ease:'power3.inOut'}});
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const dur=v=>reduced?Math.min(v,.15):v;
+const show=(s,t,d=.45)=>tl.to(s,{opacity:1,duration:dur(d)},t);
+const hide=(s,t,d=.3)=>tl.to(s,{opacity:0,duration:dur(d)},t);
+const frame=(id,t)=>{tl.set('.real-screen',{opacity:0},t);tl.set('#'+id,{opacity:1},t)};
+const wide=t=>tl.to('#camera',{x:65,y:110,scale:.66,duration:dur(.8)},t);
+const camera=(r,t,scale)=>{const [x,y,w,h]=r;const s=scale||Math.min(2.1,940/(w+48),850/(h+70));tl.to('#camera',{x:540-(x+w/2)*s,y:470-(y+h/2)*s,scale:s,duration:dur(.8)},t)};
+const focus=(r,t,end)=>{const [x,y,w,h]=r;tl.set('#focus-ring',{left:x-5,top:y-5,width:w+10,height:h+10,opacity:0},t);show('#focus-ring',t,.25);hide('#focus-ring',end,.25)};
+const click=(x,y,t)=>{tl.set('#cursor',{x:x+30,y:y+40,opacity:0},t);tl.to('#cursor',{x,y,opacity:1,duration:dur(.35)},t);tl.to('#cursor',{scale:.85,duration:.1},t+.35);tl.to('#cursor',{scale:1,duration:.12},t+.45);hide('#cursor',t+.8,.15)};
+const note=(text,t,end)=>{tl.set('#note',{innerText:text,opacity:0},t);show('#note',t,.25);hide('#note',end,.2)};
+const caption=(name,t,end)=>{show('#caption-'+name,t);hide('#caption-'+name,end)};
+// CSS px реальных DOM-элементов из assets/real-ui/manifest.json.
+const R={
+amount:[284,179,296,70],comment:[284,331,296,70],preview:[624,101,768,278],
+create:[629,329.5,758,44.5],ready:[624,427,768,172],copy:[629,549.5,214.53,44.5],
+history:[273,226.5,1134,102.5],paid:[918,270.5,345,58.5],balance:[272,85,556,139],
+bonus:[285,100,478,139],bonusForm:[288,164,465,72],bonusTable:[535,305,850,75],
+payout:[288,100,1104,139],methods:[741,164,300,210],payoutButton:[1295,192.5,92,38],
+payoutTable:[495,433,716,91]};
 tl.fromTo('.progress-fill',{scaleX:0},{scaleX:1,duration:60,ease:'none'},0);
-tl.fromTo('#hook-l1,#hook-l2,#hook-l3,#hook-l4',{y:115},{y:0,stagger:.18,duration:.75,ease:'power3.out'},0);
-tl.fromTo('.currency-block',{y:55,opacity:0},{y:0,opacity:1,stagger:.2,duration:.7,ease:'power3.out'},.7);
-tl.fromTo('.exchange-line',{scaleX:0},{scaleX:1,duration:.7,transformOrigin:'left'},1.1);
-tl.fromTo('.hook-note',{opacity:0,y:25},{opacity:1,y:0,duration:.65},1.5);
-tl.to('#hook',{y:-130,opacity:0,scale:.95,duration:.7},4.35);
-show('#caption-create',4.9);tl.set('#view-create',{opacity:1},4.8);
-tl.fromTo('#desktop',{scale:.62,y:150,opacity:0},{scale:.74,y:0,opacity:1,duration:.9,ease:'power3.out'},4.8);
-// Общий план сохраняет узнаваемый десктоп, камера затем приближает конкретное поле.
-tl.to('#desktop',{x:-245,y:-38,scale:1.38,duration:1.05},6.15);
-show('#pointer',6.8,.25,0);tl.to('#pointer',{x:-18,y:145,duration:.5},6.8);
-tl.to('#amount-blank',{opacity:0,duration:.1},7.45);show('#amount-typed',7.45,.22,6);click('#amount-control',7.4);
-show('#note-create',7.5,.5,20);
-tl.to('#pointer',{x:-6,y:410,duration:.5},8.75);tl.to('#comment-blank',{opacity:0,duration:.1},9.25);show('#comment-typed',9.25,.35,5);
-hide('#pointer',9.8,.2,0);hide('#note-create',10.15,.3,0);
-tl.to('#desktop',{x:-740,y:-35,scale:1.38,duration:1},10.15);
-show('#pointer',11.1,.2,0);tl.to('#pointer',{x:108,y:355,duration:.4},11.1);click('#create-button',11.65);
-show('#ready-card',12.1,.5,24);tl.to('#pointer',{x:-210,y:680,duration:.7},12.4);click('#copy-button',13.4);
-tl.set('#copy-button',{innerText:'✓ Скопировано'},13.62);hide('#pointer',14,.2,0);
-show('#note-link',13.7,.5,20);tl.to('.link-field',{opacity:0,duration:.2},14.05);show('#link-token',14.2,.5,25);
-// Скопированная ссылка сохраняет визуальную идентичность при перемещении в чат.
-hide('#caption-create',15.65);hide('#note-link',15.7,.3,0);show('#caption-client',16.05);
-tl.to('#desktop',{x:-970,y:-80,scale:.78,opacity:0,duration:.85},15.65);
-tl.fromTo('#phone',{x:680,y:70,scale:.91,opacity:0},{x:0,y:0,scale:1,opacity:1,duration:.95},15.9);
-tl.to('#link-token',{x:13,y:-344,scale:.84,duration:1.05},16.1);
-tl.to('#link-token',{scale:.82,duration:.12},18.5);tl.to('#link-token',{scale:.84,duration:.16},18.62);
-hide('#chat-view',18.9,.4,-35);hide('#link-token',18.9,.35,-410);show('#pay-view',19.05,.6,45);
-tl.to('#phone',{scale:1.035,y:0,duration:2.7,ease:'power1.inOut'},19.35);
-click('#sbp-choice',21.35);tl.to('#sbp-choice',{backgroundColor:'#dcebcf',duration:.25},21.35);
-click('#pay-button',22.9);hide('#pay-view',23.35,.35,-22);show('#phone-success',23.45,.5,30);
-tl.fromTo('#phone-success .success-ring',{scale:.75},{scale:1,duration:.65,ease:'back.out(1.35)'},23.65);
-hide('#caption-client',25.5);show('#caption-paid',26.1);
-tl.to('#phone',{x:680,y:25,scale:.81,opacity:0,duration:.9},25.75);
-tl.set('#view-create',{opacity:0},26);tl.set('#view-history',{opacity:1},26);nav('#nav-create','#nav-payments',26);
-tl.fromTo('#desktop',{x:-180,y:90,scale:.65,opacity:0},{x:0,y:0,scale:.74,opacity:1,duration:.95,immediateRender:false},26);
-tl.to('#desktop',{x:-288,y:33,scale:1.15,duration:1},27.45);
-tl.to('#pending-status',{opacity:0,duration:.15},28.6);show('#paid-status',28.6,.3,7);
-hide('#view-history',29.75,.3,-12);show('#view-paid',30,.45,18);nav('#nav-payments','#nav-home',30);
-show('#paid-float',30.2,.65,55);
-tl.to('#balance-counter',{innerText:10000,snap:{innerText:1},duration:1.2,ease:'power2.out'},30.25);
-tl.set('#balance-counter',{innerText:'10 000'},31.45);
-tl.to('.balance-card:first-child',{borderColor:'#6cc24a',duration:.45},30.25);tl.to('.balance-card:first-child',{borderColor:'#2a2e37',duration:.6},32.2);
-hide('#paid-float',33,.4,25);hide('#caption-paid',33.45);
-tl.to('#desktop',{scale:.68,x:0,y:550,opacity:0,duration:.8},33.5);show('#caption-bonus',34.05);show('#bonus-hero',34.3,.7,65);
-tl.fromTo('.bonus-numeral',{scale:.88},{scale:1,duration:1.2,ease:'power3.out'},34.3);
-tl.to('#bonus-hero',{y:-70,scale:.88,opacity:0,duration:.65},37.2);
-tl.set('#view-paid',{opacity:0},37.45);tl.set('#view-bonus',{opacity:1},37.45);nav('#nav-home','#nav-bonuses',37.45);
-tl.fromTo('#desktop',{x:0,y:220,scale:.74,opacity:0},{x:-295,y:70,scale:1.17,opacity:1,duration:.9,immediateRender:false},37.5);
-show('#pointer',40.1,.3,0);tl.to('#pointer',{x:248,y:328,duration:.5},40.1);click('#transfer-button',40.9);
-tl.to('#main-transfer-box',{borderColor:'#6cc24a',backgroundColor:'#223020',duration:.5},41.2);show('#transfer-done',41.35,.4,10);hide('#pointer',41.5,.3,0);
-hide('#caption-bonus',43.5);show('#caption-withdraw',44.1);
-tl.to('#desktop',{x:-210,y:65,scale:1.05,duration:.7},43.65);hide('#view-bonus',43.8,.3,-10);show('#view-payout',44.15,.5,16);nav('#nav-bonuses','#nav-payouts',44.15);
-tl.to('#cash-choice',{borderColor:'#6cc24a',backgroundColor:'#263321',duration:.35},45.3);
-tl.to('#cash-choice',{borderColor:'#2a2e37',backgroundColor:'#14171d',duration:.35},46.6);tl.to('#bank-choice',{borderColor:'#6cc24a',backgroundColor:'#263321',duration:.35},46.6);
-tl.to('#desktop',{x:-295,y:65,scale:1.17,duration:.65},47.15);
-show('#pointer',49.5,.2,0);tl.to('#pointer',{x:35,y:409,duration:.45},49.5);click('#payout-button',50.35);hide('#pointer',50.65,.2,0);
-tl.to('#view-payout>.card',{opacity:0,duration:.25},50.65);
-show('#payout-success',50.9,.6,28);tl.fromTo('#payout-success .success-ring',{scale:.8},{scale:1,duration:.55,ease:'back.out(1.2)'},51);
-tl.to('#desktop',{x:-235,y:100,scale:1.07,duration:1.3,ease:'power1.inOut'},51.8);
-hide('#caption-withdraw',53.35);tl.to('#desktop',{y:450,scale:.82,opacity:0,duration:.8},53.4);
-show('#outro',54,.8,35);tl.fromTo('.end-brands',{y:35,opacity:0},{y:0,opacity:1,duration:.8},54.2);
-tl.fromTo('.end-copy span',{y:45,opacity:0},{y:0,opacity:1,duration:.7,stagger:.12,ease:'power3.out'},54.65);
-tl.fromTo('.end-bottom',{y:22,opacity:0},{y:0,opacity:1,duration:.7},55.35);
-tl.to('.grid',{opacity:.09,duration:2},54);tl.to('.ambient',{opacity:.7,duration:2},56);
-window.__timelines=window.__timelines||{};
-window.__timelines['mossin-promo']=tl;
-</script>
-</body>
-</html>
+tl.fromTo('.hook-line span',{y:100},{y:0,stagger:.15,duration:dur(.7),ease:'power3.out'},0);
+tl.fromTo('.currency-block',{y:30,opacity:0},{y:0,opacity:1,stagger:.15,duration:dur(.65)},.7);
+tl.fromTo('.exchange-line',{scaleX:0},{scaleX:1,duration:dur(.6),transformOrigin:'left'},1);
+tl.fromTo('.hook-note',{opacity:0},{opacity:1,duration:.5},1.5);hide('#hook',4.4,.5);
+caption('create',4.9,15.6);frame('create-empty',4.9);
+tl.set('#camera',{x:65,y:110,scale:.66},4.9);show('#viewport',4.9,.6);
+camera(R.amount,6.25,1.9);click(415,222,6.85);frame('create-filled',7.45);focus(R.amount,7.45,8.8);
+camera(R.comment,8.85,1.9);focus(R.comment,9.1,10.1);
+camera(R.preview,10.1,1.2);click(1010,351,11.1);frame('create-ready',11.65);
+camera(R.ready,11.65,1.2);focus(R.copy,12.5,14.5);click(735,571,12.5);frame('create-copied',13.1);
+note('Скопируйте ссылку и отправьте её клиенту.',12.6,15.4);hide('#viewport',15.55,.35);
+caption('client',16,25.7);show('#phone',16,.6);show('#payment-pending',16,.1);
+note('Логотип, сумма в рублях и кнопка «Оплатить».',17,21.3);
+tl.to('#phone',{scale:1.02,duration:dur(2)},18);
+hide('#payment-pending',22.2,.15);show('#payment-paid',22.35,.15);
+tl.fromTo('#payment-paid',{scale:1},{scale:1.5,duration:dur(.9)},22.5);
+note('После оплаты — статус на этой же странице.',22.5,25.6);hide('#phone',25.7,.35);
+caption('paid',26,33.65);frame('history-paid',26);wide(26);show('#viewport',26,.4);
+camera(R.history,26.3,.83);camera(R.paid,27.3,2);focus([887,270.5,376,58.5],27.9,29.25);
+note('Этот же инвойс — в истории платежей.',26.7,29.4);
+frame('home-paid',30);wide(30);camera(R.balance,30.75,1.75);focus(R.balance,31.35,33.2);
+note('10 000 THB — на основном балансе.',30.2,33.5);hide('#viewport',33.6,.35);
+caption('bonus',34,43.65);show('#bonus-hero',34.15,.5);
+tl.fromTo('.bonus-number',{scale:.94},{scale:1,duration:dur(1.4)},34.15);hide('#bonus-hero',37.15,.3);
+frame('bonus-before',37.5);wide(37.5);show('#viewport',37.5,.35);
+camera(R.bonus,38,1.85);frame('bonus-filled',39.1);focus(R.bonusForm,39.1,41);
+click(693,211,40.4);frame('bonus-after',41.25);camera(R.bonusTable,41.3,1.1);
+camera([960,311,440,70],41.9,1.9);focus([945,321,449,45],42.4,43.3);
+note('Пустая сумма — перевод всех бонусов.',38.1,40.9);
+note('В примере: 3 USDT → 100 THB на основной баланс.',41.25,43.5);
+caption('withdraw',44,53.65);frame('payout-filled',44);wide(44);
+camera(R.payout,44.8,.84);frame('payout-methods-open',45.7);
+camera(R.methods,45.75,1.65);focus(R.methods,46.1,47.8);
+frame('payout-filled',48.2);camera(R.payout,48.2,.84);
+note('Выберите заранее сохранённый способ выплаты.',44.7,49.5);
+click(1340,211,49.7);frame('payout-created',50.5);camera(R.payoutTable,50.55,1.3);focus(R.payoutTable,51,53.3);
+note('Заявка появилась в списке. Это ещё не выплата.',50.6,53.5);hide('#viewport',53.65,.35);
+show('#outro',54,.6);tl.fromTo('.end-brands',{y:25},{y:0,duration:dur(.7)},54.2);
+tl.fromTo('.end-copy span',{y:30,opacity:0},{y:0,opacity:1,duration:dur(.6),stagger:.1},54.65);
+tl.fromTo('.end-bottom',{opacity:0},{opacity:1,duration:.6},55.4);tl.to('.grid',{opacity:.09,duration:2},54);
+window.__timelines={'mossin-promo':tl};
+</script></body></html>
