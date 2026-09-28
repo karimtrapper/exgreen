@@ -1432,6 +1432,30 @@
 
         function closeCaseModal() { document.getElementById('case-modal').classList.remove('show'); }
 
+        function getCalcLeadText() {
+            const direction = state.lastChanged === 'to' ? 'to' : 'from';
+            const input = document.getElementById(direction === 'from' ? 'send-input' : 'receive-input');
+            const raw = input.value.trim();
+            const amount = /^\d[\d ]*(?:\.\d+)?$/.test(raw) ? parseNumber(raw) : 0;
+            const formattedAmount = formatNumber(amount);
+            const validAmount = Number.isFinite(amount) && amount > 0 && parseNumber(formattedAmount) > 0;
+            const amountText = validAmount ? `${formattedAmount} ${direction === 'from' ? state.from : state.to}` : '';
+            const fallback = `Hi! I'd like to exchange ${direction === 'from' ? (amountText || state.from) + ' for ' + state.to : state.from + ' for ' + (amountText || state.to)}. Please confirm the current rate and exchange details.`;
+
+            const { USDT_THB, RUB_USDT } = config.rates;
+            if (!validAmount || !Number.isFinite(USDT_THB) || USDT_THB <= 0 || !Number.isFinite(RUB_USDT) || RUB_USDT <= 0) return fallback;
+
+            // Рассчитываем по текущему вводу, не дожидаясь отложенного обновления полей.
+            const result = calculateLocal(direction === 'from' ? amount : 0, direction === 'to' ? amount : 0, direction);
+            const otherAmount = formatNumber(result.val);
+            const rate = state.from === 'USDT' ? result.rate : state.to === 'USDT' ? 1 / result.rate : result.rate;
+            if (!Number.isFinite(result.val) || result.val <= 0 || !otherAmount || parseNumber(otherAmount) <= 0 || !Number.isFinite(rate) || rate <= 0 || rate.toFixed(2) === '0.00') return fallback;
+
+            const sendVal = direction === 'from' ? amountText : `${otherAmount} ${state.from}`;
+            const recvVal = direction === 'to' ? amountText : `${otherAmount} ${state.to}`;
+            return `Hi! I'd like to exchange ${sendVal} for ${recvVal}. (Rate: ${rate.toFixed(2)})`;
+        }
+
         function contact(platform, context) {
             // Отправка цели в Яндекс Метрику
             try {
@@ -1444,8 +1468,6 @@
             } catch(e) { console.warn('Metrika goal error:', e); }
 
             const sendVal = document.getElementById('send-input').value;
-            const recvVal = document.getElementById('receive-input').value;
-            const rateStr = document.getElementById('course-badge').innerText.match(/\d+\.\d+/)?.[0] || '2.84';
             
             // Берем сохраненные UTM из localStorage
             const savedUtms = getSavedUTMs();
@@ -1460,7 +1482,7 @@
 
             if (platform === 'wa') {
                 let text = "Hi! I'd like to clarify exchange details.";
-                if (context === 'calc') text = `Hi! I'd like to exchange ${sendVal} ${state.from} for ${recvVal} ${state.to}. (Rate: ${rateStr})`;
+                if (context === 'calc') text = getCalcLeadText();
                 if (context === 'quiz') text = `Hi! I completed the quiz:\n🎯 Task: ${quizStore.goalLabel}\n💳 Payment: ${quizStore.sourceLabel}\n🚚 Delivery: ${quizStore.deliveryLabel}\n💰 Volume: ${quizStore.amountLabel}`;
                 if (mainUtm) text += `\n\n(Source: ${mainUtm})`;
                 window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(text)}`, '_blank');
