@@ -1792,7 +1792,11 @@
             const formattedAmount = formatNumber(amount);
             const validAmount = Number.isFinite(amount) && amount > 0 && parseNumber(formattedAmount) > 0;
             const amountText = validAmount ? `${formattedAmount} ${direction === 'from' ? state.from : state.to}` : '';
-            const fallback = `Здравствуйте! Хочу обменять ${direction === 'from' ? (amountText || state.from) + ' на ' + state.to : state.from + ' на ' + (amountText || state.to)}. Подскажите актуальный курс и детали обмена.`;
+            const fallback = validAmount
+                ? direction === 'from'
+                    ? `Здравствуйте! Хочу обменять ${amountText} на ${state.to}. Рассчитайте, пожалуйста, сумму к получению.`
+                    : `Здравствуйте! Хочу получить ${amountText}, оплатив в ${state.from}. Подскажите, сколько нужно отправить.`
+                : `Здравствуйте! Хочу обменять ${state.from} на ${state.to}. Подскажите, пожалуйста, условия.`;
 
             const { USDT_THB, RUB_USDT } = config.rates;
             if (!validAmount || !Number.isFinite(USDT_THB) || USDT_THB <= 0 || !Number.isFinite(RUB_USDT) || RUB_USDT <= 0) return fallback;
@@ -1865,8 +1869,6 @@
                 let text = "Здравствуйте! Хочу уточнить детали обмена.";
                 if (context === 'calc') text = getCalcLeadText();
                 if (context === 'quiz') text = `Здравствуйте! Прошел квиз:\n🎯 Задача: ${quizStore.goalLabel}\n💳 Оплата: ${quizStore.sourceLabel}\n🚚 Получение: ${quizStore.deliveryLabel}\n💰 Объем: ${quizStore.amountLabel}`;
-                if (mainUtm) text += `\n\n(Источник: ${mainUtm})`;
-                if (savedUtms.utm_content) text += `\nКод: ${creative.toUpperCase()}`;
                 trackLead(creative + '_wa');
                 window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(text)}`, '_blank');
             } else {

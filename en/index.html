@@ -1440,7 +1440,11 @@
             const formattedAmount = formatNumber(amount);
             const validAmount = Number.isFinite(amount) && amount > 0 && parseNumber(formattedAmount) > 0;
             const amountText = validAmount ? `${formattedAmount} ${direction === 'from' ? state.from : state.to}` : '';
-            const fallback = `Hi! I'd like to exchange ${direction === 'from' ? (amountText || state.from) + ' for ' + state.to : state.from + ' for ' + (amountText || state.to)}. Please confirm the current rate and exchange details.`;
+            const fallback = validAmount
+                ? direction === 'from'
+                    ? `Hi! I'd like to exchange ${amountText} for ${state.to}. Please calculate how much I would receive.`
+                    : `Hi! I'd like to receive ${amountText}, paying in ${state.from}. How much would I need to send?`
+                : `Hi! I'd like to exchange ${state.from} for ${state.to}. Please let me know the terms.`;
 
             const { USDT_THB, RUB_USDT } = config.rates;
             if (!validAmount || !Number.isFinite(USDT_THB) || USDT_THB <= 0 || !Number.isFinite(RUB_USDT) || RUB_USDT <= 0) return fallback;
@@ -1484,7 +1488,6 @@
                 let text = "Hi! I'd like to clarify exchange details.";
                 if (context === 'calc') text = getCalcLeadText();
                 if (context === 'quiz') text = `Hi! I completed the quiz:\n🎯 Task: ${quizStore.goalLabel}\n💳 Payment: ${quizStore.sourceLabel}\n🚚 Delivery: ${quizStore.deliveryLabel}\n💰 Volume: ${quizStore.amountLabel}`;
-                if (mainUtm) text += `\n\n(Source: ${mainUtm})`;
                 window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(text)}`, '_blank');
             } else {
                 let startParam = '';
