@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Consent Mode v2 (advanced): дефолт denied до загрузки GTM -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});
+    // Восстанавливаем сохранённый выбор посетителя
+    try{var c=localStorage.getItem('grusha_consent');if(c==='granted'||c==='denied'){gtag('consent','update',{ad_storage:c,ad_user_data:c,ad_personalization:c,analytics_storage:c});}}catch(e){}
+    </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -55,6 +63,7 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAF9; }
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
     </style>
+    <script src="/assets/js/cookie-consent.js" defer></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
