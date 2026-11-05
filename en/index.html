@@ -1467,15 +1467,20 @@
                 if (context === 'quiz') goalName = platform === 'tg' ? 'quiz_sent_telegram' : 'quiz_sent_whatsapp';
                 if (context === 'cta_bottom') goalName = platform === 'tg' ? 'click_tg_footer' : 'click_wa_footer';
 
-                ym(106232718, 'reachGoal', goalName);
-                ym(106232718, 'reachGoal', 'any_contact');
+                const utms = getSavedUTMs();
+                const goalParams = { surface: 'website', placement: context };
+                ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(key => {
+                    if (utms[key]) goalParams[key] = String(utms[key]).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 64);
+                });
+                ym(106232718, 'reachGoal', goalName, goalParams);
+                ym(106232718, 'reachGoal', 'any_contact', goalParams);
             } catch(e) { console.warn('Metrika goal error:', e); }
 
             const sendVal = document.getElementById('send-input').value;
             
             // Берем сохраненные UTM из localStorage
             const savedUtms = getSavedUTMs();
-            const mainUtm = savedUtms.utm_source || '';
+            const mainUtm = savedUtms.utm_source || 'website';
             
             const formatShort = (val) => { 
                 let n = parseNumber(val); 
