@@ -30,10 +30,16 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '2902017850161457');
-    fbq('track', 'PageView');
+    fbq('set', 'autoConfig', false, '3756043801200633');
+    fbq('init', '3756043801200633');
+    fbq('trackSingle', '2902017850161457', 'PageView');
+    fbq('trackSingle', '3756043801200633', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2902017850161457&ev=PageView&noscript=1"
+    /></noscript>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=3756043801200633&amp;ev=PageView&amp;noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
 
@@ -1001,8 +1007,8 @@
                                 <i data-lucide="percent" class="w-6 h-6 text-green-600"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Честный Profit Share — от 30%</h4>
-                                <p class="text-gray-500 leading-relaxed">Вы получаете от 30% маржи с каждой сделки. Зарабатываете не только со сделок клиента, но и на его оплате.</p>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Вознаграждение — от 1%</h4>
+                                <p class="text-gray-500 leading-relaxed">Рекомендуйте Grusha покупателям недвижимости в Таиланде и получайте от 1% суммы оплаты клиента.</p>
                             </div>
                         </div>
 
@@ -1032,7 +1038,7 @@
                             
                             <!-- Left Label (Profit Share) -->
                             <div class="absolute -left-4 md:-left-16 bottom-1/4 bg-white text-black px-4 md:px-6 py-3 md:py-4 rounded-3xl font-black text-xs md:text-sm shadow-2xl animate-float z-20" style="animation-delay: 1.5s;">
-                                от 30% <br> <span class="text-[10px] font-bold opacity-40 uppercase tracking-wider text-gray-500">Чистый Profit Share</span>
+                                от 1% <br> <span class="text-[10px] font-bold opacity-40 uppercase tracking-wider text-gray-500">Суммы оплаты клиента</span>
                             </div>
 
                             <!-- Right Label (Commission) -->
@@ -1865,7 +1871,7 @@
                     // _fbc может отсутствовать (adblock/ITP) — fallback: собираем fb.1.<ms>.<fbclid> из fbclid
                     const fbc = getFbCookie('_fbc') || (fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : '');
                     const fbp = getFbCookie('_fbp');
-                    if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: name, fbc: fbc, fbp: fbp }, { eventID: eventId });
+                    if (typeof fbq === 'function') fbq('trackSingle', '2902017850161457', 'Lead', { content_name: name, fbc: fbc, fbp: fbp }, { eventID: eventId });
                     // Серверный дубль через exgreen-api CAPI — полный fbc без лимита Telegram start
                     fetch('https://api.exgreen.pro/api/capi/lead', {
                         method: 'POST',
