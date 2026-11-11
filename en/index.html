@@ -403,6 +403,7 @@
         }
         .highlight-calc { animation: highlight-blink 0.8s ease-in-out 3; z-index: 40; position: relative; }
     </style>
+    <script src="/assets/js/section-navigation.js" defer></script>
 </head>
 <body class="text-ds-text-primary">
 
@@ -1589,12 +1590,7 @@
             fetchRates();
         });
 
-        // Принудительный скролл наверх при обновлении страницы (сбрасываем якорь)
-        if (window.location.hash) {
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 1);
-        }
+
     </script>
 
     <!-- Agentation: визуальная обратная связь для UI (только localhost) -->

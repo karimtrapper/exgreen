@@ -563,6 +563,7 @@
         details summary::-webkit-details-marker { display: none; }
     </style>
     <script src="/assets/js/cookie-consent.js" defer></script>
+    <script src="/assets/js/section-navigation.js" defer></script>
 </head>
 <body class="text-ds-text-primary">
     <!-- Google Tag Manager (noscript) -->
@@ -2014,12 +2015,7 @@
             initFaqSearch();
         });
 
-        // Принудительный скролл наверх при обновлении страницы (сбрасываем якорь)
-        if (window.location.hash) {
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 1);
-        }
+
     </script>
 
     <!-- Agentation: визуальная обратная связь для UI (только localhost) -->
