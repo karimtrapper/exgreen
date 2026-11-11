@@ -1,5 +1,14 @@
 /* Restore section links after layout and font loading without changing URL tags. */
 (() => {
+    const initialHash = window.location.hash;
+    let initialNavigationUntouched = true;
+    const cancelInitialRealignment = event => {
+        if (event.isTrusted) initialNavigationUntouched = false;
+    };
+    for (const type of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
+        window.addEventListener(type, cancelInitialRealignment, { capture: true, passive: true });
+    }
+
     function alignLinkedSection() {
         let id;
         try { id = decodeURIComponent(window.location.hash.slice(1)); }
@@ -18,13 +27,17 @@
     }
 
     alignLinkedSection();
-    window.addEventListener('hashchange', alignLinkedSection);
+    window.addEventListener('hashchange', () => {
+        initialNavigationUntouched = false;
+        alignLinkedSection();
+    });
     window.addEventListener('load', () => {
-        const hash = window.location.hash;
         const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
-        fontsReady.then(() => {
-            if (window.location.hash === hash) requestAnimationFrame(alignLinkedSection);
-        });
+        fontsReady.then(() => requestAnimationFrame(() => {
+            if (initialNavigationUntouched && window.location.hash === initialHash) {
+                alignLinkedSection();
+            }
+        }));
     }, { once: true });
     document.addEventListener('click', event => {
         const link = event.target.closest('a[href^="#"]');
