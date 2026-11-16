@@ -3,7 +3,7 @@ const fmt=n=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0}).format(n);
 const parseAmount=v=>{const s=String(v).replace(/[\s\u00a0\u202f]/g,'').replace(',','.');return s&&/^\d+(?:\.\d+)?$/.test(s)?Number(s):NaN};
 function setButtons(selector,active,predicate){$$(selector).forEach(b=>{const yes=predicate(b)===active;b.classList.toggle('is-active',yes);if(b.hasAttribute('aria-selected'))b.setAttribute('aria-selected',String(yes));if(b.hasAttribute('aria-pressed'))b.setAttribute('aria-pressed',String(yes))})}
 
-const quoteRates=Object.freeze({cbrRubUsd:82.9803,cbrDate:'13.11.2026',exampleThbPerUsd:33.69,minFreeholdMarkup:.045,exampleLeaseRubPerThb:2.60});
+const quoteRates=Object.freeze({cbrRubUsd:82.9803,cbrDate:'13.11.2026',exampleThbPerUsd:33.69,minFreeholdMarkup:.03,exampleLeaseRubPerThb:2.60});
 const fmtQuote=(n,digits=2)=>new Intl.NumberFormat('ru-RU',{minimumFractionDigits:digits,maximumFractionDigits:digits}).format(n);
 const fmtQuoteAmount=n=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(n);
 let quoteType='freehold',invoiceCurrency='thb',quoteSnapshot=null;
