@@ -655,7 +655,7 @@ h1{line-height:.99}h2{font-size:clamp(42px,4.45vw,64px);line-height:1.02;letter-
 
 @media(max-width:680px){.hero-campaign .hero-media img{object-position:right center}}
 /* Keep the single villa outside the copy column on smaller desktop screens. */
-@media(min-width:681px) and (max-width:1100px){.hero-campaign .hero-copy{max-width:48%}.hero-campaign .hero-media{left:52%;right:0;width:48%;overflow:hidden}.hero-campaign .hero-media picture{inset:auto;right:0;bottom:0;width:240%;height:100%}.hero-campaign .hero-media img{object-fit:contain;object-position:right bottom}.hero-campaign::after{background:linear-gradient(90deg,rgba(5,34,26,.72),rgba(5,34,26,.32) 44%,transparent 62%)}}
+@media(min-width:681px) and (max-width:1100px){.hero-campaign{flex-direction:row}.hero-campaign .hero-copy{max-width:48%}.hero-campaign .hero-media{left:52%;right:0;width:48%;overflow:hidden}.hero-campaign .hero-media picture{inset:auto;right:0;bottom:0;width:240%;height:100%}.hero-campaign .hero-media img{object-fit:contain;object-position:right bottom}.hero-campaign::after{background:linear-gradient(90deg,rgba(5,34,26,.72),rgba(5,34,26,.32) 44%,transparent 62%)}}
 
 /* Keep the process heading clear of the preceding section boundary. */
 #routes,#calculator{padding-bottom:0}.process-section{padding-top:116px!important}
