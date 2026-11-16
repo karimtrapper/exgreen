@@ -40,3 +40,5 @@ Service component titles are 36–40px desktop and 28–34px mobile; inner fact 
 ## Section color rhythm
 
 The home hero keeps its light architectural background and opaque white copy and calculator panels. White sections hold services, methods, cases and FAQ; pale blue supports the quiz; muted green supports security; warm cream supports the partner offer and footer. The contact panel is a rounded forest-green inset on a neutral section. The agents page alternates white content with pale green calculator/cabinet, pale blue methods/documents, and warm cream earnings. Its final CTA is a rounded forest-green inset. Action blue and link green retain their existing roles.
+
+On the agents page, payment routes sit on a muted sage canvas. Freehold has a soft green grouped surface; Leasehold has a warm stone grouped surface. White route cards contain tinted, rounded financial rows with dark labels and values. Both groups keep the established 28–32 px geometry.

@@ -927,3 +927,26 @@ h1{line-height:.99}h2{font-size:clamp(42px,4.45vw,64px);line-height:1.02;letter-
 .final-section .final-inner h2{color:var(--white)}
 .final-section .final-inner p{color:var(--agent-forest-copy)}
 .final-section .button:focus-visible{outline:3px solid var(--white);outline-offset:4px}
+
+/* Payment routes: quiet grouped surfaces and legible financial rows. */
+#routes.routes-section{background:#edf2ed;border-top:0}
+#routes .section-head{margin-bottom:30px}
+#routes .route-layout{padding:36px;border-radius:32px}
+#routes #routeFreehold{background:#dfe9e1}
+#routes #routeLeasehold{background:#eeeae2;margin-top:24px;border:0}
+#routes .route-intro,#routes #routeLeasehold>.route-intro{margin-bottom:26px}
+#routes .route-kind{color:#173b2c}
+#routes .pricing-option,#routes #routeLeasehold .leasehold-card{border:0;background:#fff;box-shadow:0 8px 24px rgba(25,49,35,.055)}
+#routes .pricing-option dl,#routes .leasehold-payment-card .fact-list{display:grid;gap:7px}
+#routes .pricing-option dl div,#routes .pricing-option dl div:nth-last-child(-n+2){min-height:0;margin:0;padding:13px 15px;border:0;border-radius:16px;background:#f2f6f2}
+#routes .pricing-option dl div:nth-child(even){background:#edf3ee}
+#routes .pricing-option dt,#routes .pricing-option dl div:nth-last-child(-n+2) dt,#routes .leasehold-payment-card .fact-list dt{color:#34483b;font-size:14px;font-weight:700}
+#routes .pricing-option dd,#routes .leasehold-payment-card .fact-list dd{color:#172b20;font-size:14px;line-height:1.45}
+#routes .pricing-currency-note,#routes .leasehold-route-note{color:#3b4e40}
+#routes .leasehold-payment-card .fact-list div{margin:0;padding:13px 15px;border:0;border-radius:16px;background:#f4f4ef}
+#routes .leasehold-payment-card .fact-list div:nth-child(even){background:#eeefe8}
+@media(min-width:781px){#routes .pricing-option dl{grid-template-rows:subgrid;row-gap:7px}}
+@media(max-width:900px){#routes .route-layout{padding:28px}}
+@media(max-width:780px){#routes .section-head{margin-bottom:24px}#routes .route-layout{padding:22px;border-radius:28px}#routes #routeLeasehold{margin-top:18px}#routes .route-intro,#routes #routeLeasehold>.route-intro{margin-bottom:22px}#routes .pricing-option dl div,#routes .pricing-option dl div:nth-last-child(-n+2),#routes .leasehold-payment-card .fact-list div{padding:12px 13px}}
+@media(max-width:480px){#routes .pricing-option dl div,#routes .pricing-option dl div:nth-last-child(-n+2),#routes .leasehold-payment-card .fact-list div{grid-template-columns:minmax(0,1fr);gap:4px;padding:13px 14px}#routes .pricing-option dl div dt,#routes .pricing-option dl div:nth-last-child(-n+2) dt,#routes .leasehold-payment-card .fact-list dt{font-size:14px;font-weight:600}#routes .pricing-option dd,#routes .leasehold-payment-card .fact-list dd{font-size:15px;line-height:1.45}}
+@media(max-width:400px){#routes .route-layout{padding:16px}}
