@@ -36,3 +36,7 @@ Service component titles are 36–40px desktop and 28–34px mobile; inner fact 
 - Large isolated panels on the home and agents pages use a 28–32 px radius. Small fact and FAQ rows use 16–20 px. Controls remain pills.
 - The agents cabinet, earnings and final action sit on a neutral canvas with rounded white inner panels. The cabinet video keeps its original media and playback control.
 - Home service facts, security facts, partner facts and FAQ answers use soft rounded rows. Financial definitions and tables retain their row structure.
+
+## Section color rhythm
+
+The home hero keeps its light architectural background and opaque white copy and calculator panels. White sections hold services, methods, cases and FAQ; pale blue supports the quiz; muted green supports security; warm cream supports the partner offer and footer. The contact panel is a rounded forest-green inset on a neutral section. The agents page alternates white content with pale green calculator/cabinet, pale blue methods/documents, and warm cream earnings. Its final CTA is a rounded forest-green inset. Action blue and link green retain their existing roles.
