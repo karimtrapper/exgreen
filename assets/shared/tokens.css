@@ -1,0 +1,6 @@
+:root{
+  --nav-paper:#fff;--nav-ink:#111513;--nav-muted:#64716a;--nav-green:#15803d;--nav-border-green:#4ade80;
+  --nav-line:#e6e9e7;--nav-soft:#f3f6f4;--nav-lime:#d9f99d;--nav-error:#a33232;
+  --nav-font:Manrope,Arial,sans-serif;--nav-radius:16px;--nav-control:44px;
+  --nav-gap:22px;--nav-focus:#15803d;--nav-duration:160ms;--nav-ease:ease;
+}

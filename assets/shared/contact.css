@@ -1,0 +1,19 @@
+/* Hallmark · shared channel choice · approved Grusha tokens · pre-emit critique: P5 H5 E5 S5 R5 V4 */
+body[data-grusha-page=home] .home-contact-dialog{position:fixed;width:min(520px,calc(100% - 28px));max-height:calc(100dvh - 24px);overflow:auto;margin:auto;padding:28px;border:0;border-radius:28px;background:var(--home-white);color:var(--home-ink);box-shadow:0 30px 90px var(--home-shadow);font-family:var(--home-font)}
+body[data-grusha-page=home] .home-contact-dialog::backdrop{background:var(--home-backdrop)}
+body[data-grusha-page=home] .home-contact-dialog h2{font:700 34px/1.08 var(--home-display);letter-spacing:-.025em;margin:0 48px 12px 0;color:var(--home-ink)}
+body[data-grusha-page=home] .home-contact-dialog p{font:400 16px/1.5 var(--home-font);color:var(--home-body);margin:0 0 18px}
+body[data-grusha-page=home] .home-dialog-close{position:absolute;right:18px;top:17px;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:var(--home-soft);color:var(--home-ink);font:400 30px/1 var(--home-font);cursor:pointer}
+body[data-grusha-page=home] .home-contact-summary{border-top:1px solid var(--home-line);border-bottom:1px solid var(--home-line);padding:15px 0;margin-bottom:18px;font:600 14px/1.5 var(--home-font);color:var(--home-body)}
+body[data-grusha-page=home] .home-contact-channels{display:flex;gap:12px}
+body[data-grusha-page=home] .home-contact-channels button{flex:1;min-width:0;white-space:nowrap}
+@media(max-width:400px){body[data-grusha-page=home] .home-contact-dialog{padding:23px}body[data-grusha-page=home] .home-contact-dialog h2{font-size:30px}body[data-grusha-page=home] .home-contact-channels{flex-direction:column}body[data-grusha-page=home] .home-contact-channels button{width:100%}}
+/* Home v43: quote rows and quieter channel choice. */
+body[data-grusha-page=home] .home-contact-summary{padding:0;margin:18px 0;border-top:1px solid var(--home-line)}
+body[data-grusha-page=home] .home-contact-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--home-line)}
+body[data-grusha-page=home] .home-contact-row span{font:600 14px/1.4 var(--home-font);color:var(--home-muted)}
+body[data-grusha-page=home] .home-contact-row strong{font:700 16px/1.4 var(--home-font);color:var(--home-ink);text-align:right}
+body[data-grusha-page=home] .home-quiz-summary{padding:15px 0;margin:0!important;color:var(--home-body)}
+body[data-grusha-page=home] .home-contact-channels .home-secondary-button{background:var(--home-white);color:var(--home-green);border:2px solid var(--home-green-border)}
+body[data-grusha-page=home] .home-contact-channels .home-secondary-button:hover{background:var(--home-tint)}
+@media(max-width:400px){body[data-grusha-page=home] .home-contact-row{display:block}body[data-grusha-page=home] .home-contact-row strong{display:block;text-align:left;margin-top:5px}}
