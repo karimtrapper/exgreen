@@ -12,10 +12,22 @@
   header.addEventListener('focusout',()=>{
     queueMicrotask(()=>{if(!menu.hidden&&!header.contains(document.activeElement))setMobile(false)});
   });
+  function fitPanel(details){
+    if(!details.open||window.innerWidth<=1090)return;
+    const panel=details.querySelector('.shared-menu-panel');
+    if(!panel)return;
+    panel.style.transform='';
+    const rect=panel.getBoundingClientRect(),edge=document.documentElement.clientWidth-16;
+    let shift=Math.min(0,edge-rect.right);
+    shift=Math.max(shift,16-rect.left);
+    if(shift)panel.style.transform=`translateX(${shift}px)`;
+  }
   header.querySelectorAll('details').forEach(details=>details.addEventListener('toggle',()=>{
     details.querySelector('summary').setAttribute('aria-expanded',String(details.open));
     if(details.open)header.querySelectorAll('details').forEach(other=>{if(other!==details)other.open=false});
+    fitPanel(details);
   }));
+  window.addEventListener('resize',()=>header.querySelectorAll('details[open]').forEach(fitPanel));
   header.querySelectorAll('summary').forEach(summary=>summary.setAttribute('aria-expanded','false'));
   document.addEventListener('click',e=>{if(!header.contains(e.target))header.querySelectorAll('details[open]').forEach(d=>d.open=false)});
   document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;const open=header.querySelector('details[open]');if(open){open.open=false;open.querySelector('summary').focus()}if(!menu.hidden){setMobile(false);toggle.focus()}});
