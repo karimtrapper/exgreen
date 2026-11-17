@@ -1,6 +1,20 @@
 (() => {
   const header=document.querySelector('.grusha-header');
   if(!header)return;
+  // Preserve this visit's attribution through internal page navigation.
+  const utmKeys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  const query=new URLSearchParams(location.search);
+  const utms=utmKeys.filter(key=>query.has(key)).map(key=>[key,query.get(key)]);
+  if(utms.length)document.querySelectorAll('.grusha-header a[href],footer a[href],.shared-footer-links a[href]').forEach(a=>{
+    const href=a.getAttribute('href').trim();
+    if(!href||href.startsWith('#')||a.hasAttribute('download'))return;
+    let target;
+    try{target=new URL(href,location.href)}catch{return}
+    if(!/^https?:$/.test(target.protocol)||target.origin!==location.origin||target.username||target.password)return;
+    if(!/\/$|\.html?$/i.test(target.pathname)||utmKeys.some(key=>target.searchParams.has(key)))return;
+    utms.forEach(([key,value])=>target.searchParams.set(key,value));
+    a.href=target.href;
+  });
   const menu=document.getElementById('sharedMobileMenu'),toggle=document.getElementById('sharedMenuToggle');
   let previousOverflow='';
   function setMobile(open){
@@ -46,7 +60,7 @@
   if(home&&['RUB','USDT'].includes(currency)&&typeof scrollToCalc==='function')scrollToCalc(currency);
   header.querySelectorAll('[data-currency]').forEach(a=>a.addEventListener('click',e=>{
     if(!home||typeof scrollToCalc!=='function')return;
-    e.preventDefault();scrollToCalc(a.dataset.currency);history.replaceState(null,'','#calculator');
+    e.preventDefault();scrollToCalc(a.dataset.currency);history.replaceState(null,'',location.pathname+location.search+'#calculator');
   }));
   function paint(data){
     const rub=Number(data.rub_usdt)/(Number(data.usdt_thb)*(1-.0272));
