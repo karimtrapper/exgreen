@@ -42,6 +42,7 @@ body[data-grusha-page=home] .task-header{min-height:48px}
 body[data-grusha-page=home] .task-title{font:700 clamp(28px,2.8vw,40px)/1.08 var(--home-display);color:var(--home-ink);letter-spacing:-.02em}
 body[data-grusha-page=home] .toggle-btn{background:var(--home-lime);color:var(--home-ink);min-width:44px;width:44px;height:44px}
 body[data-grusha-page=home] .feature-card,body[data-grusha-page=home] .ogvio-card,body[data-grusha-page=home] .case-card-sketch{background:var(--home-white);border:1px solid var(--home-line);border-radius:28px;box-shadow:none;transform:none}
+body[data-grusha-page=home] .case-tag.text-emerald-600,body[data-grusha-page=home] #cases .case-card-sketch button[onclick^="openCaseModal"]{color:#116B34}
 body[data-grusha-page=home] .task-image-wrapper{border-radius:28px}
 body[data-grusha-page=home] #quiz>div{max-width:1100px}
 body[data-grusha-page=home] #quiz .quiz-step button:not(.home-primary-button){background:var(--home-white);border-color:var(--home-line);border-radius:20px;box-shadow:none;transform:none;min-height:56px}

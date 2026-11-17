@@ -9,6 +9,9 @@
     if(open){previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden'}else document.body.style.overflow=previousOverflow;
   }
   toggle.addEventListener('click',()=>setMobile(menu.hidden));
+  header.addEventListener('focusout',()=>{
+    queueMicrotask(()=>{if(!menu.hidden&&!header.contains(document.activeElement))setMobile(false)});
+  });
   header.querySelectorAll('details').forEach(details=>details.addEventListener('toggle',()=>{
     details.querySelector('summary').setAttribute('aria-expanded',String(details.open));
     if(details.open)header.querySelectorAll('details').forEach(other=>{if(other!==details)other.open=false});
