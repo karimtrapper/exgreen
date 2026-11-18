@@ -9,8 +9,12 @@
     if(open){previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden'}else document.body.style.overflow=previousOverflow;
   }
   toggle.addEventListener('click',()=>setMobile(menu.hidden));
-  header.addEventListener('focusout',()=>{
-    queueMicrotask(()=>{if(!menu.hidden&&!header.contains(document.activeElement))setMobile(false)});
+  header.addEventListener('keydown',event=>{
+    if(event.key!=='Tab'||menu.hidden)return;
+    // Let the browser move focus before checking where tabbing landed.
+    setTimeout(()=>{
+      if(!event.defaultPrevented&&!header.contains(document.activeElement))setMobile(false);
+    },0);
   });
   function fitPanel(details){
     if(!details.open||window.innerWidth<=1090)return;

@@ -957,3 +957,5 @@ h1{line-height:.99}h2{font-size:clamp(42px,4.45vw,64px);line-height:1.02;letter-
 @media(max-width:780px){#routes .section-head{margin-bottom:24px}#routes .route-layout{padding:22px;border-radius:28px}#routes #routeLeasehold{margin-top:18px}#routes .route-intro,#routes #routeLeasehold>.route-intro{margin-bottom:22px}#routes .pricing-option dl div,#routes .pricing-option dl div:nth-last-child(-n+2),#routes .leasehold-payment-card .fact-list div{padding:12px 13px}}
 @media(max-width:480px){#routes .pricing-option dl div,#routes .pricing-option dl div:nth-last-child(-n+2),#routes .leasehold-payment-card .fact-list div{grid-template-columns:minmax(0,1fr);gap:4px;padding:13px 14px}#routes .pricing-option dl div dt,#routes .pricing-option dl div:nth-last-child(-n+2) dt,#routes .leasehold-payment-card .fact-list dt{font-size:14px;font-weight:600}#routes .pricing-option dd,#routes .leasehold-payment-card .fact-list dd{font-size:15px;line-height:1.45}}
 @media(max-width:400px){#routes .route-layout{padding:16px}}
+
+body[data-grusha-page=agents]:has(#sharedMobileMenu:not([hidden])) #gc-consent{visibility:hidden}
