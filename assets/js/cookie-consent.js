@@ -8,22 +8,26 @@
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
   function write(v) {
-    try { localStorage.setItem(KEY, v); } catch (e) {}
+    try { localStorage.setItem(KEY, v); return read() === v; } catch (e) { return false; }
   }
-  if (read()) return;
+  var saved = read();
+  if (saved === 'granted' || saved === 'denied') return;
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
 
   // Применяем выбор: обновляем согласия, сохраняем, скрываем баннер
   function choose(value, root) {
+    if (!write(value)) {
+      root.querySelector('.gc-error').hidden = false;
+      return;
+    }
     gtag('consent', 'update', {
       ad_storage: value,
       ad_user_data: value,
       ad_personalization: value,
       analytics_storage: value
     });
-    write(value);
     window.dataLayer.push({ event: 'consent_update' });
     root.parentNode && root.parentNode.removeChild(root);
   }
@@ -37,6 +41,10 @@
       '<style>' +
       '#gc-consent{position:fixed;left:12px;right:12px;bottom:12px;z-index:2147483000;display:flex;justify-content:center;pointer-events:none;font-family:"Plus Jakarta Sans",system-ui,-apple-system,sans-serif}' +
       '#gc-consent .gc-box{pointer-events:auto;box-sizing:border-box;max-width:760px;width:100%;background:#fff;border:1px solid #E6E9E7;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.14);padding:16px 18px;display:flex;flex-direction:column;gap:12px;color:#111;font-size:14px;line-height:1.45}' +
+      'dialog #gc-consent{position:static;margin-top:20px;display:block}' +
+      'dialog #gc-consent .gc-box{max-width:none;flex-direction:column;align-items:stretch;gap:12px;padding:16px;box-shadow:none}' +
+      'dialog #gc-consent .gc-btns{flex-wrap:wrap}' +
+      'dialog #gc-consent button{flex:1 1 0;min-width:0;padding:11px 14px}' +
       '#gc-consent p{margin:0}' +
       '#gc-consent a{color:#111;text-decoration:underline}' +
       '#gc-consent .gc-btns{display:flex;gap:8px}' +
@@ -47,6 +55,7 @@
       '</style>' +
       '<div class="gc-box">' +
       '<p>Мы используем cookie для аналитики и рекламы. Подробнее — в <a href="/privacy.html">политике конфиденциальности</a>.</p>' +
+      '<p class="gc-error" role="status" hidden>Не удалось сохранить выбор. Попробуйте ещё раз.</p>' +
       '<div class="gc-btns"><button type="button" data-gc="granted">Принять</button><button type="button" data-gc="denied">Отклонить</button></div>' +
       '</div>';
     root.addEventListener('click', function (e) {
