@@ -5,6 +5,16 @@
   const utmKeys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
   const query=new URLSearchParams(location.search);
   const utms=utmKeys.filter(key=>query.has(key)).map(key=>[key,query.get(key)]);
+  const pendingReferrers=new Set();
+  function awaitingFirstMeasurement(){
+    if(document.body.dataset.grushaPage!=='agents'||typeof window.ym==='function')return false;
+    try{return localStorage.getItem('grusha_consent')!=='granted'}catch{return true}
+  }
+  function restoreReferrers(){
+    if(awaitingFirstMeasurement())return;
+    pendingReferrers.forEach(a=>{if(a.getAttribute('referrerpolicy')==='no-referrer')a.removeAttribute('referrerpolicy')});
+    pendingReferrers.clear();
+  }
   if(utms.length)document.querySelectorAll('.grusha-header a[href],footer a[href],.shared-footer-links a[href]').forEach(a=>{
     const href=a.getAttribute('href').trim();
     if(!href||href.startsWith('#')||a.hasAttribute('download'))return;
@@ -14,7 +24,17 @@
     if(!/\/$|\.html?$/i.test(target.pathname)||utmKeys.some(key=>target.searchParams.has(key)))return;
     utms.forEach(([key,value])=>target.searchParams.set(key,value));
     a.href=target.href;
+    // Do not turn a not-yet-measured arrival into an internal referral.
+    if(target.pathname!==location.pathname&&utms.some(([,value])=>value)&&awaitingFirstMeasurement()&&!a.hasAttribute('referrerpolicy')&&!a.hasAttribute('rel')){
+      a.setAttribute('referrerpolicy','no-referrer');
+      pendingReferrers.add(a);
+    }
   });
+  document.addEventListener('click',event=>{
+    if(event.target.closest('#gc-consent [data-gc]'))setTimeout(restoreReferrers,0);
+  });
+  window.addEventListener('storage',event=>{if(event.key==='grusha_consent')restoreReferrers()});
+  window.addEventListener('pageshow',restoreReferrers);
   const menu=document.getElementById('sharedMobileMenu'),toggle=document.getElementById('sharedMenuToggle');
   let previousOverflow='';
   function setMobile(open){
